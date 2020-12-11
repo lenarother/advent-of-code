@@ -78,7 +78,7 @@ if __name__ =='__main__':
     result = x * y
     print('Part 1 - Result: ', result)
 
-    # Part 1
+    # Part 2
     x, y, z = find_three_nums(input1, 2020)
     result = x * y * z
     print('Part 2 - Test set 1: ', result)
