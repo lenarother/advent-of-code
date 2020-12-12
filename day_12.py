@@ -36,7 +36,7 @@ class Ship:
         if isinstance(data, str):
             self.direction = data
         elif isinstance(data, dict):
-            self.waypoint = waypoint
+            self.waypoint = data
 
     def turn_waypoint(self, action, dist):
         new_waypoint = {}
@@ -65,7 +65,7 @@ class Ship:
 
     def get_direction(self, action, dist, current_direction):
         dist = dist % 360
-        dist = dist/90
+        dist = dist / 90
         return TURNS[action][current_direction][int(dist - 1)]
 
     def get_manhattan_distance(self):
