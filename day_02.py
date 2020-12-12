@@ -4,7 +4,7 @@ https://adventofcode.com/2020/day/2
 
 """
 
-from day_base import get_inpit_list_from_file
+from day_base import get_input_list_from_file
 
 
 def parse_input(line):
@@ -39,8 +39,8 @@ def check_passwords(input, validation_func):
 if __name__ =='__main__':
 
     # Input
-    input1 = get_inpit_list_from_file('inputdata/day-2-1.txt')
-    input2 = get_inpit_list_from_file('inputdata/day-2-2.txt')
+    input1 = get_input_list_from_file('inputdata/day-2-1.txt')
+    input2 = get_input_list_from_file('inputdata/day-2-2.txt')
 
     # Part 1
     result = check_passwords(input1, check_password)

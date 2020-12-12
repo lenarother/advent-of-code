@@ -4,7 +4,7 @@ https://adventofcode.com/2020/day/12
 
 """
 
-from day_base import get_inpit_list_from_file
+from day_base import get_input_list_from_file
 
 TURNS = {
     'L': {
@@ -87,8 +87,8 @@ class Ship:
 if __name__ =='__main__':
 
     # Input
-    input1 = get_inpit_list_from_file('inputdata/day-12-1.txt')
-    input2 = get_inpit_list_from_file('inputdata/day-12-2.txt')
+    input1 = get_input_list_from_file('inputdata/day-12-1.txt')
+    input2 = get_input_list_from_file('inputdata/day-12-2.txt')
 
     # Part 1
     result = Ship('E').go(input1)
