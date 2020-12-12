@@ -39,8 +39,8 @@ def check_passwords(input, validation_func):
 if __name__ =='__main__':
 
     # Input
-    input1 = get_input_list_from_file('inputdata/day-2-1.txt')
-    input2 = get_input_list_from_file('inputdata/day-2-2.txt')
+    input1 = get_input_list_from_file('inputdata/day-02-1.txt')
+    input2 = get_input_list_from_file('inputdata/day-02-2.txt')
 
     # Part 1
     result = check_passwords(input1, check_password)
