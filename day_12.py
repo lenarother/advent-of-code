@@ -69,8 +69,8 @@ class Ship:
         return TURNS[action][current_direction][int(dist - 1)]
 
     def get_manhattan_distance(self):
-        ns = max([self.position['N'], self.position['S']]) - min([self.position['N'], self.position['S']])
-        ew = max([self.position['E'], self.position['W']]) - min([self.position['E'], self.position['W']])
+        ns = abs(self.position['N'] - self.position['S'])
+        ew = abs(self.position['E'] - self.position['W'])
         return ns + ew
 
     def go(self, instruction_list):
