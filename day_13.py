@@ -4,10 +4,6 @@ https://adventofcode.com/2020/day/13
 
 """
 
-from functools import reduce
-import math
-import sys
-
 timestamp = 939
 ids = ['7', '13', 'x', 'x', '59', 'x', '31', '19']
 
