@@ -188,7 +188,7 @@ def multiply_myticket_departure_fields(filename):
     return result
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Part 1
     result = multiply_invalid_values('inputdata/day-16-1.txt')

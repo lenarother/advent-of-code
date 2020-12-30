@@ -38,31 +38,3 @@ if __name__ == '__main__':
 
     result = find_encription_key(7, 10441485, 1004920)
     print('Part 1 - Result: ', result)
-
-    # card
-    # result = transform(7, 8)
-    # print(result)
-    # print('Expected: 5764801')
-    #
-    # # door
-    # result = transform(7, 11)
-    # print(result)
-    # print('Expected: 17807724')
-    #
-    # # exnription_key
-    # result = transform(5764801, 11)
-    # print(result)
-    # print('Expected: 14897079')
-    # Part 1
-    # result = solve1('inputdata/day-22-1.txt')
-    # print('Part 1 - Test set 1: ', result)
-    #
-    # result = solve1('inputdata/day-22-2.txt')
-    # print('Part 1 - Result: ', result)
-    #
-    # # Part 2
-    # result = solve2('inputdata/day-22-1.txt')
-    # print('Part 2 - Test set 1: ', result)
-    #
-    # result = solve2('inputdata/day-22-2.txt')
-    # print('Part 2 - Result: ', result)
