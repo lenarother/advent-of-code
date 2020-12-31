@@ -292,4 +292,4 @@ if __name__ =='__main__':
 
     m = get_matrix('inputdata/day-20-2.txt')
     result = m.calculate_water_roughness()
-    print('Part 2 - Test set 1: ', result)
+    print('Part 2 - Result: ', result)
