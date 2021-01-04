@@ -21,7 +21,6 @@ def parse(expression):
             result_x, expression = parse([x] + expression)
             result.append(result_x)
         elif ')' in x:
-            # x = x[:-1]
             x, rest = x.split(')', 1)
             if x:
                 result.append(x)
