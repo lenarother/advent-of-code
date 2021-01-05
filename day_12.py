@@ -4,8 +4,6 @@ https://adventofcode.com/2020/day/12
 
 """
 
-from day_base import get_input_list_from_file
-
 TURNS = {
     'L': {
         'E': 'NWS',
@@ -20,6 +18,11 @@ TURNS = {
         'S': 'WNE',
     }
 }
+
+
+def get_input_list_from_file(filename):
+    input = open(filename).readlines()
+    return list(map(lambda x: x.strip(), input))
 
 
 class Ship:

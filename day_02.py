@@ -4,7 +4,10 @@ https://adventofcode.com/2020/day/2
 
 """
 
-from day_base import get_input_list_from_file
+
+def get_input_list_from_file(filename):
+    input = open(filename).readlines()
+    return list(map(lambda x: x.strip(), input))
 
 
 def parse_input(line):
