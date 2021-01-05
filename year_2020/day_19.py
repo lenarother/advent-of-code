@@ -122,7 +122,9 @@ def check_message(message, rule):
 
     elif rule.rule_type == 'or':
         if rule.children[0].result is None:
-            return check_message(message, rule.children[0])
+            return check_message(
+                message, rule.children[0]
+            )
         elif rule.children[0].result is False and rule.children[1].result is None:
             return check_message(message, rule.children[1])
         elif rule.children[0].result is False and rule.children[1].result is False:
@@ -214,7 +216,7 @@ def check_messages_with_rule_substitution(filename):
     )
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Part 1
     result = check_messages('inputdata/day-19-2.txt', 0)

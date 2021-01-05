@@ -28,8 +28,8 @@ def parse_rule(rule, result=None):
 
 def parse_input(filename):
     data = []
-    for l in open(filename).read().strip().split('\n'):
-        data.append(parse_rule(l))
+    for line in open(filename).read().strip().split('\n'):
+        data.append(parse_rule(line))
     return data
 
 
@@ -39,7 +39,7 @@ def get_tile(data):
     for direction in data:
         dx, dy = DIRECTION[direction]
         x += dx
-        y  += dy
+        y += dy
     return x, y
 
 
@@ -111,7 +111,7 @@ def simulate(filename, rounds=100):
     return sum(x % 2 for x in tiles.values())
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Part 1
     result = count_black_tiles('inputdata/day-24-1.txt')

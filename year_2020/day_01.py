@@ -67,7 +67,7 @@ def find_three_nums(input, expected_result):
                     return x, y, z
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Part 1
     x, y = find_two_nums(input1, 2020)

@@ -148,7 +148,7 @@ def get_chains_num_from_input(input):
     return result
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Part 1
     result_dict = get_differences_array(input1)
@@ -162,7 +162,6 @@ if __name__ =='__main__':
     result_dict = get_differences_array(input3)
     result = result_dict[1] * result_dict[3]
     print('Part 1 - Result: ', result)
-
 
     # Part 2
     result = get_chains_num_from_input(input1)

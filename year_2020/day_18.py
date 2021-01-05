@@ -78,16 +78,20 @@ def solve_expression(expression, advanced=False):
 
 
 def sum_expression_results(filename, advanced=False):
-    return sum([solve_expression(e, advanced) for e in open(filename).readlines()])
+    return sum(
+        [solve_expression(e, advanced) for e in open(filename).readlines()]
+    )
 
 
 if __name__ == '__main__':
 
     # Part 1
-    assert solve_expression('((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2') == 13632
+    assert solve_expression(
+        '((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2') == 13632
     assert solve_expression('2 * 3 + (4 * 5)') == 26
     assert solve_expression('5 + (8 * 3 + 9 + 3 * 4 * 3)') == 437
-    assert solve_expression('5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))') == 12240
+    assert solve_expression(
+        '5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))') == 12240
     assert solve_expression('1 + 2 * 3 + 4 * 5 + 6') == 71
     assert solve_expression('1 + (2 * 3) + (4 * (5 + 6))') == 51
 

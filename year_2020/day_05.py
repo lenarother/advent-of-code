@@ -30,7 +30,7 @@ def get_missing_seat(filename):
             return x + 1
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
     # Part 1
     assert decode_seat('BFFFBBFRRR') == (70, 7, 567)
     assert decode_seat('FFFBBBFRRR') == (14, 7, 119)

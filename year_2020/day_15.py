@@ -44,7 +44,7 @@ class Game:
         return self.current_num
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Part 1
     result = Game(input1).play(2020)

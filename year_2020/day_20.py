@@ -274,7 +274,7 @@ def get_matrix(filename):
     return m
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Part 1
     m = get_matrix('inputdata/day-20-1.txt')

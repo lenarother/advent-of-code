@@ -17,8 +17,10 @@ def check_pass(pass_data):
         return set(PASS_REQUIRED_KEYS + PASS_OPTIONAL_KEYS) == set(pass_data.keys())
     return False
 
+
 def _check_date(val, dmin, dmax):
     return len(val) == 4 and val.isdigit() and (dmin <= int(val) <= dmax)
+
 
 def _check_height(val):
     if len(val) < 4:
@@ -31,12 +33,13 @@ def _check_height(val):
             return False
     return True
 
+
 def check_pass_details(pass_data):
     if not _check_date(pass_data['byr'], 1920, 2002):
         return False
 
     if not _check_date(pass_data['iyr'], 2010, 2020):
-       return False
+        return False
 
     if not _check_date(pass_data['eyr'], 2020, 2030):
         return False
@@ -62,7 +65,6 @@ def check_data(filename, check_details=False):
     data = open(filename).read()
     data = data.split('\n\n')
     for item in data:
-        pass_data = {}
         item = item.replace('\n', ' ').split()
         item_data = {}
         for i in item:
@@ -76,7 +78,7 @@ def check_data(filename, check_details=False):
     return valid_data
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Part 1
     result = check_data('inputdata/day-04-1.txt')

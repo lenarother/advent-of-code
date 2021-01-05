@@ -31,7 +31,9 @@ def parse_input(file_name):
         for operation in item[1:]:
             if operation.startswith('mem'):
                 operation_k, operation_v = operation.split(' = ')
-                operation_k = int(operation_k.replace('mem[', '').replace(']', ''))
+                operation_k = int(
+                    operation_k.replace('mem[', '').replace(']', '')
+                )
                 operation_v = int(operation_v)
                 result.setdefault(operation_k, [])
                 result[operation_k].append((mask, operation_v))
@@ -41,7 +43,9 @@ def parse_input(file_name):
 def get_mem_value(decimal, mask):
     # Part 1
     binary = f'{decimal:>036b}'
-    binary_with_mask = ''.join([b if m=='X' else m for b, m in zip(binary, mask)])
+    binary_with_mask = ''.join(
+        [b if m=='X' else m for b, m in zip(binary, mask)]
+    )
     return int(binary_with_mask, 2)
 
 
@@ -74,7 +78,9 @@ def initialize_addresses(decimal, mask, val):
     perms = itertools.product([0, 1], repeat=floating_count)
     for perm in perms:
         perm_to_insert = list(map(str, perm)) + ['']
-        address = ''.join(reduce(operator.add, zip(result_divided, perm_to_insert)))
+        address = ''.join(
+            reduce(operator.add, zip(result_divided, perm_to_insert))
+        )
         memory_part2[address] = val
 
 
@@ -88,11 +94,13 @@ def initialize_memory(file_name):
         for operation in item[1:]:
             if operation.startswith('mem'):
                 operation_k, operation_v = operation.split(' = ')
-                operation_k = int(operation_k.replace('mem[', '').replace(']', ''))
+                operation_k = int(
+                    operation_k.replace('mem[', '').replace(']', '')
+                )
                 initialize_addresses(operation_k, mask, int(operation_v))
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Parse input
     input1 = parse_input('inputdata/day-14-1.txt')

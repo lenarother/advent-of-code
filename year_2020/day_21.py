@@ -1,4 +1,4 @@
-"""Day 21: Allergen Assessment 
+"""Day 21: Allergen Assessment
 
 https://adventofcode.com/2020/day/21
 
@@ -12,8 +12,8 @@ def parse_input(filename):
     allergen_lines_dict = {}
     allergen_dict = {}
 
-    for counter, l in enumerate(data):
-        ingredients, allergens = l.split(' (contains ')
+    for counter, line in enumerate(data):
+        ingredients, allergens = line.split(' (contains ')
         ingredients = ingredients.split()
         allergens = allergens.strip().replace(')', '').split(', ')
         line_data_dict[counter] = [ingredients, allergens]
@@ -28,10 +28,14 @@ def parse_input(filename):
 def refine_allergen_dict(line_data_dict, allergen_lines_dict, allergen_dict):
     for allergen in allergen_lines_dict:
         list_of_ingredient_lists = [
-            line_data_dict[l][0] for l in allergen_lines_dict[allergen]
+            line_data_dict[line][0]
+            for line in allergen_lines_dict[allergen]
         ]
         common_ingredients = set.intersection(
-            *[set(ingredient_list) for ingredient_list in list_of_ingredient_lists]
+            *[
+                set(ingredient_list)
+                for ingredient_list in list_of_ingredient_lists
+            ]
         )
         if len(common_ingredients) == 1:
             allergen_dict[allergen] = list(common_ingredients)[0]
@@ -42,11 +46,11 @@ def refine_allergen_dict(line_data_dict, allergen_lines_dict, allergen_dict):
 def refine_line_data_dict(line_data_dict, allergen_dict, allergen_lines_dict):
     for allergen, ingredient in allergen_dict.items():
         if ingredient:
-            for l in line_data_dict:
-                if ingredient in line_data_dict[l][0]:
-                    line_data_dict[l][0].remove(ingredient)
-                if allergen in line_data_dict[l][1]:
-                    line_data_dict[l][1].remove(allergen)
+            for line in line_data_dict:
+                if ingredient in line_data_dict[line][0]:
+                    line_data_dict[line][0].remove(ingredient)
+                if allergen in line_data_dict[line][1]:
+                    line_data_dict[line][1].remove(allergen)
     return line_data_dict
 
 
@@ -54,9 +58,21 @@ def eliminate_allergens(line_data_dict, allergen_lines_dict, allergen_dict):
     if list(allergen_dict.values()).count(None) == 0:
         return allergen_dict, line_data_dict
 
-    allergen_dict = refine_allergen_dict(line_data_dict, allergen_lines_dict, allergen_dict)
-    line_data_dict = refine_line_data_dict(line_data_dict, allergen_dict, allergen_lines_dict)
-    return eliminate_allergens(line_data_dict, allergen_lines_dict, allergen_dict)
+    allergen_dict = refine_allergen_dict(
+        line_data_dict,
+        allergen_lines_dict,
+        allergen_dict
+    )
+    line_data_dict = refine_line_data_dict(
+        line_data_dict,
+        allergen_dict,
+        allergen_lines_dict
+    )
+    return eliminate_allergens(
+        line_data_dict,
+        allergen_lines_dict,
+        allergen_dict
+    )
 
 
 def find_non_allergic_ingredient_count(filename):
@@ -76,11 +92,12 @@ def find_canonical_dangerous_ingredient_list(filename):
         allergen_lines_dict,
         allergen_dict
     )
-    allergen_ingredient_list = sorted([(k, v) for k, v in allergen_dict.items()])
+    allergen_ingredient_list = sorted(
+        [(k, v) for k, v in allergen_dict.items()])
     return ','.join(x[1] for x in allergen_ingredient_list)
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Part 1
     result = find_non_allergic_ingredient_count('inputdata/day-21-1.txt')

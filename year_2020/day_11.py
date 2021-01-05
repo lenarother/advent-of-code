@@ -4,10 +4,6 @@ https://adventofcode.com/2020/day/11
 
 """
 
-import pprint
-from operator import itemgetter
-
-
 DIRECTIONS = {
     'left': {'x': -1, 'y': 0},
     'right': {'x': 1, 'y': 0},
@@ -44,9 +40,16 @@ class Seat:
 
     def get_adjacent_positions(self):
         seats = [
-            (self.x - 1, self.y - 1), (self.x, self.y - 1), (self.x + 1, self.y - 1),
-            (self.x - 1, self.y), (self.x + 1, self.y),
-            (self.x - 1, self.y + 1), (self.x, self.y + 1), (self.x + 1, self.y + 1),
+            (self.x - 1, self.y - 1),
+            (self.x, self.y - 1),
+            (self.x + 1, self.y - 1),
+
+            (self.x - 1, self.y),
+            (self.x + 1, self.y),
+
+            (self.x - 1, self.y + 1),
+            (self.x, self.y + 1),
+            (self.x + 1, self.y + 1),
         ]
         result = []
         for x, y in seats:
@@ -75,7 +78,8 @@ class Rules:
         also occupied, the seat becomes empty.
 
         """
-        if seat.state != '#' or sum(map(bool, adjacent_seats)) < standup_treshold:
+        if seat.state != '#' or (
+                sum(map(bool, adjacent_seats)) < standup_treshold):
             return None
         return 'L'
 
@@ -192,7 +196,7 @@ class Area:
         return False
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     config1 = Config(standup_treshold=4, look_beyond_dots=False)
     config2 = Config(standup_treshold=5, look_beyond_dots=True)
