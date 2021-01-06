@@ -125,9 +125,11 @@ def check_message(message, rule):
             return check_message(
                 message, rule.children[0]
             )
-        elif rule.children[0].result is False and rule.children[1].result is None:
+        elif rule.children[0].result is False and (
+                rule.children[1].result is None):
             return check_message(message, rule.children[1])
-        elif rule.children[0].result is False and rule.children[1].result is False:
+        elif rule.children[0].result is False and (
+                rule.children[1].result is False):
             rule.result = False
             return check_message(rule.message_orig, rule.parent)
 
@@ -188,7 +190,10 @@ def check_messages_with_rule_substitution(filename):
         {8: [42, 42, 42, 42, 42], 11: [42, 42, 31, 31]},
         {8: [42, 42, 42, 42, 42], 11: [42, 42, 42, 31, 31, 31]},
         {8: [42, 42, 42, 42, 42], 11: [42, 42, 42, 42, 31, 31, 31, 31]},
-        {8: [42, 42, 42, 42, 42], 11: [42, 42, 42, 42, 42, 31, 31, 31, 31, 31]},
+        {
+            8: [42, 42, 42, 42, 42],
+            11: [42, 42, 42, 42, 42, 31, 31, 31, 31, 31]
+        },
     ]
 
     valid_messages = {}

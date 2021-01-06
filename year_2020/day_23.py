@@ -21,7 +21,11 @@ class Game:
         cups = [cups[0]] + cups[4:]
         destination_cup = self.get_destination_cup(current_cup, cups)
         destination_cup_index = cups.index(destination_cup)
-        cups = cups[:destination_cup_index + 1] + selected_cups + cups[destination_cup_index + 1:]
+        cups = (
+            cups[:destination_cup_index + 1] +
+            selected_cups +
+            cups[destination_cup_index + 1:]
+        )
         old_current = cups.pop(0)
         cups.append(old_current)
         return cups
@@ -139,7 +143,7 @@ def solve(labels):
     return result
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Part 1
     assert Game().play('389125467', 10) == '92658374'

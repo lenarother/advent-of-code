@@ -43,11 +43,11 @@ class Tile:
         if left == 'L':
             self.data = self.initial_data
         elif left == 'R':
-            self.data = [l[::-1] for l in self.initial_data]
+            self.data = [x[::-1] for x in self.initial_data]
         elif left == 'FL':
             self.data = self.initial_data[::-1]
         elif left == 'FR':
-            self.data = [l[::-1] for l in self.initial_data][::-1]
+            self.data = [x[::-1] for x in self.initial_data][::-1]
         elif left == 'T':
             self.data = [''.join(x) for x in zip(*self.initial_data)]
         elif left == 'B':
@@ -55,7 +55,8 @@ class Tile:
         elif left == 'FT':
             self.data = [''.join(x) for x in zip(*self.initial_data)][::-1]
         elif left == 'FB':
-            self.data = [''.join(x)[::-1] for x in zip(*self.initial_data)][::-1]
+            self.data = (
+                [''.join(x)[::-1] for x in zip(*self.initial_data)][::-1])
         self.edges = self.set_edges(self.data)
 
     def find_neighbor_position(self, target):
@@ -91,7 +92,14 @@ class Tile:
             if orientation[compare_position] == edge_current_position:
                 return orientation[0]
 
-    def find_neighbor(self, matrix, tile_dict, edge_dict, my_edge_position, target_edge_position):
+    def find_neighbor(
+            self,
+            matrix,
+            tile_dict,
+            edge_dict,
+            my_edge_position,
+            target_edge_position
+    ):
         position = self.find_neighbor_position(my_edge_position)
         if position in matrix.data:
             return True
@@ -108,8 +116,11 @@ class Tile:
 
         neighbor_id = ids[0] if ids[0] != self.id else ids[1]
         neighbor_teil = tile_dict[neighbor_id]
-        current_orientation = neighbor_teil.get_edge_orientation(edge) # R
-        left_orientation = self.get_relatve_left_orientation(current_orientation, target_edge_position)
+        current_orientation = neighbor_teil.get_edge_orientation(edge)  # R
+        left_orientation = self.get_relatve_left_orientation(
+            current_orientation,
+            target_edge_position
+        )
         neighbor_teil.orient(left=left_orientation)
         neighbor_teil.position = position
         matrix.add_tile(neighbor_teil, position)
@@ -127,7 +138,7 @@ class Tile:
             )
 
     def crop(self):
-        self.data = [l[1:-1] for l in self.data[1:-1]]
+        self.data = [x[1:-1] for x in self.data[1:-1]]
 
 
 class Matrix:
@@ -155,15 +166,15 @@ class Matrix:
 
         for r in sorted(list(rows.keys())):
             for counter in range(len(self.data[(0, 0)].data)):
-                l = ''.join([t.data[counter] for t in rows[r]])
-                self.picture.append(l)
+                x = ''.join([t.data[counter] for t in rows[r]])
+                self.picture.append(x)
 
     def get_pictures(self):
         return {
             'L': self.picture,
-            'R': [l[::-1] for l in self.picture],
+            'R': [x[::-1] for x in self.picture],
             'FL': self.picture[::-1],
-            'FR': [l[::-1] for l in self.picture][::-1],
+            'FR': [x[::-1] for x in self.picture][::-1],
             'T': [''.join(x) for x in zip(*self.picture)],
             'B': [''.join(x)[::-1] for x in zip(*self.picture)],
             'FT': [''.join(x) for x in zip(*self.picture)][::-1],
@@ -178,7 +189,9 @@ class Matrix:
         ]
         between_len = len(self.picture[1]) - len(monster[0])
         self.monster = ('.' * between_len).join(monster)
-        self.monster_hashes = [x.start() for x in re.finditer('#', self.monster)]
+        self.monster_hashes = [
+            x.start() for x in re.finditer('#', self.monster)
+        ]
 
     def set_text(self):
         pictures = self.get_pictures()

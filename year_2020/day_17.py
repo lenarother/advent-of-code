@@ -89,7 +89,8 @@ def simulate_step(data, size=3):
 
     for point in data:
         active_neighbours = get_active_neighbour_count(point, data, size)
-        if data[point] == 1 and not (active_neighbours == 2 or active_neighbours == 3):
+        if data[point] == 1 and not (
+                active_neighbours == 2 or active_neighbours == 3):
             changed_data[point] = 0
         if data[point] == 0 and active_neighbours == 3:
             changed_data[point] = 1
@@ -118,8 +119,9 @@ def print_cube(cube):
     for z in range(min_el[2], max_el[2] + 1):
         print(f'z={z}')
         for y in range(min_el[1], max_el[1] + 1):
-            l = [str(cube[x, y, z]) for x in range(min_el[0], max_el[0] + 1)]
-            print(''.join(l))
+            print(''.join([
+                str(cube[x, y, z]) for x in range(min_el[0], max_el[0] + 1)
+            ]))
         print('\n')
 
 
