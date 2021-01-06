@@ -13,9 +13,9 @@ CHANGE = {
 
 def parse_input(filename):
     result = {}
-    for counter, l in enumerate(open(filename).read().strip().split('\n')):
-        v = l.split()
-        result[counter] = (v[0], int(v[1]))
+    for counter, line in enumerate(open(filename).read().strip().split('\n')):
+        value = line.split()
+        result[counter] = (value[0], int(value[1]))
     return result
 
 
@@ -36,7 +36,6 @@ def run(data):
     executed = {0: True}
     current = 0
     while True:
-        past = current
         current, accumulator = exec_command(current, data, accumulator)
         if current in executed:
             return False, accumulator
@@ -53,7 +52,7 @@ def get_new_index_to_changed(data, changed):
             return k
 
 
-def check_single_dataset_(data, changed=-1):
+def check_single_dataset(data, changed=-1):
     # Part 2
     changed = get_new_index_to_changed(data, changed)
     data[changed] = (CHANGE[data[changed][0]], data[changed][1])
@@ -66,12 +65,15 @@ def check_all_data(data):
     changed = -1
     while changed < len(data):
         copy_data = deepcopy(data)
-        terminated, accumulator, changed = check_single_dataset_(copy_data, changed)
+        terminated, accumulator, changed = check_single_dataset(
+            copy_data,
+            changed
+        )
         if terminated:
             return accumulator
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
     # Parse input
     input1 = parse_input('inputdata/day-08-1.txt')
     input2 = parse_input('inputdata/day-08-2.txt')

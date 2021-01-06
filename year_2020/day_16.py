@@ -40,7 +40,7 @@ def check_value(value, rules):
 
     """
     for rule in rules:
-        if (rule[0] <= value <=rule[1]):
+        if (rule[0] <= value <= rule[1]):
             return 0
     return value
 
@@ -91,8 +91,8 @@ def collapse_rules(rules):
 
 def parse_rules_to_dict(rules):
     rules_dict = {}
-    for l in rules:
-        name, value = l.split(':')
+    for line in rules:
+        name, value = line.split(':')
         rule1, rule2 = value.strip().split(' or ')
         rules_dict.setdefault(name, [])
         rules_dict[name].append([int(x) for x in rule1.split('-')])
@@ -173,7 +173,10 @@ def multiply_myticket_departure_fields(filename):
 
     valid_tickets = get_valid_tickets(rules, tickets)
     transposed_tickets = map(list, zip(*valid_tickets))
-    columns_dict = {counter: column for counter, column in enumerate(transposed_tickets)}
+    columns_dict = {
+        counter:
+        column for counter, column in enumerate(transposed_tickets)
+    }
     rules_dict = parse_rules_to_dict(rules)
 
     multiple_mapping = find_column_for_rule(columns_dict, rules_dict)

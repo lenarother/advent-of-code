@@ -8,8 +8,8 @@ https://adventofcode.com/2020/day/17
 def read_input(filename):
     data = {}
     f = open(filename).read().strip().split('\n')
-    for y, l in enumerate(f):
-        for x, point in enumerate(l):
+    for y, line in enumerate(f):
+        for x, point in enumerate(line):
             value = (1 if point == '#' else 0)
             data[(x, y)] = value
     return data

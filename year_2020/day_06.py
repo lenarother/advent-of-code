@@ -4,6 +4,7 @@ https://adventofcode.com/2020/day/6
 
 """
 
+
 def get_answers_sum(filename):
     return sum([
         len(set(group.replace('\n', '')))
@@ -18,7 +19,7 @@ def get_common_answers_sum(filename):
     ])
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
     # Part 1
     result = get_answers_sum('inputdata/day-06-1.txt')
     print('Part 1 - Test set 1: ', result)

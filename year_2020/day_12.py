@@ -87,7 +87,7 @@ class Ship:
         return self.get_manhattan_distance()
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Input
     input1 = get_input_list_from_file('inputdata/day-12-1.txt')

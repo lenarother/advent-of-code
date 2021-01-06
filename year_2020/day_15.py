@@ -33,7 +33,10 @@ class Game:
         if len(self.nums[self.current_num]) == 1:
             self.current_num = 0
         else:
-            self.current_num = self.nums[self.current_num][-1] - self.nums[self.current_num][-2]
+            self.current_num = (
+                self.nums[self.current_num][-1] -
+                self.nums[self.current_num][-2]
+            )
 
         self.nums.setdefault(self.current_num, [])
         self.nums[self.current_num].append(self.turn)

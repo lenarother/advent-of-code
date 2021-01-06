@@ -14,7 +14,9 @@ def check_pass(pass_data):
     if len(pass_data) == 7:
         return set(PASS_REQUIRED_KEYS) == set(pass_data.keys())
     elif len(pass_data) == 8:
-        return set(PASS_REQUIRED_KEYS + PASS_OPTIONAL_KEYS) == set(pass_data.keys())
+        return set(PASS_REQUIRED_KEYS + PASS_OPTIONAL_KEYS) == set(
+            pass_data.keys()
+        )
     return False
 
 

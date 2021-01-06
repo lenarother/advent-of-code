@@ -44,7 +44,7 @@ def get_mem_value(decimal, mask):
     # Part 1
     binary = f'{decimal:>036b}'
     binary_with_mask = ''.join(
-        [b if m=='X' else m for b, m in zip(binary, mask)]
+        [b if m == 'X' else m for b, m in zip(binary, mask)]
     )
     return int(binary_with_mask, 2)
 

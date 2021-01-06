@@ -23,8 +23,8 @@ def parse_bag(bag, as_dict=False, as_tuple=False):
 
 def parse_bags(filename, as_dict=False, as_tuple=False):
     result = {}
-    for l in open(filename).read().strip().split('\n'):
-        k, v = parse_bag(l, as_dict, as_tuple)
+    for line in open(filename).read().strip().split('\n'):
+        k, v = parse_bag(line, as_dict, as_tuple)
         result[k] = v
     return result
 
@@ -42,7 +42,12 @@ def reverse_bags(bags):
 def get_possible_parents(bag, reversed_bags, parents=None, has_new=None):
     # Part 1
     if parents is None:
-        return get_possible_parents(bag, reversed_bags, reversed_bags[bag], True)
+        return get_possible_parents(
+            bag,
+            reversed_bags,
+            reversed_bags[bag],
+            True
+        )
 
     if has_new is False:
         return len(set(parents))
@@ -101,7 +106,7 @@ def get_shiny_gold_bag_children(filename):
     return get_possible_children([('shiny gold', 1)], bags)
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
     # Part 1
     result = get_shiny_gold_bag_parents('inputdata/day-07-1.txt')
     print('Part 1 - Test set 1: ', result)

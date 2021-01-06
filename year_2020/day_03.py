@@ -14,11 +14,11 @@ class Toboggan:
 
     def __init__(self, filename):
         self.map = {}
-        for counter, l in enumerate(open(filename).readlines()):
-            l = l.strip()
-            if l:
-                self.map[counter] = l
-        self.max_x = len(l)
+        for counter, line in enumerate(open(filename).readlines()):
+            line = line.strip()
+            if line:
+                self.map[counter] = line
+        self.max_x = len(line)
         self.max_y = counter
         self.x = 0
         self.y = 0
@@ -59,7 +59,7 @@ def multiple_rides(toboggan, rides):
     return result
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Part 1
     result = Toboggan('inputdata/day-03-1.txt').ride(3, 1)

@@ -4,6 +4,7 @@ https://adventofcode.com/2020/day/9
 
 """
 
+
 def parse_input(filename):
     return list(map(int, open(filename).read().strip().split('\n')))
 
@@ -57,7 +58,7 @@ def break_xmas_code(data, preamble_size):
     return min(subset) + max(subset)
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Input
     input1 = parse_input('inputdata/day-09-1.txt')

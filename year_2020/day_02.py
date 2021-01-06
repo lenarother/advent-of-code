@@ -39,7 +39,7 @@ def check_passwords(input, validation_func):
     return valid_passwords_count
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Input
     input1 = get_input_list_from_file('inputdata/day-02-1.txt')

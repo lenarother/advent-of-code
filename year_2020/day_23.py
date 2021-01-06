@@ -35,19 +35,19 @@ class Game:
 
         start_index = cups.index(1)
         result = cups[start_index + 1:] + cups[:start_index]
-        return ''.join(map(str,result))
+        return ''.join(map(str, result))
 
 
 class Cup:
 
-    def __init__(self, label, l=None, r=None):
+    def __init__(self, label, left=None, right=None):
         self.label = label
-        self.l = l
-        self.r = r
+        self.left = left
+        self.right = right
 
     def __repr__(self):
-        lstr = self.l.label if self.l else 'None'
-        rstr = self.r.label if self.r else 'None'
+        lstr = self.left.label if self.left else 'None'
+        rstr = self.right.label if self.right else 'None'
         return f'{lstr}-{self.label}-{rstr}'
 
 
@@ -69,30 +69,30 @@ class GameWithPointers:
             result[cup] = current
             if counter > 0:
                 previous = result[cups_list[counter - 1]]
-                current.l = previous
-                previous.r = current
+                current.left = previous
+                previous.right = current
             if counter == len(cups_list) - 1:
                 first = result[cups_list[0]]
-                first.l = current
-                current.r = first
+                first.left = current
+                current.right = first
         return result
 
     def set_current(self):
         if self.current:
-            self.current = self.current.r
+            self.current = self.current.right
         else:
             self.current = self.cups[self.cups_list[0]]
 
     def select_cups(self):
-        first = self.current.r
-        second = first.r
-        third = second.r
-        fourth = third.r
+        first = self.current.right
+        second = first.right
+        third = second.right
+        fourth = third.right
 
         self.selected = [first, second, third]
 
-        self.current.r = fourth
-        fourth.l = self.current
+        self.current.right = fourth
+        fourth.left = self.current
 
     def set_destination(self, destination=None):
         if destination is None:
@@ -105,11 +105,11 @@ class GameWithPointers:
             self.destination = self.cups[destination]
 
     def insert_selected(self):
-        after_destination = self.destination.r
-        self.destination.r = self.selected[0]
-        self.selected[0].l = self.destination
-        after_destination.l = self.selected[2]
-        self.selected[2].r = after_destination
+        after_destination = self.destination.right
+        self.destination.right = self.selected[0]
+        self.selected[0].left = self.destination
+        after_destination.left = self.selected[2]
+        self.selected[2].right = after_destination
 
     def play_round(self):
         self.set_current()
@@ -123,8 +123,8 @@ class GameWithPointers:
             rounds = rounds - 1
 
         cup_1 = self.cups[1]
-        first = cup_1.r
-        second = first.r
+        first = cup_1.right
+        second = first.right
 
         return first.label * second.label
 

@@ -16,7 +16,9 @@ def parse_input(filename):
 
 def playcombat(d1, d2):
     if not d1 or not d2:
-        return sum([(count + 1) * c for count, c in enumerate((d1 or d2)[::-1])])
+        return sum([
+            (count + 1) * c for count, c in enumerate((d1 or d2)[::-1])
+        ])
     p1 = d1.pop(0)
     p2 = d2.pop(0)
     if p1 > p2:
@@ -76,7 +78,8 @@ class RecursiveCombat(Combat):
         self.result = None
 
     def in_memory(self):
-        if tuple(self.deck1) in self.past_deck1 and tuple(self.deck2) in self.past_deck2:
+        if (tuple(self.deck1) in self.past_deck1) and (
+                tuple(self.deck2) in self.past_deck2):
             return True
 
         self.past_deck1[tuple(self.deck1)] = True
@@ -124,7 +127,7 @@ def solve2(filename):
     return score
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
 
     # Part 1
     result = solve1('inputdata/day-22-1.txt')
