@@ -1,13 +1,12 @@
-The Advent of Code Challenge
-----------------------------
+Katas
+=====
 
 
-Solutions for: https://adventofcode.com/
 
+Advent of Code 2020
+-------------------
 
-2020
-----
-
+https://adventofcode.com/2020
 
 * **Day 1**: Report Repair [`problem <https://adventofcode.com/2020/day/1>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/year_2020/day_01.py>`_]
 * **Day 2**: Password Philosophy [`problem <https://adventofcode.com/2020/day/2>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/year_2020/day_02.py>`_]
@@ -34,3 +33,22 @@ Solutions for: https://adventofcode.com/
 * **Day 23**: Crab Cups [`problem <https://adventofcode.com/2020/day/23>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/year_2020/day_23.py>`_]
 * **Day 24**: Lobby Layout [`problem <https://adventofcode.com/2020/day/24>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/year_2020/day_24.py>`_]
 * **Day 25**: Combo Breaker [`problem <https://adventofcode.com/2020/day/25>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/year_2020/day_25.py>`_]
+
+
+Advent of Code 2016
+-------------------
+
+https://adventofcode.com/2016
+
+* **Day 1**: No Time for a Taxicab [`problem <https://adventofcode.com/2016/day/1>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/year_2016/day_01_taxicab_geometry/>`_]
+* **Day 2**: Bathroom Security [`problem <https://adventofcode.com/2016/day/2>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/year_2016/day_02_bathroom_code/>`_]
+* **Day 3**: Squares With Three Sides [`problem <https://adventofcode.com/2016/day/3>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/year_2016/day_03_kata_triangles/>`_]
+* **Day 4**: Security Through Obscurity [`problem <https://adventofcode.com/2016/day/4>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/year_2016/day_04_decoy_rooms/>`_]
+* **Day 5**: How About a Nice Game of Chess? [`problem <https://adventofcode.com/2016/day/5>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/year_2016/day_05_hack_md5/>`_]
+
+
+Other
+-----
+
+* **Maze** [`code <https://github.com/lenarother/advent-of-code-solutions/blob/master/other/kata_maze/>`_]
+* **Roman Numbers** [`code <https://github.com/lenarother/advent-of-code-solutions/blob/master/other/kata_roman_numbers/>`_]
