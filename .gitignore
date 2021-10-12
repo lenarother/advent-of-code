@@ -5,3 +5,4 @@
 .coverage
 .cache
 .pytest_cache
+.idea
