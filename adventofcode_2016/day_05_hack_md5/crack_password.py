@@ -45,7 +45,7 @@ def find_code(door_id):
 
 
 def find_sophisticated_code(door_id):
-    code = ['_', '_', '_', '_', '_', '_', '_', '_']
+    code = ['_'] * 8
     hash_gen = hash_generator(door_id)
     while code.count('_') > 0:
         temp = next(hash_gen)
