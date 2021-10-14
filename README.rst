@@ -52,7 +52,7 @@ https://adventofcode.com/2016
 * **Day 5**: How About a Nice Game of Chess? [`problem <https://adventofcode.com/2016/day/5>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_05_hack_md5/>`_]
 * **Day 6**: Signals and Noise [`problem <https://adventofcode.com/2016/day/6>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_06_filter_noise/>`_]
 * **Day 7**: Internet Protocol Version 7e [`problem <https://adventofcode.com/2016/day/7>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_07_check_ips/>`_]
-
+* **Day 8**: Two-Factor Authentication [`problem <https://adventofcode.com/2016/day/8>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_08_two_factor_auth/>`_]
 
 Other
 -----
