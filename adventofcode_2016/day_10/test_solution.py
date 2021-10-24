@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import solve
+from .solution import solve_bot, solve_outputs
 
 EXAMPLES = (
     ("""value 5 goes to bot 2
@@ -50,7 +50,21 @@ bot 3 gives low to bot 2 and high to output 7
 bot 4 gives low to output 8 and high to bot 2""", (1, 4), 2),
 )
 
+EXAMPLES_OUTPUTS = (
+    ("""value 1 goes to bot 1
+value 2 goes to bot 1
+value 3 goes to bot 2
+value 4 goes to bot 2
+bot 1 gives low to output 1 and high to output 0
+bot 2 gives low to bot 5 and high to output 7""", (0, 1, 7), 8),
+)
+
 
 @pytest.mark.parametrize('instructions,values,bot', EXAMPLES)
-def test_solve(instructions, values, bot):
-    assert solve(instructions, values) == bot
+def test_solve_bot(instructions, values, bot):
+    assert solve_bot(instructions, values) == bot
+
+
+@pytest.mark.parametrize('instructions,outputs,expected', EXAMPLES_OUTPUTS)
+def test_solve_outputs(instructions, outputs, expected):
+    assert solve_outputs(instructions, outputs) == expected

@@ -23,6 +23,7 @@ for comparing value-61 microchips with value-17 microchips?
 """
 import re
 from collections import defaultdict
+from functools import reduce
 
 VALUE_BOT = r'value (\d+) goes to bot (\d+)'
 BOT_GIVES = (
@@ -31,7 +32,7 @@ BOT_GIVES = (
 )
 
 
-def parse_instructions(instructions, bots):
+def parse_instructions(instructions, bots, outputs):
     parsed = re.findall(VALUE_BOT, instructions)
     for value, bot in parsed:
         value, bot = map(int, (value, bot))
@@ -40,21 +41,38 @@ def parse_instructions(instructions, bots):
     parsed = re.findall(BOT_GIVES, instructions)
     for bot, dest_low, low, dest_high, high in parsed:
         bot, low, high = map(int, (bot, low, high))
-        if dest_low == 'bot' and len(bots[bot]) == 2:
-            bots[low].add(min(bots[bot]))
-        if dest_high == 'bot' and len(bots[bot]) == 2:
-            bots[high].add(max(bots[bot]))
+        if len(bots[bot]) == 2:
+            min_value, max_value = sorted(bots[bot])
+            (
+                bots[low].add(min_value) if dest_low == 'bot'
+                else outputs[low].add(min_value)
+            )
+            (
+                bots[high].add(max_value) if dest_high == 'bot'
+                else outputs[high].add(max_value)
+            )
 
-    return bots
+    return bots, outputs
 
 
-def solve(instructions, input_values):
+def should_zoom(result, outputs, expected_outputs=None):
+    if expected_outputs is None and result is None:
+        return True
+    if expected_outputs:
+        intersection = set(expected_outputs) & set(outputs.keys())
+        if len(intersection) != len(expected_outputs):
+            return True
+    return False
+
+
+def solve_bot(instructions, input_values):
     input_values = set(input_values)
     bots = defaultdict(set)
+    outputs = defaultdict(set)
     result = None
 
-    while result is None:
-        bots = parse_instructions(instructions, bots)
+    while should_zoom(result, outputs):
+        bots, outputs = parse_instructions(instructions, bots, outputs)
         for bot, bot_values in bots.items():
             if bot_values == input_values:
                 result = bot
@@ -62,7 +80,21 @@ def solve(instructions, input_values):
     return result
 
 
+def solve_outputs(instructions, expected_outputs):
+    bots = defaultdict(set)
+    outputs = defaultdict(set)
+
+    while should_zoom(None, outputs, expected_outputs):
+        bots, outputs = parse_instructions(instructions, bots, outputs)
+
+    return reduce(lambda a, b: a * list(outputs[b])[0], expected_outputs, 1)
+
+
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
-    solution = solve(input_data, (17, 61))
-    print(f'Example1: {solution}')
+    result_bot = solve_bot(input_data, (17, 61))
+    print(f'Example1: {result_bot}')
+
+    input_data = open('input_data.txt').read()
+    result_output = solve_outputs(input_data, (0, 1, 2))
+    print(f'Example2: {result_output}')
