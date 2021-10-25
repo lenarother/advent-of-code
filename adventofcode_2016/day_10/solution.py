@@ -39,6 +39,7 @@ class Zooming:
         self.outputs = {}
         self.instructions = instructions
         self.parse_initial_values()
+        self.cycle = self.cycle_bots()
 
     def parse_initial_values(self):
         parsed = re.findall(VALUE_BOT, self.instructions)
@@ -87,17 +88,15 @@ class Zooming:
 
     def solve_bot(self, values):
         result = None
-        cycle = self.cycle_bots()
         while result is None:
-            next(cycle)
+            next(self.cycle)
             result = self.find_bot_with_values(values)
         return result
 
     def solve_outputs(self, outputs):
         result = None
-        cycle = self.cycle_bots()
         while result is None:
-            next(cycle)
+            next(self.cycle)
             result = self.find_product(outputs)
         return result
 
