@@ -32,62 +32,84 @@ BOT_GIVES = (
 )
 
 
-def parse_instructions(instructions, bots, outputs):
-    parsed = re.findall(VALUE_BOT, instructions)
-    for value, bot in parsed:
-        value, bot = map(int, (value, bot))
-        bots[bot].add(value)
+class Zooming:
 
-    parsed = re.findall(BOT_GIVES, instructions)
-    for bot, dest_low, low, dest_high, high in parsed:
+    def __init__(self, instructions):
+        self.bots = defaultdict(set)
+        self.outputs = {}
+        self.instructions = instructions
+        self.parse_initial_values()
+
+    def parse_initial_values(self):
+        parsed = re.findall(VALUE_BOT, self.instructions)
+        for value, bot in parsed:
+            value, bot = map(int, (value, bot))
+            self.bots[bot].add(value)
+
+    def is_bot_complete(self, bot):
+        return len(self.bots[bot]) == 2
+
+    def parse_zooming_instruction(self, parsed_instruction):
+        bot, dest_low, low, dest_high, high = parsed_instruction
         bot, low, high = map(int, (bot, low, high))
-        if len(bots[bot]) == 2:
-            min_value, max_value = sorted(bots[bot])
-            (
-                bots[low].add(min_value) if dest_low == 'bot'
-                else outputs[low].add(min_value)
-            )
-            (
-                bots[high].add(max_value) if dest_high == 'bot'
-                else outputs[high].add(max_value)
-            )
+        if self.is_bot_complete(bot):
+            for dest_type, dest, v in zip(
+                    (dest_low, dest_high),
+                    (low, high),
+                    sorted(self.bots[bot])
+            ):
+                if dest_type == 'bot':
+                    self.bots[dest].add(v)
+                else:
+                    self.outputs[dest] = v
 
-    return bots, outputs
+    def parse_zooming(self):
+        parsed = re.findall(BOT_GIVES, self.instructions)
+        for inst in parsed:
+            self.parse_zooming_instruction(inst)
 
+    def cycle_bots(self):
+        while True:
+            yield self.parse_zooming()
 
-def should_zoom(result, outputs, expected_outputs=None):
-    if expected_outputs is None and result is None:
-        return True
-    if expected_outputs:
-        intersection = set(expected_outputs) & set(outputs.keys())
-        if len(intersection) != len(expected_outputs):
-            return True
-    return False
+    def find_bot_with_values(self, values):
+        for bot, bot_values in self.bots.items():
+            if bot_values == set(values):
+                return bot
+
+    def find_value_for_output(self, out):
+        return self.outputs.get(out, None)
+
+    def find_product(self, outputs_list):
+        values = [self.find_value_for_output(i) for i in outputs_list]
+        if all(values):
+            return reduce(lambda a, b: a * b, values, 1)
+
+    def solve_bot(self, values):
+        result = None
+        cycle = self.cycle_bots()
+        while result is None:
+            next(cycle)
+            result = self.find_bot_with_values(values)
+        return result
+
+    def solve_outputs(self, outputs):
+        result = None
+        cycle = self.cycle_bots()
+        while result is None:
+            next(cycle)
+            result = self.find_product(outputs)
+        return result
 
 
 def solve_bot(instructions, input_values):
-    input_values = set(input_values)
-    bots = defaultdict(set)
-    outputs = defaultdict(set)
-    result = None
-
-    while should_zoom(result, outputs):
-        bots, outputs = parse_instructions(instructions, bots, outputs)
-        for bot, bot_values in bots.items():
-            if bot_values == input_values:
-                result = bot
-
-    return result
+    zooming = Zooming(instructions)
+    return zooming.solve_bot(input_values)
 
 
 def solve_outputs(instructions, expected_outputs):
-    bots = defaultdict(set)
-    outputs = defaultdict(set)
-
-    while should_zoom(None, outputs, expected_outputs):
-        bots, outputs = parse_instructions(instructions, bots, outputs)
-
-    return reduce(lambda a, b: a * list(outputs[b])[0], expected_outputs, 1)
+    zooming = Zooming(instructions)
+    return zooming.solve_outputs(expected_outputs)
 
 
 if __name__ == '__main__':
