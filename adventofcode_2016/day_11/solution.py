@@ -6,8 +6,8 @@ https://adventofcode.com/2016/day/11
 
 import re
 from collections import Counter, OrderedDict, defaultdict
+from functools import reduce
 from itertools import combinations
-from copy import deepcopy
 
 ELEVATOR = r'F(\d) E'
 ITEM = r'(\w)([GM])'
@@ -16,56 +16,92 @@ FLOOR = r'F(\d)'
 BITS_VALUES = {
     'H': 1,
     'L': 2,
+    'K': 4,
+    'C': 8,
+    'R': 16,
+    # 'X': 32,
+    # 'D': 64,
 }
+BITES = [16, 8, 4, 2, 1]
 
-# change
-#    L H R P
-# m  0 1 0 1 -> 5
-# g  1 1 0 0 -> 12
-# b  8 4 2 1
+
+def copy_floor(other):
+    f = Floor()
+    f.n = other.n
+    f.g = other.g
+    f.m = other.m
+    return f
+
+
+def copy_building(other):
+    b = Building()
+    b.elevator = other.elevator
+    b.floors = {k: copy_floor(v) for k, v in other.floors.items()}
+    b.data = other.data
+    b.steps = other.steps
+    return b
 
 
 class Floor:
 
-    def __init__(self, n):
-        self.n = n
-        self.items = set()
-        # self.generators
-        # self.microchips
+    def __init__(self):
+        self.n = None
+        self.g, self.m = None, None
 
     def __repr__(self):
-        items = ','.join(sorted(map(str, self.items)))
-        return f'<F{self.n} {items}>'.strip()
+        return f'<F{self.n} (G: {self.g}, M: {self.m})>'
 
-    def __len__(self):
-        return len(self.items)
+    def setup(self, data):
+        self.n = self.parse_n(data)
+        self.g, self.m = self.parse_items_to_bits(data)
+
+    @staticmethod
+    def parse_items_to_bits(data):
+        bits = {'G': 0, 'M': 0}
+        for char, kind in re.findall(ITEM, data):
+            bits[kind] += BITS_VALUES[char]
+        return bits['G'], bits['M']
+
+    @staticmethod
+    def parse_n(data):
+        return int(re.findall(FLOOR, data)[0])
 
     def is_valid(self):
-        items_dict = defaultdict(str)
+        return not bool((self.m & (255 - self.g)) and self.g)
 
-        for i in self.items:
-            items_dict[i[0]] += i[1]  # 'G' / 'M' / 'GM' / 'MG'
-        kind_counts = Counter(items_dict.values())
-        return (
-            'M' not in kind_counts or (
-                'G' not in kind_counts and
-                'MG' not in kind_counts and
-                'GM' not in kind_counts
-            )
-        )
+    def is_empty(self):
+        return self.m + self.g == 0
+
+    def items(self):
+        temp_g, temp_m = self.g, self.m
+        for v in sorted(BITS_VALUES.values(), reverse=True):
+            if temp_g >= v:
+                temp_g -= v
+                yield v, 0
+            if temp_m >= v:
+                temp_m -= v
+                yield 0, v
+
+    def move(self, g, m, direction=1):
+        self.g += direction * g
+        self.m += direction * m
 
 
 class Building:
 
-    def __init__(self, data):
+    def __init__(self):
+        self.elevator = None
+        self.floors = None
+        self.data = None
+        self.steps = 0
+
+    def setup(self, data):
         self.elevator = self.parse_elevator(data)
         self.floors = self.parse_floors(data)
         self.data = data
-        self.steps = 0
 
     def __repr__(self):
-        floors = ', '.join([str(f) for f in self.floors.values()])
-        return f'<Building E{self.elevator} {floors}>'
+        return f'<B E{self.elevator} ({[str(f) for f in self.floors.values()]})>'
 
     def __eq__(self, other):
         return str(self) == str(other)
@@ -82,45 +118,33 @@ class Building:
         return int(re.findall(ELEVATOR, data)[0])
 
     @staticmethod
-    def parse_floor(data_floor):
-        return Floor(int(re.findall(FLOOR, data_floor)[0]))
-
-    @staticmethod
-    def parse_floor_items(data_floor):
-        return set([
-            f'{char}{kind}'
-            for char, kind in re.findall(ITEM, data_floor)
-        ])
-
-    def parse_floors(self, data):
+    def parse_floors(data):
         floors = OrderedDict()
         for floor_data in data.strip().split('\n')[::-1]:
-            floor = self.parse_floor(floor_data)
-            floor.items = self.parse_floor_items(floor_data)
+            floor = Floor()
+            floor.setup(floor_data)
             floors[floor.n] = floor
         return floors
 
     def is_complete(self):
-        for i in range(1, 4):
-            if len(self.floors[i]) > 0:
-                return False
-        return True
+        return all([self.floors[i].is_empty() for i in range(1, 4)])
 
     def get_possible_moves(self):
-        items = self.current_floor.items
+        items = list(self.current_floor.items())
         for comb in list(combinations(items, 1)) + list(combinations(items, 2)):
-            yield comb, 1
-            yield comb, -1
+            add_elements = lambda a, b: (a[0] + b[0], a[1] + b[1])
+            m = reduce(add_elements, comb, (0, 0))
+            yield m, 1
+            yield m, -1
 
     def can_move(self, direction):
         return 1 <= (self.elevator + direction) <= 4
 
-    def move(self, items, direction=1):
+    def move(self, m, direction=1):
         if self.can_move(direction):
-            b = deepcopy(self)
-            for i in items:
-                b.floors[b.elevator].items.remove(i)
-                b.floors[b.elevator + direction].items.add(i)
+            b = copy_building(self)
+            b.floors[b.elevator].move(m[0], m[1], -1)
+            b.floors[b.elevator + direction].move(m[0], m[1])
             if b.floors[b.elevator + direction].is_valid():
                 b.elevator += direction
                 b.steps += 1
@@ -133,17 +157,22 @@ class Building:
 
 
 def parse(data):
-    return Building(data)
+    b = Building()
+    b.setup(data)
+    return b
 
 
 def solve(data):
     # breadth-first
-    b = Building(data)
+    b = Building()
+    b.setup(data)
     buildings = [b]  # queue
     visited = {b}
 
     while buildings:
         b = buildings.pop(0)
+        if b.is_complete():
+            return b.steps
         for b_new in b.get_moves():
             if b_new and b_new not in visited:
                 if b_new.is_complete():
