@@ -1,0 +1,4 @@
+F4 .  .  .  .  .  .  .
+F3 KM CM RM LM .  .  .
+F2 KG CG RG LG .  .  .
+F1 E  PG PM XG XM DG DM
