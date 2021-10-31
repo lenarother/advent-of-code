@@ -39,7 +39,7 @@ F3 E  HG .  .  .
 F2 .  .  LG .  .
 F1 .  .  .  HM . """, 9),
     ("""
-F4 .  .  .  .  .
+F4 .  .  .  .   .
 F3 .  .  .  LG  .
 F2 .  HG .  .   .
 F1 E  .  HM .  LM """, 11),
@@ -57,9 +57,9 @@ F1 E  HM LM KM CM """, 15),
 
 EXAMPLES_PARSE_ELEVATOR = (
     ("""
-F4 .  HG .  .  .  
-F3 E  .  .  HM .  
-F2 .  .  .  .  .  
+F4 .  HG .  .  .
+F3 E  .  .  HM .
+F2 .  .  .  .  .
 F1 .  .  .  .  . """, 3),
 )
 
@@ -73,32 +73,32 @@ EXAMPLES_PARSE_FLOORS = (
 
 EXAMPLES_VALIDATION = (
     ("""
-F4 .  HG .  .  .  
-F3 E  .  .  HM .  
-F2 .  .  .  .  .  
-F1 .  .  .  .  . """, {1: True, 2: True, 3: True, 4:True}),
+F4 .  HG .  .  .
+F3 E  .  .  HM .
+F2 .  .  .  .  .
+F1 .  .  .  .  . """, {1: True, 2: True, 3: True, 4: True}),
     ("""
-F4 .  .  .  .  .  
-F3 .  .  .  LG .  
-F2 .  HG .  .  LM  
+F4 .  .  .  .  .
+F3 .  .  .  LG .
+F2 .  HG .  .  LM
 F1 E  .  HM .  .  """, {1: True, 2: False, 3: True, 4: True}),
     ("""
-F4 .  .  .  .  .  
-F3 .  HG  .  LG .  
-F2 .  .  .  .  LM  
+F4 .  .  .  .   .
+F3 .  HG  .  LG .
+F2 .  .  .  .  LM
 F1 E  .  HM .  .  """, {1: True, 2: True, 3: True, 4: True}),
     ("""
-F4 .  .  .  .  .  
-F3 .  HG HM .  LM   
-F2 .  .  .  .  .  
+F4 .  .  .  .  .
+F3 .  HG HM .  LM
+F2 .  .  .  .  .
 F1 E  .  .  LG .  """, {1: True, 2: True, 3: False, 4: True}),
 )
 
 EXAMPLES_REPR = (
     ("""
-F4 .  HG .  .  .  
-F3 E  .  .  HM .  
-F2 .  .  .  .  .  
+F4 .  HG .  .  .
+F3 E  .  .  HM .
+F2 .  .  .  .  .
 F1 .  .  .  .  . """, '<Building E3 <F1 >, <F2 >, <F3 HM>, <F4 HG>>'),
 )
 
@@ -128,4 +128,3 @@ def test_validate_floor(data, valid):
     building = parse(data)
     for k, v in valid.items():
         assert building.floors[k].is_valid() == v
-

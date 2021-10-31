@@ -5,7 +5,7 @@ https://adventofcode.com/2016/day/11
 """
 
 import re
-from collections import Counter, OrderedDict, defaultdict, deque
+from collections import OrderedDict, deque
 from functools import reduce
 from itertools import combinations
 
@@ -95,23 +95,14 @@ class Building:
         self.data = None
         self.steps = 0
 
-    def setup(self, data):
-        self.elevator = self.parse_elevator(data)
-        self.floors = self.parse_floors(data)
-        self.data = data
-
     def __repr__(self):
-        return f'<B E{self.elevator} ({[str(f) for f in self.floors.values()]})>'
+        return f'<B E{self.elevator} ({[f for f in self.floors.values()]})>'
 
     def __eq__(self, other):
         return str(self) == str(other)
 
     def __hash__(self):
         return hash(str(self))
-
-    @property
-    def current_floor(self):
-        return self.floors[self.elevator]
 
     @staticmethod
     def parse_elevator(data):
@@ -126,14 +117,30 @@ class Building:
             floors[floor.n] = floor
         return floors
 
+    @property
+    def current_floor(self):
+        return self.floors[self.elevator]
+
+    def setup(self, data):
+        self.elevator = self.parse_elevator(data)
+        self.floors = self.parse_floors(data)
+        self.data = data
+
     def is_complete(self):
         return all([self.floors[i].is_empty() for i in range(1, 4)])
 
     def get_possible_moves(self):
         items = list(self.current_floor.items())
-        for comb in list(combinations(items, 1)) + list(combinations(items, 2)):
-            add_elements = lambda a, b: (a[0] + b[0], a[1] + b[1])
-            m = reduce(add_elements, comb, (0, 0))
+        items_combinations = (
+            list(combinations(items, 1)) +
+            list(combinations(items, 2))
+        )
+        for comb in items_combinations:
+            m = reduce(
+                lambda a, b: (a[0] + b[0], a[1] + b[1]),
+                comb,
+                (0, 0)
+            )
             yield m, 1
             yield m, -1
 
@@ -170,11 +177,11 @@ def solve(data):
     # breadth-first
     b = Building()
     b.setup(data)
-    buildings = [b]  # queue
+    buildings = deque([b])  # queue
     visited = {b}
 
     while buildings:
-        b = buildings.pop(0)
+        b = buildings.popleft()
         for b_new in b.get_moves():
             if b_new and b_new not in visited:
                 if b_new.is_complete():
@@ -185,9 +192,9 @@ def solve(data):
 
 
 if __name__ == '__main__':
-    # input_data = open('input_data.txt').read()
-    # result = solve(input_data)
-    # print(f'Example1: {result}')
+    input_data = open('input_data.txt').read()
+    result = solve(input_data)
+    print(f'Example1: {result}')
 
     input_data = open('input_data_2.txt').read()
     result = solve(input_data)
