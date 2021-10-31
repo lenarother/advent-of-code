@@ -56,6 +56,8 @@ https://adventofcode.com/2016
 * **Day 9**: Explosives in Cyberspace [`problem <https://adventofcode.com/2016/day/9>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_09_decompressing_docs/>`_]
 * **Day 10**: Balance Bots [`problem <https://adventofcode.com/2016/day/10>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_10/>`_]
 * **Day 11**: Radioisotope Thermoelectric Generators [`problem <https://adventofcode.com/2016/day/11>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_11/>`_]
+* **Day 12**: Leonardo's Monorail [`problem <https://adventofcode.com/2016/day/12>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_12/>`_]
+
 
 Other
 -----
