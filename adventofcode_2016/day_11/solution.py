@@ -5,7 +5,7 @@ https://adventofcode.com/2016/day/11
 """
 
 import re
-from collections import Counter, OrderedDict, defaultdict
+from collections import Counter, OrderedDict, defaultdict, deque
 from functools import reduce
 from itertools import combinations
 
@@ -19,10 +19,10 @@ BITS_VALUES = {
     'K': 4,
     'C': 8,
     'R': 16,
-    # 'X': 32,
-    # 'D': 64,
+    'X': 32,
+    'D': 64,
 }
-BITES = [16, 8, 4, 2, 1]
+BITES = [64, 32, 16, 8, 4, 2, 1]
 
 
 def copy_floor(other):
@@ -145,7 +145,11 @@ class Building:
             b = copy_building(self)
             b.floors[b.elevator].move(m[0], m[1], -1)
             b.floors[b.elevator + direction].move(m[0], m[1])
-            if b.floors[b.elevator + direction].is_valid():
+
+            new_floor_valid = b.floors[b.elevator + direction].is_valid()
+            current_floor_valid = b.floors[b.elevator].is_valid()
+
+            if new_floor_valid and current_floor_valid:
                 b.elevator += direction
                 b.steps += 1
                 return b
@@ -171,8 +175,6 @@ def solve(data):
 
     while buildings:
         b = buildings.pop(0)
-        if b.is_complete():
-            return b.steps
         for b_new in b.get_moves():
             if b_new and b_new not in visited:
                 if b_new.is_complete():
@@ -183,10 +185,10 @@ def solve(data):
 
 
 if __name__ == '__main__':
-    input_data = open('input_data.txt').read()
-    result = solve(input_data)
-    print(f'Example1: {result}')
-
-    # input_data = open('input_data_2.txt').read()
+    # input_data = open('input_data.txt').read()
     # result = solve(input_data)
-    # print(f'Example2: {result}')
+    # print(f'Example1: {result}')
+
+    input_data = open('input_data_2.txt').read()
+    result = solve(input_data)
+    print(f'Example2: {result}')
