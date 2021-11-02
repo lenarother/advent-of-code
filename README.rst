@@ -57,6 +57,7 @@ https://adventofcode.com/2016
 * **Day 10**: Balance Bots [`problem <https://adventofcode.com/2016/day/10>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_10/>`_]
 * **Day 11**: Radioisotope Thermoelectric Generators [`problem <https://adventofcode.com/2016/day/11>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_11/>`_]
 * **Day 12**: Leonardo's Monorail [`problem <https://adventofcode.com/2016/day/12>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_12/>`_]
+* **Day 13**: A Maze of Twisty Little Cubicles [`problem <https://adventofcode.com/2016/day/13>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_13/>`_]
 
 
 Other
