@@ -3,5 +3,6 @@
     "_year": "{{ cookiecutter._year }}",
     "_dirname": "{{ cookiecutter._dirname}}",
     "_title": "{{ cookiecutter._title }}",
-    "_url": "{{ cookiecutter._url }}"
+    "_url": "{{ cookiecutter._url }}",
+    "_aoc_cookiecutter_path": "{{ cookiecutter._aoc_cookiecutter_path }}"
 }

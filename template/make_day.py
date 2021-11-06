@@ -58,6 +58,7 @@ cookiecutter(
         '_dirname': dirname,
         '_title': title,
         '_url': url,
+        '_aoc_cookiecutter_path': cookiecutter_path,
     },
     output_dir=output_dir
 )

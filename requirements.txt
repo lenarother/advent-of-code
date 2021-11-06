@@ -1,4 +1,5 @@
 click
+configparser
 cookiecutter
 ipdb
 ipython
