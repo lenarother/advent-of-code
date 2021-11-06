@@ -1,2 +1,2 @@
 day:
-	python make_day.py
+	python template/make_day.py

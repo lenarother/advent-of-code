@@ -45,6 +45,7 @@ title = get_title(url, day)
 output_dir = read_user_variable('output_dir', get_output_dir(year))
 cookiecutter_path = os.path.join(
     os.path.abspath(os.getcwd()),
+    'template',
     'cookiecutter-aoc'
 )
 
@@ -52,11 +53,11 @@ cookiecutter_path = os.path.join(
 cookiecutter(
     cookiecutter_path,
     extra_context={
-        "_day": day,
-        "_year": year,
-        "_dirname": dirname,
-        "_title": title,
-        "_url": url,
+        '_day': day,
+        '_year': year,
+        '_dirname': dirname,
+        '_title': title,
+        '_url': url,
     },
     output_dir=output_dir
 )
