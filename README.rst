@@ -59,6 +59,7 @@ https://adventofcode.com/2016
 * **Day 12**: Leonardo's Monorail [`problem <https://adventofcode.com/2016/day/12>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_12/>`_]
 * **Day 13**: A Maze of Twisty Little Cubicles [`problem <https://adventofcode.com/2016/day/13>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_13/>`_]
 * **Day 14**: One-Time Pad [`problem <https://adventofcode.com/2016/day/14>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_14/>`_]
+* **Day 15**: Timing is Everything [`problem <https://adventofcode.com/2016/day/15>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_15/>`_]
 
 
 Other
