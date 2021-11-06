@@ -1,6 +1,6 @@
-"""{{cookiecutter.title}}
+"""{{cookiecutter._title}}
 
-https://adventofcode.com/{{cookiecutter.year}}/day/9
+{{cookiecutter._url}}
 
 """
 

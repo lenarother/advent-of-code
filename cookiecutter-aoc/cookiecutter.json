@@ -1,5 +1,7 @@
 {
-    "day": "day_01",
-    "year": "2021",
-    "title": "Day 1: No Time for a Taxicab"
+    "_day": "{{ cookiecutter._day }}",
+    "_year": "{{ cookiecutter._year }}",
+    "_dirname": "{{ cookiecutter._dirname}}",
+    "_title": "{{ cookiecutter._title }}",
+    "_url": "{{ cookiecutter._url }}"
 }
