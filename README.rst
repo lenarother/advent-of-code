@@ -1,12 +1,6 @@
 Katas
 =====
 
-Favorites
----------
-
-* **Roman Numbers** [`code <https://github.com/lenarother/advent-of-code-solutions/blob/master/other/kata_roman_numbers/>`_]
-* **Bathroom Security** [`problem <https://adventofcode.com/2016/day/2>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_02_bathroom_code/>`_]
-
 
 Advent of Code 2020
 -------------------
