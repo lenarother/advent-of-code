@@ -57,6 +57,8 @@ https://adventofcode.com/2016
 * **Day 16**: Dragon Checksum [`problem <https://adventofcode.com/2016/day/16>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_16/>`_]
 * **Day 17**: Two Steps Forward [`problem <https://adventofcode.com/2016/day/17>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_17/>`_]
 * **Day 18**: Like a Rogue [`problem <https://adventofcode.com/2016/day/18>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_18/>`_]
+* **Day 19**: An Elephant Named Joseph [`problem <https://adventofcode.com/2016/day/19>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_19/>`_]
+* **Day 20**: Firewall Rules [`problem <https://adventofcode.com/2016/day/20>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_20/>`_]
 
 
 Other
