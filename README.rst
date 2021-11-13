@@ -59,6 +59,7 @@ https://adventofcode.com/2016
 * **Day 18**: Like a Rogue [`problem <https://adventofcode.com/2016/day/18>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_18/>`_]
 * **Day 19**: An Elephant Named Joseph [`problem <https://adventofcode.com/2016/day/19>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_19/>`_]
 * **Day 20**: Firewall Rules [`problem <https://adventofcode.com/2016/day/20>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_20/>`_]
+* **Day 21**: Scrambled Letters and Hash [`problem <https://adventofcode.com/2016/day/21>`_] [`solution <https://github.com/lenarother/advent-of-code-solutions/blob/master/adventofcode_2016/day_21/>`_]
 
 
 Other
