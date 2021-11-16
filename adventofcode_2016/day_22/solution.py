@@ -6,7 +6,6 @@ https://adventofcode.com/2016/day/22
 import itertools
 import re
 from collections import OrderedDict, deque
-from copy import deepcopy
 from functools import reduce
 
 DISC = (
@@ -140,7 +139,7 @@ def copy_grid(g):
     g_copy = Grid()
     g_copy.null = g.null
     g_copy.width = g.width
-    g_copy.str_data = deepcopy(g.str_data)
+    g_copy.str_data = g.str_data
     g_copy.moves_count = g.moves_count
     return g_copy
 
