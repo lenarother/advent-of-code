@@ -1,6 +1,6 @@
 import pytest
 
-from .crack_password import find_code, find_sophisticated_code
+from .solution import find_code, find_sophisticated_code
 
 
 @pytest.mark.slow

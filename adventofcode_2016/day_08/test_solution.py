@@ -1,6 +1,6 @@
 import pytest
 
-from .two_factor import count_pixels, display
+from .solution import count_pixels, display
 
 EXAMPLES = (
     (

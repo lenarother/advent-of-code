@@ -2,7 +2,7 @@ import io
 
 import pytest
 
-from .find_false_triangle import (
+from .solution import (
     count_valid_triangles,
     is_triangle_valid,
     read_input_vertically,

@@ -1,6 +1,6 @@
 import pytest
 
-from .check_ips import count_valid_ips, support_ssl, support_tls
+from .solution import count_valid_ips, support_ssl, support_tls
 
 EXAMPLES = (
     ('abba[mnop]qrst', True),

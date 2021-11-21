@@ -1,6 +1,6 @@
 import pytest
 
-from .decoy_rooms import get_room_id, get_room_id_sum, get_room_name
+from .solution import get_room_id, get_room_id_sum, get_room_name
 
 EXAMPLES = (
     ('aaaaa-bbb-z-y-x-123[abxyz]', 123),

@@ -1,6 +1,6 @@
 import pytest
 
-from .find_distance import walk, walk_until_visited
+from .solution import walk, walk_until_visited
 
 EXAMPLES = (
     ('R1', 1),

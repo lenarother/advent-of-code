@@ -1,6 +1,6 @@
 import pytest
 
-from .bathroom_code import KEYPAD_DIAMOND, find_code
+from .solution import KEYPAD_DIAMOND, find_code
 
 INSTRUCTIONS = (
     ('R', '6'),

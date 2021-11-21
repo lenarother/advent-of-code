@@ -1,6 +1,6 @@
 import pytest
 
-from .decompression import decompress, decompress_v2, find_text_length
+from .solution import decompress, decompress_v2, find_text_length
 
 EXAMPLES = (
     ('ADVENT', 6),

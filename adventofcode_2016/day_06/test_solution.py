@@ -1,6 +1,6 @@
 import pytest
 
-from .filter_noise import filter_modified_noise, filter_noise
+from .solution import filter_modified_noise, filter_noise
 
 EXAMPLES = (
     ('a', 'a'),
