@@ -138,7 +138,3 @@ if __name__ == '__main__':
     input_data = open('input_data.txt').read()
     result = solve(input_data, 7)[0]
     print(f'Example1: {result}')
-
-    input_data = open('input_data.txt').read()
-    result = solve(input_data, 12)[0]
-    print(f'Example2: {result}')
