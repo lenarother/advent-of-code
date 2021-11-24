@@ -2,6 +2,7 @@ help:
 	@echo "day - generate template files for day challenge"
 	@echo "clean - clean pyc files and so on"
 	@echo "stat - show AoC statistic"
+	@echo "test - run tests"
 
 clean:
 	rm -rf adventofcode_*/.pytest_cache
@@ -13,3 +14,6 @@ day:
 
 stat:
 	python resources/src/make_stats.py
+
+test:
+	pytest --flake8 --isort
