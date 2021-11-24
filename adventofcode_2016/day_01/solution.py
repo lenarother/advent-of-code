@@ -1,4 +1,4 @@
-"""Taxicab geometry
+"""Day 1: Taxicab geometry
 
 For example:
 
