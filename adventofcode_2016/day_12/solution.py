@@ -3,8 +3,8 @@
 https://adventofcode.com/2016/day/12
 
 """
-from collections import OrderedDict
 import re
+from collections import OrderedDict
 
 CPY = r'cpy (-?)(\d+|[abcd]) ([abcd])'
 INC = r'inc ([abcd])'

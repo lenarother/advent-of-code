@@ -2,7 +2,6 @@ import pytest
 
 from .solution import solve
 
-
 EXAMPLES = (
     ("""cpy 41 a
 inc a
@@ -33,7 +32,7 @@ jnz a 2
 dec a
 inc a""", (2, 0, 0, 0)),
     ("""cpy 5 a
-dec a 
+dec a
 jnz a -1""", (0, 0, 0, 0)),
     ("""jnz 1 8""", (0, 0, 0, 0)),
 )

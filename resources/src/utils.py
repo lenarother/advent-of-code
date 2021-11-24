@@ -1,5 +1,5 @@
-import os
 import configparser
+import os
 
 CONF_PATH = os.path.join(
     os.path.dirname(__file__),

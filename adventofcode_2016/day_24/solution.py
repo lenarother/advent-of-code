@@ -51,7 +51,7 @@ class Maze:
 
         while self.end not in positions:
             if not max_iter:
-                raise MazeException('Max iteration excided.')
+                raise Exception('Max iteration excided.')
             positions = self.get_neighbour_positions(positions)
             counter += 1
             max_iter -= 1

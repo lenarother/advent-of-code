@@ -1,11 +1,13 @@
 import datetime
 import re
-import requests
 
+import requests
 from utils import get_board_id, get_cookie, get_user_id, read_config
 
 STAT_URL = 'https://adventofcode.com/{year}/stats'
-LIDERSHIP_BOARD = 'https://adventofcode.com/{year}/leaderboard/private/view/{board}.json'
+LIDERSHIP_BOARD = (
+    'https://adventofcode.com/{year}/leaderboard/private/view/{board}.json'
+)
 
 STARS_1 = (
     r'<a href="/\d+/day/1"> 1  <span class="stats-both">\s*(\d+)</span>  '
@@ -48,7 +50,13 @@ def get_year_record(year):
     stars_50_str = '{:_}'.format(stars_50).rjust(10)
     ratio_str = f'{ratio}%'.rjust(10)
     my_stars_str = str(my_stars).rjust(10)
-    return f' {year} | {stars_1_str} | {stars_50_str} | {ratio_str} | {my_stars_str}'
+    return (
+        f' {year} | '
+        f'{stars_1_str} | '
+        f'{stars_50_str} | '
+        f'{ratio_str} | '
+        f'{my_stars_str}'
+    )
 
 
 def get_header():
@@ -75,5 +83,5 @@ def print_stat():
     print()
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     print_stat()
