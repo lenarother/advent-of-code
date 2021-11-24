@@ -1,3 +1,12 @@
+|AoC 2016| |AoC 2020|
+
+.. |AoC 2016| image:: https://img.shields.io/badge/2016-50-yellow.svg
+   :target: https://adventofcode.com/2016
+
+.. |AoC 2020| image:: https://img.shields.io/badge/2020-50-yellow.svg
+   :target: https://adventofcode.com/2020
+
+
 Katas
 =====
 
