@@ -1,4 +1,8 @@
-|AoC 2016| |AoC 2020|
+|AoC Test| |AoC 2016| |AoC 2020|
+
+.. |AoC Test| image:: https://github.com/lenarother/advent-of-code/workflows/Test/badge.svg?branch=master
+   :target: https://github.com/lenarother/advent-of-code/actions?workflow=Test
+   :alt: CI Status
 
 .. |AoC 2016| image:: https://img.shields.io/badge/2016-50-yellow.svg
    :target: https://adventofcode.com/2016
@@ -7,8 +11,8 @@
    :target: https://adventofcode.com/2020
 
 
-Katas
-=====
+Advent of code
+==============
 
 
 Advent of Code 2020
