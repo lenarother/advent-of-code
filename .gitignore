@@ -7,3 +7,4 @@
 .pytest_cache
 .idea
 template/.aoc.conf
+resources/src/docs/aoc_titles.txt
