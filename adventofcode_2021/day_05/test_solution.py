@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import get_points, solve
+from .solution import get_points, parse, solve
 
 DATA = """
 0,9 -> 5,9
@@ -20,10 +20,20 @@ EXAMPLES = (
 )
 
 EXAMPLES_POINTS = (
-    ('1,1 -> 1,3', [(1, 1), (1, 2), (1, 3)]),
-    ('9,7 -> 7,7', [(9, 7), (8, 7), (7, 7), ]),
-    ('1,1 -> 3,3', [(1, 1), (2, 2), (3, 3)]),
-    ('9,7 -> 7,9', [(9, 7), (8, 8), (7, 9)]),
+    #
+    # NO DIAGONAL
+    #
+    ('1,1 -> 1,3', 0, [(1, 1), (1, 2), (1, 3)]),
+    ('9,7 -> 7,7', 0, [(9, 7), (8, 7), (7, 7), ]),
+    ('1,1 -> 3,3', 0, []),
+    ('9,7 -> 7,9', 0, []),
+    #
+    # DIAGONAL
+    #
+    ('1,1 -> 1,3', 1, [(1, 1), (1, 2), (1, 3)]),
+    ('9,7 -> 7,7', 1, [(9, 7), (8, 7), (7, 7)]),
+    ('1,1 -> 3,3', 1, [(1, 1), (2, 2), (3, 3)]),
+    ('9,7 -> 7,9', 1, [(9, 7), (8, 8), (7, 9)]),
 )
 
 
@@ -32,6 +42,7 @@ def test_solve(data, diagonal, expected):
     assert solve(data, diagonal) == expected
 
 
-@pytest.mark.parametrize('data,expected', EXAMPLES_POINTS)
-def test_get_points(data, expected):
-    assert list(get_points(data)) == expected
+@pytest.mark.parametrize('data,diagonal,expected', EXAMPLES_POINTS)
+def test_get_points(data, diagonal, expected):
+    p1, p2 = parse(data)
+    assert list(get_points(p1, p2, diagonal)) == expected

@@ -15,11 +15,14 @@ def parse(points_str):
 
 
 def change_var(v1, v2):
-    return v1 if v1 == v2 else v1 + 1 if v1 < v2 else v1 - 1
+    if v1 == v2:
+        return v1
+    if v1 < v2:
+        return v1 + 1
+    return v1 - 1
 
 
-def get_points(points_str, diagonal=True):
-    p1, p2 = parse(points_str)
+def get_points(p1, p2, diagonal=True):
     x1, y1 = p1
     x2, y2 = p2
 
@@ -38,7 +41,8 @@ def solve(data, diagonal=True):
     points = defaultdict(int)
 
     for line in data.strip().split('\n'):
-        for p in get_points(line, diagonal):
+        p1, p2 = parse(line)
+        for p in get_points(p1, p2, diagonal):
             points[p] += 1
 
     return sum([1 for x in points.values() if x > 1])
