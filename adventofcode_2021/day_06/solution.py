@@ -23,18 +23,9 @@ def step(data_dict, _=None):
     return new_data
 
 
-def simulate(data, steps):
-    data = parse(data)
-    while steps:
-        data = step(data)
-        steps -= 1
-    return data
-
-
 def solve(data, steps=80):
     data = parse(data)
     data = reduce(step, range(steps), data)
-    #result = simulate(data, steps)
     return sum(list(data.values()))
 
 
