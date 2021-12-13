@@ -101,7 +101,7 @@ class Tile:
             target_edge_position
     ):
         position = self.find_neighbor_position(my_edge_position)
-        if position in matrix.data:
+        if position in matrix.moves:
             return True
 
         edge = self.edges[my_edge_position]
@@ -165,8 +165,8 @@ class Matrix:
             rows[y].append(self.data[(x, y)])
 
         for r in sorted(list(rows.keys())):
-            for counter in range(len(self.data[(0, 0)].data)):
-                x = ''.join([t.data[counter] for t in rows[r]])
+            for counter in range(len(self.data[(0, 0)].moves)):
+                x = ''.join([t.moves[counter] for t in rows[r]])
                 self.picture.append(x)
 
     def get_pictures(self):

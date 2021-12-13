@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import solve, parse, count_fuel, count_step, solve3
+from .solution import count_fuel, count_step, parse, solve, solve3
 
 EXAMPLES = (
     ('16,1,2,0,4,2,7,1,2,14', 37),

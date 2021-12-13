@@ -4,7 +4,7 @@ https://adventofcode.com/2021/day/7
 
 """
 
-from collections import defaultdict, Counter
+from collections import Counter, defaultdict
 from functools import reduce
 
 FUEL_COST = {}
