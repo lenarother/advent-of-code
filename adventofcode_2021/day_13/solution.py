@@ -21,34 +21,26 @@ def get_value_after_fold(val, fold_val):
     return fold_val - (val - fold_val)
 
 
-# todo: instead do fold_dot(dot, instruction) and use python 10
-def fold_along_x(dot, val):
+def fold_dot(dot, instruction):
     x, y = dot
-    new_x = get_value_after_fold(x, val)
-    return new_x, y
+    fold_direction, fold_value = instruction
 
+    # Python >= 3.10
+    match fold_direction:
+        case 'x':
+            return get_value_after_fold(x, fold_value), y
+        case 'y':
+            return x, get_value_after_fold(y, fold_value)
 
-def fold_along_y(dot, val):
-    x, y = dot
-    new_y = get_value_after_fold(y, val)
-    return x, new_y
+    # Python <= 3.9
+    # if fold_direction == 'x':
+    #     return get_value_after_fold(x, fold_value), y
+    # return x, get_value_after_fold(y, fold_value)
 
 
 def get_dots_after_folding(dots, folds):
-    fold_functions = {
-        'x': fold_along_x,
-        'y': fold_along_y,
-    }
-
-    # todo: use reduce
     for fold in folds:
-        new_dots = set()
-        fold_function = fold_functions[fold[0]]
-        fold_value = fold[1]
-        for dot in dots:
-            new_dots.add(fold_function(dot, fold_value))
-        dots = new_dots
-
+        dots = {fold_dot(dot, fold) for dot in dots}
     return dots
 
 
@@ -67,22 +59,19 @@ def get_message(dots):
 
 def solve1(data):
     dots, folds = parse(data)
-    dots_after_folding = get_dots_after_folding(dots, folds[:1])
-    return len(dots_after_folding)
+    return len(get_dots_after_folding(dots, folds[:1]))
 
 
 def solve2(data):
-    dots, folds = parse(data)
-    dots_after_folding = get_dots_after_folding(dots, folds)
-    return get_message(dots_after_folding)
+    return get_message(get_dots_after_folding(*parse(data)))
 
 
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
+
     result = solve1(input_data)
     print(f'Example1: {result}')
 
-    input_data = open('input_data.txt').read()
     result = solve2(input_data)
     print('Example2:')
     print(f'{result}')

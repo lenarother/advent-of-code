@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import fold_along_x, solve1, solve2
+from .solution import fold_dot, solve1, solve2
 
 DATA = """
 6,10
@@ -61,4 +61,4 @@ def test_solve2(data, expected):
 
 @pytest.mark.parametrize('coord,val,expected', EXAMPLES_FOLD_X)
 def test_fold_along_x(coord, val, expected):
-    assert fold_along_x(coord, val) == expected
+    assert fold_dot(coord, ('x', val)) == expected
