@@ -4,6 +4,7 @@ https://adventofcode.com/2021/day/13
 
 """
 import re
+from functools import reduce
 
 DOT = r'(\d+),(\d+)\n'
 FOLD = r'fold along (x|y)=(\d+)'
@@ -39,9 +40,7 @@ def fold_dot(dot, instruction):
 
 
 def get_dots_after_folding(dots, folds):
-    for fold in folds:
-        dots = {fold_dot(dot, fold) for dot in dots}
-    return dots
+    return reduce(lambda d, f: {fold_dot(dot, f) for dot in d}, folds, dots)
 
 
 def get_message(dots):
