@@ -1,6 +1,7 @@
 click
 configparser
 cookiecutter
+flake8~=3.9
 ipdb
 ipython
 isort
