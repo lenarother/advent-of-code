@@ -4,10 +4,10 @@ https://adventofcode.com/2021/day/7
 
 """
 
-from collections import Counter, defaultdict
-from functools import reduce
+from collections import Counter
 
 FUEL_COST = {}
+
 
 def parse(data):
     return Counter(list(map(int, data.strip().split(','))))

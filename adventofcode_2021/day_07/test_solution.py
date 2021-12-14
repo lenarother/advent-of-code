@@ -23,6 +23,7 @@ EXAMPLES_COUNT_STEP = (
     (2, 5, 6),
 )
 
+
 @pytest.mark.parametrize('data,expected', EXAMPLES)
 def test_solve(data, expected):
     assert solve(data) == expected
@@ -34,7 +35,10 @@ def test_count_fuel(data, position, expected):
     assert count_fuel(data, position,) == expected
 
 
-@pytest.mark.parametrize('current_position,target,expected', EXAMPLES_COUNT_STEP)
+@pytest.mark.parametrize(
+    'current_position,target,expected',
+    EXAMPLES_COUNT_STEP
+)
 def test_count_step(current_position, target, expected):
     assert count_step(current_position, target) == expected
 
