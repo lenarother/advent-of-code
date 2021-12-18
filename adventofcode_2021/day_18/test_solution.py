@@ -1,13 +1,12 @@
 import pytest
 
 from .solution import (
+    Reducer,
     add_expr,
     calc_magnitude,
-    explode_expr,
     find_sum,
     solve,
     solve2,
-    split_expr,
 )
 
 HOMEWORK_1 = """
@@ -111,12 +110,12 @@ EXAMPLES_MAX = (
 
 @pytest.mark.parametrize('data,expected', EXAMPLES_EXPLODE)
 def test_explode(data, expected):
-    assert explode_expr(data) == expected
+    assert Reducer().explode_expr(data) == expected
 
 
 @pytest.mark.parametrize('data,expected', EXAMPLES_SPLIT)
 def test_split(data, expected):
-    assert split_expr(data) == expected
+    assert Reducer().split_expr(data) == expected
 
 
 @pytest.mark.parametrize('data,expected', EXAMPLES_ADD)
