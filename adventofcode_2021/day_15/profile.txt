@@ -1,0 +1,47 @@
+Example1: 790
+Example2: 2998
+         4174734 function calls in 2.222 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:1053(_handle_fromlist)
+        1    0.000    0.000    0.000    0.000 codecs.py:260(__init__)
+        1    0.000    0.000    0.000    0.000 codecs.py:309(__init__)
+        1    0.000    0.000    0.000    0.000 codecs.py:319(decode)
+        1    0.000    0.000    2.222    2.222 solution.py:1(<module>)
+        1    0.001    0.001    0.132    0.132 solution.py:107(propagate_input)
+        1    0.000    0.000    0.000    0.000 solution.py:11(Cave)
+      500    0.001    0.000    0.109    0.000 solution.py:115(<listcomp>)
+        1    0.000    0.000    2.139    2.139 solution.py:120(solve2)
+        2    0.068    0.034    0.159    0.080 solution.py:15(__init__)
+        2    0.091    0.045    0.091    0.046 solution.py:37(parse)
+   260000    0.186    0.000    0.337    0.000 solution.py:48(get_position_with_min_cost)
+  1297600    0.386    0.000    0.386    0.000 solution.py:55(get_adj_positions)
+   259998    0.110    0.000    0.110    0.000 solution.py:63(extract_cost)
+   259998    0.184    0.000    0.344    0.000 solution.py:66(handle_distance)
+   260000    0.700    0.000    1.430    0.000 solution.py:75(relax)
+        2    0.143    0.072    1.930    0.965 solution.py:84(walk)
+        1    0.000    0.000    0.082    0.082 solution.py:91(solve)
+     3000    0.007    0.000    0.131    0.000 solution.py:96(increase_row)
+     6000    0.120    0.000    0.120    0.000 solution.py:98(<listcomp>)
+        1    0.000    0.000    0.000    0.000 {built-in method _codecs.utf_8_decode}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.__build_class__}
+        1    0.000    0.000    2.222    2.222 {built-in method builtins.exec}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+   780004    0.060    0.000    0.060    0.000 {built-in method builtins.len}
+   260000    0.088    0.000    0.088    0.000 {built-in method builtins.min}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.print}
+        1    0.000    0.000    0.000    0.000 {built-in method io.open}
+   259998    0.028    0.000    0.028    0.000 {method 'add' of 'set' objects}
+      500    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+     6500    0.004    0.000    0.004    0.000 {method 'join' of 'str' objects}
+   260002    0.021    0.000    0.021    0.000 {method 'keys' of 'dict' objects}
+   260000    0.023    0.000    0.023    0.000 {method 'pop' of 'set' objects}
+        1    0.000    0.000    0.000    0.000 {method 'read' of '_io.TextIOWrapper' objects}
+        3    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+      606    0.000    0.000    0.000    0.000 {method 'strip' of 'str' objects}
+
+
