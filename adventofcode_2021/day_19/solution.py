@@ -5,9 +5,6 @@ https://adventofcode.com/2021/day/19
 """
 import math
 import re
-from collections import defaultdict
-import pprint
-
 
 ORIENTATION_RULES = [
     (0, 1, 2),
@@ -29,24 +26,15 @@ CASTING_RULES = [
     (1, 1, -1),
 ]
 
-def check_orientations():
-    result = {}
-    pos = (1, 3, 5)
-    for i in ORIENTATION_RULES:
-        xo = pos[i[0]]
-        yo = pos[i[1]]
-        zo = pos[i[2]]
-        for j in CASTING_RULES:
-            x = xo * j[0]
-            y = yo * j[1]
-            z = zo * j[2]
-            result[(i, j)] = (x, y, z)
 
-    result2 = defaultdict(list)
-    for k, v in result.items():
-        result2[v].append(k)
-
-    pprint.pprint(result2)
+def rotations():
+    for o_rule in ORIENTATION_RULES:
+        x, y, z = o_rule
+        for c_rule in CASTING_RULES:
+            v1, v2, v3 = c_rule
+            yield (
+                lambda p: (p[x] * v1, p[y] * v2, p[z] * v3)
+            )
 
 
 def distance(pos1, pos2):
@@ -69,64 +57,63 @@ def get_dist_matrix(positions):
     return dm
 
 
-def get_dm_repr(dm):
-    dm_repr = ''
-    for row in dm:
-        dm_repr += ', '.join(str(d) for d in row) + '\n'
-    return dm_repr
-
-
 class Scanner:
 
     def __init__(self, id, points):
         self.id = id
         self.points = points
-        self.oriented_points = None
+        self.distance_matrix = get_dist_matrix(points)
+        self.partners = []
+        self.rotated = False
 
-        self.casted_points = defaultdict(list)
-        self.cast()
-
-        self.dm = {}
-        self.calc_dist_matrix()
-
-        self.partner = None
-        self.relation = None
-
-    def cast(self):
-        for pos in self.points:
-            for i in ORIENTATION_RULES:
-                ox = pos[i[0]]
-                oy = pos[i[1]]
-                oz = pos[i[2]]
-                for j in CASTING_RULES:
-                    x = ox * j[0]
-                    y = oy * j[1]
-                    z = oz * j[2]
-                    self.casted_points[(i, j)].append((x, y, z))
-
-    def calc_dist_matrix(self):
-        for k, v in self.casted_points.items():
-            self.dm[k] = get_dist_matrix(v)
+    def __repr__(self):
+        return f'<Scanner: {self.id}>'
 
     def overlaps(self, s2):
-        point = None
-        matrix = self.dm[((0, 1, 2), (1, 1, 1))]
-        #for orientation, matrix in self.dm.items():
-        for orientation_other, matrix_other in s2.dm.items():
-            for enum, row in enumerate(matrix):
-                for enum_other, row_other in enumerate(matrix_other):
-                    common_distances = set(row).intersection(set(row_other))
-                    if len(common_distances) >= 12:
-                        print(orientation_other, s2.points[enum_other], self.points[enum])
-                        #print(True)
-                        #return orientation_other, s2.points[enum_other], self.points[enum]
+        for row in self.distance_matrix:
+            for row_other in s2.distance_matrix:
+                if len(set(row).intersection(set(row_other))) >= 12:
+                    self.partners.append(s2)
+                    return True
+        return False
 
-        return None, None
+    def rotate(self, rotation, vector):
+        self.points = apply_rotation_vector(self.points, rotation, vector)
+        self.rotated = True
 
 
+def get_vector(target_p, p):
+    tx, ty, tz = target_p
+    x, y, z = p
+    return tx - x, ty - y, tz - z
 
 
+def apply_rotation_vector(points, rotation, vector):
+    new_points = []
+    for p in points:
+        x, y, z = rotation(p)
+        v1, v2, v3 = vector
+        new_points.append((x + v1, y + v2, z + v3))
+    return new_points
 
+
+def find_vector(target_s, s):
+    for target_p in target_s.points:
+        for p in s.points:
+            for rotation in rotations():
+                new_p = rotation(p)
+                v = get_vector(target_p, new_p)
+                new_points = apply_rotation_vector(s.points, rotation, v)
+                if len(set(target_s.points).intersection(set(new_points))) >= 12:
+                    return rotation, v
+
+
+def match_scanners(scanners):
+    for id, s in scanners.items():
+        for id_other, s_other in scanners.items():
+            if id == id_other:
+                continue
+            s.overlaps(s_other)
 
 
 def parse(data):
@@ -135,7 +122,7 @@ def parse(data):
         scanner_data = scanner.strip().split('\n')
         scanner_id = re.findall(r'--- scanner (\d+) ---', scanner_data[0])[0]
         scanner_points = [
-            list(map(int, line.strip().split(',')))
+            tuple(map(int, line.strip().split(',')))
             for line in scanner_data[1:]
         ]
         # scanners[int(scanner_id)] = {(0, 0, 0): scanner_points}
@@ -143,23 +130,70 @@ def parse(data):
     return scanners
 
 
-def solve(data):
+def get_beacons(data):
     scanners = parse(data)
+    match_scanners(scanners)
 
     s0 = scanners[0]
-    s1 = scanners[1]
-    print(s0.overlaps(s1))
-    #check_orientations()
-    return data
+    s0.rotated = True
+    to_do = [s0]
+    while to_do:
+        s = to_do.pop()
+        for partner in s.partners:
+            if not partner.rotated:
+                r, v = find_vector(s, partner)
+                partner.rotate(r, v)
+                to_do.append(partner)
+
+    beacons = []
+    for s in scanners.values():
+        beacons += s.points
+
+    return set(beacons)
+
+
+def solve(data):
+    beacons = get_beacons(data)
+    return len(beacons)
+
+
+def get_max_dist(beacons):
+    distances = []
+    for p1 in beacons:
+        x1, y1, z1 = p1
+        for p2 in beacons:
+            x2, y2, z2 = p2
+            distances.append(
+                abs(x1 - x2) + abs(y1 - y2) + abs(z1 - z2)
+            )
+    return max(distances)
+
+
+def solve2(data):
+    vectors = []
+    scanners = parse(data)
+    match_scanners(scanners)
+
+    s0 = scanners[0]
+    s0.rotated = True
+    to_do = [s0]
+    while to_do:
+        s = to_do.pop()
+        for partner in s.partners:
+            if not partner.rotated:
+                r, v = find_vector(s, partner)
+                vectors.append(v)
+                partner.rotate(r, v)
+                to_do.append(partner)
+
+    return get_max_dist(vectors)
 
 
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
+
     result = solve(input_data)
     print(f'Example1: {result}')
-#
-# T -618,-824,-621
-# 686,422,578
-#
-# 686 * (-1) + 68
-# 422 * (1) +
+
+    result = solve2(input_data)
+    print(f'Example2: {result}')

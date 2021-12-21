@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import solve
+from .solution import solve, solve2
 
 
 DATA = """
@@ -142,9 +142,18 @@ DATA = """
 30,-46,-14"""
 
 EXAMPLES = (
-    (DATA, 1),
+    (DATA, 79),
+)
+
+EXAMPLES_DISTANCE = (
+    (DATA, 3621),
 )
 
 @pytest.mark.parametrize('data,expected', EXAMPLES)
 def test_solve(data, expected):
     assert solve(data) == expected
+
+
+@pytest.mark.parametrize('data,expected', EXAMPLES_DISTANCE)
+def test_solve2(data, expected):
+    assert solve2(data) == expected
