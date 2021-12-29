@@ -2,7 +2,6 @@ import pytest
 
 from .solution import solve, solve2
 
-
 DATA = """
 --- scanner 0 ---
 404,-588,-901
@@ -148,6 +147,7 @@ EXAMPLES = (
 EXAMPLES_DISTANCE = (
     (DATA, 3621),
 )
+
 
 @pytest.mark.parametrize('data,expected', EXAMPLES)
 def test_solve(data, expected):

@@ -72,7 +72,10 @@ class Scanner:
     def overlaps(self, s2):
         for row in self.distance_matrix:
             for row_other in s2.distance_matrix:
-                if len(set(row).intersection(set(row_other))) >= 12:
+                set_row = set(row)
+                set_row_other = set(row_other)
+                common_distances = len(set_row.intersection(set_row_other))
+                if common_distances >= 12:
                     self.partners.append(s2)
                     return True
         return False
@@ -104,7 +107,9 @@ def find_vector(target_s, s):
                 new_p = rotation(p)
                 v = get_vector(target_p, new_p)
                 new_points = apply_rotation_vector(s.points, rotation, v)
-                if len(set(target_s.points).intersection(set(new_points))) >= 12:
+                if len(
+                        set(target_s.points).intersection(set(new_points))
+                ) >= 12:
                     return rotation, v
 
 
