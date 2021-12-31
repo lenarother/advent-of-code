@@ -6,31 +6,21 @@ https://adventofcode.com/2021/day/1
 
 
 def parse_data(data):
-    data = data.split('\n')
-    return list(map(int, data))
-
-
-def get_sum(int_list, i, w):
-    return sum(int_list[i:i + w])
+    return list(map(int, data.split('\n')))
 
 
 def solve(int_list, w=1):
-    increase_count = 0
-    for i in range(len(int_list)):
-        if (
-                i < len(int_list) - w
-                and get_sum(int_list, i, w) < get_sum(int_list, i + 1, w)
-        ):
-            increase_count += 1
-    return increase_count
+    return sum([
+        int_list[i] < int_list[i + w]
+        for i in range(len(int_list) - w)
+    ])
 
 
 if __name__ == '__main__':
-    input_data = open('input_data.txt').read()
-    data = parse_data(input_data)
+    input_data = parse_data(open('input_data.txt').read())
 
-    result = solve(data)
+    result = solve(input_data)
     print(f'Example1: {result}')
 
-    result = solve(data, 3)
+    result = solve(input_data, 3)
     print(f'Example2: {result}')
