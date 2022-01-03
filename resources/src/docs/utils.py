@@ -4,7 +4,7 @@ from datetime import datetime
 FIRST_YEAR = 2015
 AOC_URL = 'https://adventofcode.com/'
 GITHUB_URL = (
-    'https://github.com/lenarother/advent-of-code-solutions/blob/master'
+    'https://github.com/lenarother/advent-of-code/blob/master'
 )
 PROJECT_DIR = os.path.join(
     os.path.dirname(__file__),
