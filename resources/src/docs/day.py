@@ -1,6 +1,6 @@
 import os
 
-from .utils import GITHUB_URL, PROJECT_DIR, build_url
+from .utils import GITHUB_URL, PROJECT_DIR
 
 
 class AocDay:
@@ -27,20 +27,14 @@ class AocDay:
         return rep
 
     def get_solution_link(self):
-        event_path = build_url((GITHUB_URL, '/', self.event.name))
         if self.event.year == '2020':
-            return build_url((event_path, f'{self.name}.py'))
-        return build_url((event_path, self.name, 'solution.py'))
+            return f'{GITHUB_URL}/{self.event.name}/{self.name}.py'
+        return f'{GITHUB_URL}/{self.event.name}/{self.name}/solution.py'
 
     def get_test_link(self):
         if self.event.year == '2020':
             return None
-        return build_url((
-            GITHUB_URL,
-            self.event.name,
-            self.name,
-            'test_solution.py',
-        ))
+        return f'{GITHUB_URL}/{self.event.name}/{self.name}/test_solution.py'
 
     def get_title(self):
         return self.event.titles.get(int(self.n), 'Title')

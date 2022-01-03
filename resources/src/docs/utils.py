@@ -12,10 +12,6 @@ PROJECT_DIR = os.path.join(
 )
 
 
-def build_url(parts):
-    return '/'.join(parts).replace('//', '').replace('///', '')
-
-
 def aoc_years():
     today = datetime.today()
     next_year = (today.year + 1) if today.month == 12 else today.year
