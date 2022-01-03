@@ -19,8 +19,6 @@ class Aoc:
     def __repr__(self):
         rep = """
 
-Advent of code
-==============
 
 """
         for event in self:

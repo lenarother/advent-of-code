@@ -17,13 +17,13 @@
    :alt: |AoC 2016|
 
 
-Advent of code
-==============
 
 Advent of Code 2021
--------------------
+===================
+
 
 https://adventofcode.com/2021
+
 
 * **Day 1**: Sonar Sweep [`problem <https://adventofcode.com/2021/day/1>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2021/day_01/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2021/day_01/test_solution.py>`_]
 * **Day 2**: Dive! [`problem <https://adventofcode.com/2021/day/2>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2021/day_02/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2021/day_02/test_solution.py>`_]
@@ -53,9 +53,11 @@ https://adventofcode.com/2021
 
 
 Advent of Code 2020
--------------------
+===================
+
 
 https://adventofcode.com/2020
+
 
 * **Day 1**: Report Repair [`problem <https://adventofcode.com/2020/day/1>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2020/day_01.py>`_]
 * **Day 2**: Password Philosophy [`problem <https://adventofcode.com/2020/day/2>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2020/day_02.py>`_]
@@ -85,9 +87,11 @@ https://adventofcode.com/2020
 
 
 Advent of Code 2016
--------------------
+===================
+
 
 https://adventofcode.com/2016
+
 
 * **Day 1**: No Time for a Taxicab [`problem <https://adventofcode.com/2016/day/1>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2016/day_01/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2016/day_01/test_solution.py>`_]
 * **Day 2**: Bathroom Security [`problem <https://adventofcode.com/2016/day/2>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2016/day_02/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2016/day_02/test_solution.py>`_]

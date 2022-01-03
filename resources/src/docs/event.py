@@ -19,9 +19,11 @@ class AocEvent:
     def __repr__(self):
         repr = f"""
 Advent of Code {self.year}
--------------------
+===================
+
 
 {self.aoc_link}
+
 
 """.lstrip()
         for day in self:
