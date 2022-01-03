@@ -12,6 +12,9 @@ clean:
 day:
 	python template/make_day.py
 
+readme:
+	python resources/src/make_readme.py
+
 stat:
 	python resources/src/make_stats.py
 
