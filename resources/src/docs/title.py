@@ -52,7 +52,6 @@ def get_aoc_titles(clean=False):
     for y in aoc_years():
         for d in aoc_days(y):
             if not titles.get(y, {}).get(d, None):
-                print('do request')
                 titles.setdefault(y, {})[d] = get_title_from_aoc(y, d)
     return titles
 

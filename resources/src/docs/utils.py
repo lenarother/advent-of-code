@@ -1,12 +1,19 @@
+import os
 from datetime import datetime
-from functools import reduce
-from urllib.parse import urljoin
 
 FIRST_YEAR = 2015
+AOC_URL = 'https://adventofcode.com/'
+GITHUB_URL = (
+    'https://github.com/lenarother/advent-of-code-solutions/blob/master'
+)
+PROJECT_DIR = os.path.join(
+    os.path.dirname(__file__),
+    '../../..',
+)
 
 
 def build_url(parts):
-    return reduce(urljoin, parts)
+    return '/'.join(parts).replace('//', '').replace('///', '')
 
 
 def aoc_years():
@@ -16,6 +23,7 @@ def aoc_years():
         yield y
 
 
+# TODO: Fix return current year days only if december
 def aoc_days(year):
     first_day = 1
     last_day = 25

@@ -1,7 +1,5 @@
 from abc import ABCMeta
 
-from .utils import build_url
-
 BADGE_URL = 'https://img.shields.io/badge/'
 
 
@@ -27,10 +25,9 @@ class AocBadge(AbstractBadge):
         super().__init__()
         self.name = f'|AoC {event.year}|'
         self.alt = self.name
-        self.image_link = build_url((
-            BADGE_URL,
-            f'{event.year}-{len(event) * 2}-yellow.svg',
-        ))
+        self.image_link = (
+            f'{BADGE_URL}{event.year}-{len(event) * 2}-yellow.svg'
+        )
         self.target_link = event.aoc_link
 
 
