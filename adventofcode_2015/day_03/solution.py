@@ -41,10 +41,7 @@ def solve2(data):
     s2 = Santa()
 
     for i, ch in enumerate(data.strip()):
-        if i % 2 == 0:
-            s1.move(ch)
-        else:
-            s2.move(ch)
+        s1.move(ch) if i % 2 == 0 else s2.move(ch)
 
     houses = {}
     houses.update(s1.locations)
