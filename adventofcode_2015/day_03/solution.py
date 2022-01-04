@@ -13,46 +13,43 @@ DIRECTIONS_MAP = {
 }
 
 
+class Santa:
+
+    def __init__(self):
+        self.locations = defaultdict(int)
+        self.current = (0, 0)
+        self.locations[self.current] = 1
+
+    def move(self, ch):
+        x, y = self.current
+        dx, dy = DIRECTIONS_MAP[ch]
+        self.current = (x + dx, y + dy)
+        self.locations[self.current] += 1
+
+
 def solve(data):
-    locations = defaultdict(int)
-    current = (0, 0)
-    locations[current] = 1
+    s = Santa()
 
     for ch in data.strip():
-        x, y = current
-        dx, dy = DIRECTIONS_MAP[ch]
-        current = (x + dx, y + dy)
-        locations[current] += 1
+        s.move(ch)
 
-    return len(locations)
+    return len(s.locations)
 
 
 def solve2(data):
-    locations_1 = defaultdict(int)
-    current_1 = (0, 0)
-    locations_1[current_1] = 1
-
-    locations_2 = defaultdict(int)
-    current_2 = (0, 0)
-    locations_2[current_2] = 1
+    s1 = Santa()
+    s2 = Santa()
 
     for i, ch in enumerate(data.strip()):
         if i % 2 == 0:
-            x, y = current_1
-            dx, dy = DIRECTIONS_MAP[ch]
-            current_1 = (x + dx, y + dy)
-            locations_1[current_1] += 1
+            s1.move(ch)
         else:
-            x, y = current_2
-            dx, dy = DIRECTIONS_MAP[ch]
-            current_2 = (x + dx, y + dy)
-            locations_2[current_2] += 1
+            s2.move(ch)
 
-    common_houses = {}
-    common_houses.update(locations_1)
-    common_houses.update(locations_2)
-
-    return len(common_houses)
+    houses = {}
+    houses.update(s1.locations)
+    houses.update(s2.locations)
+    return len(houses)
 
 
 if __name__ == '__main__':
