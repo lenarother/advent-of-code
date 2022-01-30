@@ -12,6 +12,9 @@ MUST_NOT_HAVE = r'(ab|cd|pq|xy)'
 REPEAT_WITH_LETTER_IN_BETWEEN = r'(\w)\w\1'
 PAIR = r'(\w\w)\w*\1'
 
+# TODO: single is_nice and list of condition wit any / all
+# TODO: return at the begining
+
 
 def is_nice(word):
     if (
