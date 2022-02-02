@@ -3,7 +3,7 @@
 https://adventofcode.com/2015/day/18
 
 """
-from aoc import neighbors, parse_grid_to_dict
+from santa_helpers import neighbors, parse_grid_to_dict
 
 ON = '#'
 OFF = '.'
