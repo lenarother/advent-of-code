@@ -1,7 +1,6 @@
-import io
 import pytest
 
-from .solution import count_in_memory_chars, count_total_chars, solve, solve2
+from .solution import count_in_memory_chars, count_total_chars, solve
 
 EXAMPLES_TOTAL = (
     (r'""', 2),
