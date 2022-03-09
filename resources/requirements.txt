@@ -10,4 +10,4 @@ pytest
 pytest-flake8
 pytest-isort
 requests
-santa_helpers
+santa_helpers==0.0.2
