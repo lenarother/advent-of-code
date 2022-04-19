@@ -6,7 +6,7 @@ https://adventofcode.com/2015/day/22
 
 import re
 import heapq
-from copy import copy, deepcopy
+from copy import deepcopy
 
 from itertools import count
 
@@ -34,7 +34,7 @@ class Spell:
     def effect(self, wizard, boss):
         pass
 
-    def cast(self, wizard=None, boss=None):
+    def cast(self, wizard, boss):
         if self.is_active:
             self.effect(wizard=wizard, boss=boss)
             self.duration -= 1
@@ -47,10 +47,10 @@ class SpellShield(Spell):
         self.cost = 113
         self.duration = 6
 
-    def effect(self, wizard, boss=None):
+    def effect(self, wizard, boss):
         wizard.armor = 7
 
-    def cast(self, wizard, boss=None):
+    def cast(self, wizard, boss):
         super().cast(wizard, boss)
         if not self.is_active:
             wizard.armor = 0
@@ -63,7 +63,6 @@ class SpellMissile(Spell):
         self.cost = 53
 
     def effect(self, wizard, boss):
-        print('HIE')
         boss.hp -= 4
 
 
@@ -75,7 +74,7 @@ class SpellPoison(Spell):
         self.duration = 6
 
     def effect(self, wizard, boss=None):
-        boss.hp = 3
+        boss.hp -= 3
 
 
 class SpellRecharge(Spell):
@@ -86,7 +85,7 @@ class SpellRecharge(Spell):
         self.duration = 5
 
     def effect(self, wizard, boss=None):
-        wizard.mana = 101
+        wizard.mana += 101
 
 
 class SpellDrain(Spell):
@@ -120,9 +119,6 @@ class Wizard:
         self.mana_used = 0
         self.spells = []
 
-        # self.ongoing_spells = []
-        # self.history = []
-
     def __repr__(self):
         return f'<Wizard: {self.hp}-{self.mana}-{self.armor}'
 
@@ -138,59 +134,6 @@ class Wizard:
             self.die()
         self.mana -= cost
         self.mana_used += cost
-
-    # def shield(self, boss=None, initial_call=True):
-    #     if initial_call:
-    #         self.pay(113)
-    #         self.ongoing_spells.append(('shield', 6))
-    #     self.armor = 7
-    #
-    # def missile(self, boss):
-    #     self.pay(53)
-    #     boss.hp -= 4
-    #
-    # def poison(self, boss, initial_call=True):
-    #     if initial_call:
-    #         self.pay(173)
-    #         self.ongoing_spells.append(('poison', 6))
-    #     else:
-    #         boss.hp -= 3
-    #
-    # def recharge(self, boss=None, initial_call=True):
-    #     if initial_call:
-    #         # if self.mana > 300:
-    #         #     self.die()
-    #         self.pay(229)
-    #         self.ongoing_spells.append(('recharge', 5))
-    #     else:
-    #         self.mana += 101
-    #
-    # def drain(self, boss):
-    #     self.pay(73)
-    #     self.hp += 2
-    #     boss.hp -= 2
-
-    # def apply_ongoing_spells(self, boss):
-    #     new_ongoing_spells = []
-    #     for spell in self.ongoing_spells:
-    #         s, counter = spell
-    #         f = getattr(self, s)
-    #         f(boss, initial_call=False)
-    #         if counter >= 1:
-    #             new_ongoing_spells.append((s, counter - 1))
-    #         elif s == 'shield':
-    #             self.armor = 0
-    #     self.ongoing_spells = new_ongoing_spells
-    #
-    # def cast_spell(self, boss, spell):
-    #     self.apply_ongoing_spells(boss)
-    #     if boss.alive:
-    #         if spell in [s[0] for s in self.ongoing_spells]:
-    #             self.die()
-    #         f = getattr(self, spell)
-    #         f(boss)
-    #         self.history.append(spell)
-    #         self.apply_ongoing_spells(boss)
 
     def buy(self, spell):
         self.pay(spell.cost)
@@ -210,7 +153,7 @@ class Wizard:
 
 class Boss:
 
-    def __init__(self, hp, damage, armor=0):
+    def __init__(self, hp, damage):
         self.hp = hp
         self.damage = damage
 
@@ -231,7 +174,6 @@ def parse_boss(input_str):
     return Boss(hp, damage)
 
 
-
 def find_best_spells(wizard, boss):
     # Dijkstra algorithm
     counter = count()
@@ -248,29 +190,13 @@ def find_best_spells(wizard, boss):
             # print(s)
             wizard_copy = deepcopy(wizard)
             boss_copy = deepcopy(boss)
-
             # print(wizard_copy)
             # print(boss_copy)
-
             wizard_copy.fight_round(boss_copy, s)
-            # spell = spell_factory(s)
-            # wizard_copy.buy(spell)
-            # wizard_copy.cast(boss_copy)
-            # wizard_copy.cast(boss_copy)
-            # boss_copy.hit(wizard_copy)
-
             # print(wizard_copy)
             # print(boss_copy)
-
             if wizard_copy.alive:
                 heapq.heappush(fights, (wizard_copy.mana_used, next(counter), (wizard_copy, boss_copy)))
-
-            # wizard_copy = deepcopy(wizard)
-            # boss_copy = deepcopy(boss)
-            # wizard_copy.cast_spell(boss_copy, s)
-            # boss_copy.hit(wizard_copy)
-            # if wizard_copy.alive:
-            #     heapq.heappush(fights, (wizard_copy.mana_used, next(counter), (wizard_copy, boss_copy)))
 
     return -1
 
@@ -282,7 +208,6 @@ def solve(input_data):
 
 
 if __name__ == '__main__':
-    input_data = open('input_data.txt').read()
-    result = solve(input_data)
+    data = open('input_data.txt').read()
+    result = solve(data)
     print(f'Example1: {result}')
-
