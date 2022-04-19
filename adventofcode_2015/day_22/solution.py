@@ -4,10 +4,8 @@ https://adventofcode.com/2015/day/22
 
 """
 
-import re
 import heapq
-from copy import deepcopy
-
+import re
 from itertools import count
 
 # hit points - always reduced at least 1
@@ -40,6 +38,12 @@ class Spell:
         if self.is_active:
             self.effect(wizard=wizard, boss=boss)
             self.duration -= 1
+
+    def copy(self):
+        spell = self.__class__()
+        spell.cost = self.cost
+        spell.duration = self.duration
+        return spell
 
 
 class SpellShield(Spell):
@@ -162,6 +166,12 @@ class Wizard:
         boss.hit(self)
         self.cast(boss)
 
+    def copy(self):
+        wizard = Wizard(hp=self.hp, mana=self.mana, armor=self.armor)
+        wizard.spells = [s.copy() for s in self.spells]
+        wizard.mana_used = self.mana_used
+        return wizard
+
 
 class Boss:
 
@@ -180,6 +190,9 @@ class Boss:
         if self.alive:
             wizard.hp -= max(self.damage - wizard.armor, 1)
 
+    def copy(self):
+        return Boss(self.hp, self.damage)
+
 
 def parse_boss(input_str):
     hp, damage = map(int, list(BOSS.findall(input_str)[0]))
@@ -197,11 +210,18 @@ def find_best_spells(wizard, boss, hard=False):
         if not boss.alive:
             return mana_used
         for s in SPELLS:
-            wizard_copy = deepcopy(wizard)
-            boss_copy = deepcopy(boss)
+            wizard_copy = wizard.copy()
+            boss_copy = boss.copy()
             wizard_copy.fight_round(boss_copy, s, hard)
             if wizard_copy.alive:
-                heapq.heappush(fights, (wizard_copy.mana_used, next(counter), (wizard_copy, boss_copy)))
+                heapq.heappush(
+                    fights,
+                    (
+                        wizard_copy.mana_used,
+                        next(counter),
+                        (wizard_copy, boss_copy)
+                    )
+                )
 
     return -1
 
