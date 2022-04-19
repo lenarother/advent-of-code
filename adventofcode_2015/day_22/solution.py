@@ -12,7 +12,6 @@ from itertools import count
 
 # hit points - always reduced at least 1
 # damage = attacker's damage score - defender's armour score
-# user 0 damage , 0 armour, 100 hit points
 
 BOSS = re.compile(r'Hit Points: (\d+)\nDamage: (\d+)\n')
 SPELLS = ['missile', 'shield', 'poison', 'recharge', 'drain']
@@ -26,6 +25,9 @@ class Spell:
 
     def __repr__(self):
         return f'<{self.__class__.__name__}: {self.cost}, {self.duration}>'
+
+    def __eq__(self, other):
+        return self.__class__.__name__ == other.__class__.__name__
 
     @property
     def is_active(self):
@@ -116,8 +118,8 @@ class Wizard:
         self.mana = mana
         self.armor = armor
 
-        self.mana_used = 0
         self.spells = []
+        self.mana_used = 0
 
     def __repr__(self):
         return f'<Wizard: {self.hp}-{self.mana}-{self.armor}'
@@ -125,6 +127,10 @@ class Wizard:
     @property
     def alive(self):
         return self.hp > 0 and self.mana >= 0
+
+    @property
+    def active_spells(self):
+        return (s for s in self.spells if s.is_active)
 
     def die(self):
         self.hp = -1000
@@ -136,6 +142,8 @@ class Wizard:
         self.mana_used += cost
 
     def buy(self, spell):
+        if spell in self.active_spells:
+            self.die()
         self.pay(spell.cost)
         self.spells.append(spell)
 
@@ -143,12 +151,16 @@ class Wizard:
         for s in self.spells:
             s.cast(self, boss)
 
-    def fight_round(self, boss, spell_name):
+    def fight_round(self, boss, spell_name, hard=False):
+        if hard:
+            self.hp -= 1
+            if self.hp <= 0:
+                self.die()
         spell = spell_factory(spell_name)
         self.buy(spell)
         self.cast(boss)
-        self.cast(boss)
         boss.hit(self)
+        self.cast(boss)
 
 
 class Boss:
@@ -174,40 +186,36 @@ def parse_boss(input_str):
     return Boss(hp, damage)
 
 
-def find_best_spells(wizard, boss):
+def find_best_spells(wizard, boss, hard=False):
     # Dijkstra algorithm
-    counter = count()
-
+    counter = count()  # use to avoid equal cost and wizard compering
     fights = []
     heapq.heappush(fights, (wizard.mana_used, next(counter), (wizard, boss)))
 
     while fights:
         mana_used, _, (wizard, boss) = heapq.heappop(fights)
         if not boss.alive:
-            # print(wizard.spells)
             return mana_used
         for s in SPELLS:
-            # print(s)
             wizard_copy = deepcopy(wizard)
             boss_copy = deepcopy(boss)
-            # print(wizard_copy)
-            # print(boss_copy)
-            wizard_copy.fight_round(boss_copy, s)
-            # print(wizard_copy)
-            # print(boss_copy)
+            wizard_copy.fight_round(boss_copy, s, hard)
             if wizard_copy.alive:
                 heapq.heappush(fights, (wizard_copy.mana_used, next(counter), (wizard_copy, boss_copy)))
 
     return -1
 
 
-def solve(input_data):
+def solve(input_data, hard=False):
     boss = parse_boss(input_data)
     wizard = Wizard(hp=50, mana=500)
-    return find_best_spells(wizard, boss)
+    return find_best_spells(wizard, boss, hard)
 
 
 if __name__ == '__main__':
     data = open('input_data.txt').read()
     result = solve(data)
     print(f'Example1: {result}')
+
+    result = solve(data, hard=True)
+    print(f'Example2: {result}')
