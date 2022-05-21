@@ -1,6 +1,7 @@
 help:
 	@echo "day - generate template files for day challenge"
 	@echo "clean - clean pyc files and so on"
+	@echo "readme - generate README.rst"
 	@echo "stat - show AoC statistic"
 	@echo "test - run tests"
 
