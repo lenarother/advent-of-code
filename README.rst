@@ -1,4 +1,4 @@
-|AoC Test| |AoC 2021| |AoC 2020| |AoC 2016|
+|AoC Test| |AoC 2021| |AoC 2020| |AoC 2019| |AoC 2018| |AoC 2017| |AoC 2016| |AoC 2015|
 
 .. |AoC Test| image:: https://github.com/lenarother/advent-of-code/workflows/Test/badge.svg?branch=master
    :target: https://github.com/lenarother/advent-of-code/actions?workflow=Test
@@ -12,9 +12,25 @@
    :target: https://adventofcode.com/2020
    :alt: |AoC 2020|
 
+.. |AoC 2019| image:: https://img.shields.io/badge/2019-6-yellow.svg
+   :target: https://adventofcode.com/2019
+   :alt: |AoC 2019|
+
+.. |AoC 2018| image:: https://img.shields.io/badge/2018-6-yellow.svg
+   :target: https://adventofcode.com/2018
+   :alt: |AoC 2018|
+
+.. |AoC 2017| image:: https://img.shields.io/badge/2017-4-yellow.svg
+   :target: https://adventofcode.com/2017
+   :alt: |AoC 2017|
+
 .. |AoC 2016| image:: https://img.shields.io/badge/2016-50-yellow.svg
    :target: https://adventofcode.com/2016
    :alt: |AoC 2016|
+
+.. |AoC 2015| image:: https://img.shields.io/badge/2015-50-yellow.svg
+   :target: https://adventofcode.com/2015
+   :alt: |AoC 2015|
 
 
 
@@ -86,6 +102,41 @@ https://adventofcode.com/2020
 * **Day 25**: Combo Breaker [`problem <https://adventofcode.com/2020/day/25>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2020/day_25.py>`_]
 
 
+Advent of Code 2019
+===================
+
+
+https://adventofcode.com/2019
+
+
+* **Day 1**: The Tyranny of the Rocket Equation [`problem <https://adventofcode.com/2019/day/1>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_01/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_01/test_solution.py>`_]
+* **Day 2**: 1202 Program Alarm [`problem <https://adventofcode.com/2019/day/2>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_02/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_02/test_solution.py>`_]
+* **Day 3**: Crossed Wires [`problem <https://adventofcode.com/2019/day/3>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_03/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_03/test_solution.py>`_]
+
+
+Advent of Code 2018
+===================
+
+
+https://adventofcode.com/2018
+
+
+* **Day 1**: Chronal Calibration [`problem <https://adventofcode.com/2018/day/1>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_01/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_01/test_solution.py>`_]
+* **Day 2**: Inventory Management System [`problem <https://adventofcode.com/2018/day/2>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_02/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_02/test_solution.py>`_]
+* **Day 3**: No Matter How You Slice It [`problem <https://adventofcode.com/2018/day/3>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_03/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_03/test_solution.py>`_]
+
+
+Advent of Code 2017
+===================
+
+
+https://adventofcode.com/2017
+
+
+* **Day 1**: Inverse Captcha [`problem <https://adventofcode.com/2017/day/1>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_01/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_01/test_solution.py>`_]
+* **Day 2**: Corruption Checksum [`problem <https://adventofcode.com/2017/day/2>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_02/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_02/test_solution.py>`_]
+
+
 Advent of Code 2016
 ===================
 
@@ -118,3 +169,37 @@ https://adventofcode.com/2016
 * **Day 23**: Safe Cracking [`problem <https://adventofcode.com/2016/day/23>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2016/day_23/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2016/day_23/test_solution.py>`_]
 * **Day 24**: Air Duct Spelunking [`problem <https://adventofcode.com/2016/day/24>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2016/day_24/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2016/day_24/test_solution.py>`_]
 * **Day 25**: Clock Signal [`problem <https://adventofcode.com/2016/day/25>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2016/day_25/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2016/day_25/test_solution.py>`_]
+
+
+Advent of Code 2015
+===================
+
+
+https://adventofcode.com/2015
+
+
+* **Day 1**: Not Quite Lisp [`problem <https://adventofcode.com/2015/day/1>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_01/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_01/test_solution.py>`_]
+* **Day 2**: I Was Told There Would Be No Math [`problem <https://adventofcode.com/2015/day/2>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_02/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_02/test_solution.py>`_]
+* **Day 3**: Perfectly Spherical Houses in a Vacuum [`problem <https://adventofcode.com/2015/day/3>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_03/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_03/test_solution.py>`_]
+* **Day 4**: The Ideal Stocking Stuffer [`problem <https://adventofcode.com/2015/day/4>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_04/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_04/test_solution.py>`_]
+* **Day 5**: Doesn&apos;t He Have Intern-Elves For This? [`problem <https://adventofcode.com/2015/day/5>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_05/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_05/test_solution.py>`_]
+* **Day 6**: Probably a Fire Hazard [`problem <https://adventofcode.com/2015/day/6>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_06/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_06/test_solution.py>`_]
+* **Day 7**: Some Assembly Required [`problem <https://adventofcode.com/2015/day/7>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_07/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_07/test_solution.py>`_]
+* **Day 8**: Matchsticks [`problem <https://adventofcode.com/2015/day/8>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_08/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_08/test_solution.py>`_]
+* **Day 9**: All in a Single Night [`problem <https://adventofcode.com/2015/day/9>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_09/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_09/test_solution.py>`_]
+* **Day 10**: Elves Look, Elves Say [`problem <https://adventofcode.com/2015/day/10>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_10/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_10/test_solution.py>`_]
+* **Day 11**: Corporate Policy [`problem <https://adventofcode.com/2015/day/11>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_11/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_11/test_solution.py>`_]
+* **Day 12**: JSAbacusFramework.io [`problem <https://adventofcode.com/2015/day/12>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_12/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_12/test_solution.py>`_]
+* **Day 13**: Knights of the Dinner Table [`problem <https://adventofcode.com/2015/day/13>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_13/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_13/test_solution.py>`_]
+* **Day 14**: Reindeer Olympics [`problem <https://adventofcode.com/2015/day/14>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_14/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_14/test_solution.py>`_]
+* **Day 15**: Science for Hungry People [`problem <https://adventofcode.com/2015/day/15>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_15/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_15/test_solution.py>`_]
+* **Day 16**: Aunt Sue [`problem <https://adventofcode.com/2015/day/16>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_16/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_16/test_solution.py>`_]
+* **Day 17**: No Such Thing as Too Much [`problem <https://adventofcode.com/2015/day/17>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_17/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_17/test_solution.py>`_]
+* **Day 18**: Like a GIF For Your Yard [`problem <https://adventofcode.com/2015/day/18>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_18/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_18/test_solution.py>`_]
+* **Day 19**: Medicine for Rudolph [`problem <https://adventofcode.com/2015/day/19>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_19/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_19/test_solution.py>`_]
+* **Day 20**: Infinite Elves and Infinite Houses [`problem <https://adventofcode.com/2015/day/20>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_20/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_20/test_solution.py>`_]
+* **Day 21**: RPG Simulator 20XX [`problem <https://adventofcode.com/2015/day/21>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_21/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_21/test_solution.py>`_]
+* **Day 22**: Wizard Simulator 20XX [`problem <https://adventofcode.com/2015/day/22>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_22/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_22/test_solution.py>`_]
+* **Day 23**: Opening the Turing Lock [`problem <https://adventofcode.com/2015/day/23>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_23/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_23/test_solution.py>`_]
+* **Day 24**: It Hangs in the Balance [`problem <https://adventofcode.com/2015/day/24>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_24/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_24/test_solution.py>`_]
+* **Day 25**: Let It Snow [`problem <https://adventofcode.com/2015/day/25>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_25/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2015/day_25/test_solution.py>`_]
