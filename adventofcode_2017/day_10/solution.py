@@ -7,13 +7,11 @@ from functools import reduce
 
 
 def create_hash(size, lengths):
-    lengths.reverse()
     current_list = list(range(size))
     skip_size = 0
     total_skip_size = 0
 
-    while lengths:
-        length = lengths.pop()
+    for length in lengths:
         selected = current_list[:length]
         rest = current_list[length:]
         selected.reverse()
