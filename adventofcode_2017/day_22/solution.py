@@ -32,6 +32,16 @@ STATE_CHANGE_MAP_2 = {
 }
 
 
+def parse(grid):
+    return parse_grid_to_dict(grid)
+
+
+def get_center_point(grid):
+    """Start point for simulation"""
+    x = int(math.sqrt(len(grid)) // 2)
+    return x, x
+
+
 def turn_right(direction):
     directions = 'LDRU'
     i = directions.index(direction)
@@ -54,22 +64,14 @@ def turn_reverse(direction):
     return directions[i - 2]
 
 
-DIRECTION_CHANGE_MAP = {
-    CLEAN: turn_left,
-    WEAKENED: no_turn,
-    INFECTED: turn_right,
-    FLAGGED: turn_reverse,
-}
-
-
-def parse(grid):
-    return parse_grid_to_dict(grid)
-
-
-def get_center_point(grid):
-    """Start point for simulation"""
-    x = int(math.sqrt(len(grid)) // 2)
-    return x, x
+def turn(direction, state):
+    turns_map = {
+        CLEAN: turn_left,
+        WEAKENED: no_turn,
+        INFECTED: turn_right,
+        FLAGGED: turn_reverse,
+    }
+    return turns_map[state](direction)
 
 
 def get_state(position, grid):
@@ -78,11 +80,7 @@ def get_state(position, grid):
     return grid[position]
 
 
-def turn(direction, state, turns_map=DIRECTION_CHANGE_MAP):
-    return turns_map[state](direction)
-
-
-def change_state(state, states_map=STATE_CHANGE_MAP_1):
+def change_state(state, states_map):
     return states_map[state]
 
 
@@ -108,7 +106,7 @@ def burst(grid, states_map):
         yield infections
 
 
-def solve(data, n, states_map=STATE_CHANGE_MAP_1):
+def solve(data, n, states_map):
     grid = parse(data)
     b = burst(grid, states_map)
 
@@ -122,8 +120,8 @@ def solve(data, n, states_map=STATE_CHANGE_MAP_1):
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
 
-    result = solve(input_data, 10_000)
+    result = solve(input_data, 10_000, STATE_CHANGE_MAP_1)
     print(f'Example1: {result}')
 
-    result = solve(input_data, 10_000_000, states_map=STATE_CHANGE_MAP_2)
-    print(f'Example1: {result}')
+    result = solve(input_data, 10_000_000, STATE_CHANGE_MAP_2)
+    print(f'Example2: {result}')

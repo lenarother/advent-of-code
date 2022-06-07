@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import STATE_CHANGE_MAP_2, solve, turn
+from .solution import STATE_CHANGE_MAP_1, STATE_CHANGE_MAP_2, solve, turn
 
 DATA = """
 ..#
@@ -18,7 +18,7 @@ DATA = """
     )
 )
 def test_solve(data, n, expected):
-    assert solve(data, n) == expected
+    assert solve(data, n, STATE_CHANGE_MAP_1) == expected
 
 
 @pytest.mark.parametrize(
@@ -28,8 +28,7 @@ def test_solve(data, n, expected):
     )
 )
 def test_solve2(data, n, expected):
-    result = solve(data, n, states_map=STATE_CHANGE_MAP_2)
-    assert result == expected
+    assert solve(data, n, STATE_CHANGE_MAP_2) == expected
 
 
 @pytest.mark.parametrize(
