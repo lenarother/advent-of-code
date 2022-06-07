@@ -9,6 +9,7 @@ PATTERN = '.#...####'
 
 
 def get_pattern_variants(p):
+    """Rotate and flip pattern."""
     p = p.replace('/', '')
     variants = {p}
     if len(p) == 9:
@@ -33,7 +34,7 @@ def pattern_repr(pattern):
     ])
 
 
-def parse(data):
+def parse_enhancement_rules(data):
     substitution_dict = {}
     for line in data.strip().split('\n'):
         input_pattern, output_pattern = line.split(' => ')
@@ -44,6 +45,7 @@ def parse(data):
 
 
 def split_pattern(pattern):
+    """Split pattern into 4-pixel or 9-pixel long fragments."""
     pattern = pattern.replace('/', '')
     n = int(sqrt(len(pattern)))
     size = 2 if n % 2 == 0 else 3
@@ -64,11 +66,7 @@ def split_pattern(pattern):
 
 
 def join_pattern(fragments):
-    size = (
-        4 if len(fragments[0]) == 16 else
-        2 if len(fragments[0]) % 2 == 0 else
-        3
-    )
+    size = int(sqrt(len(fragments[0])))
     pattern_len = len(fragments[0]) * len(fragments)
     n = int(sqrt(pattern_len))
     pattern = ''
@@ -95,13 +93,17 @@ def join_pattern(fragments):
     return pattern
 
 
+def enhance_pattern(pattern, enhancement_rules):
+    fragments = split_pattern(pattern)
+    enhanced_fragments = [enhancement_rules[f] for f in fragments]
+    return join_pattern(enhanced_fragments)
+
+
 def solve(data, n=5, p=PATTERN):
-    substitution_dict = parse(data)
+    substitution_dict = parse_enhancement_rules(data)
 
     while n:
-        fragments = split_pattern(p)
-        fragments = [substitution_dict[f] for f in fragments]
-        p = join_pattern(fragments)
+        p = enhance_pattern(p, substitution_dict)
         n -= 1
 
     return p.count('#')
