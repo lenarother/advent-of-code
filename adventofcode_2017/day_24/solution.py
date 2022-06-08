@@ -59,7 +59,6 @@ def get_longer_bridge(best_bridge, bridge):
 
 def solve(data, get_better_bridge=get_stronger_bridge):
     components = (parse(data))
-
     bridges = set()
     best_bridge = (0, frozenset(), 0)  # port, components, strength
     bridges.add(best_bridge)
@@ -68,8 +67,7 @@ def solve(data, get_better_bridge=get_stronger_bridge):
         bridge = bridges.pop()
         valid_components = get_valid_components(bridge, components)
         for component in valid_components:
-            new_bridge = get_extended_bridge(bridge, component)
-            bridges.add(new_bridge)
+            bridges.add(get_extended_bridge(bridge, component))
         if not valid_components:
             best_bridge = get_better_bridge(best_bridge, bridge)
 
