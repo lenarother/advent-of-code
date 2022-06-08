@@ -26,7 +26,7 @@ DATA = """
         (DATA, 31),
     )
 )
-def test_solve(data, expected):
+def test_get_strongest_bridge(data, expected):
     assert solve(data) == expected
 
 
@@ -42,5 +42,5 @@ def test_solve(data, expected):
         (DATA, 19),
     )
 )
-def test_solve2(data, expected):
+def test_get_longest_bridge(data, expected):
     assert solve(data, get_longer_bridge) == expected
