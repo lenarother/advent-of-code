@@ -5,7 +5,7 @@ https://adventofcode.com/2017/day/23
 """
 
 import re
-from collections import defaultdict, deque
+from collections import defaultdict
 
 INSTRUCTION_SET = re.compile(r'(\w\w\w) (\w)\s?(-?)(\d+|\w?)')
 
@@ -59,7 +59,42 @@ def solve(data):
     return mul_counter
 
 
+def inner(b, d, f):
+    """Check if b can be divided by d"""
+    e = 2
+    while True:
+        if d * e == b:
+            f = 0
+        e += 1
+        if e == b:
+            return f
+
+
+def is_prime(b):
+    d = 2
+    while d < b:
+        if b % d == 0:
+            return False
+        d += 1
+    return True
+
+
+def solve2():
+    b = 108400
+    c = b + 17000
+    h = 0
+
+    while b <= c:
+        if not is_prime(b):
+            h += 1
+        b += 17
+    return h
+
+
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
     result = solve(input_data)
     print(f'Example1: {result}')
+
+    result = solve2()
+    print(f'Example2: {result}')
