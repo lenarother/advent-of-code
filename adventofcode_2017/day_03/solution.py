@@ -15,23 +15,22 @@ DOWN = 0, -1
 
 
 def spiral():
-    n, x, y, edge = 0, 0, 0, 0
     directions = cycle([RIGHT, UP, LEFT, DOWN])
+
+    x, y = 0, 0
+    yield x, y
+    n = 1
 
     while 1:
 
-        if n == 0:
+        edge = n // 2 + n % 2
+        direction = next(directions)
+        dx, dy = direction
+        while edge:
+            x += dx
+            y += dy
             yield x, y
-
-        elif edge == 0:
-            edge = n // 2 + n % 2
-            direction = next(directions)
-            dx, dy = direction
-            while edge:
-                x += dx
-                y += dy
-                yield x, y
-                edge -= 1
+            edge -= 1
 
         n += 1
 
