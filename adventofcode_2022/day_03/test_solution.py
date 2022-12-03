@@ -1,11 +1,11 @@
 import pytest
 
 from .solution import (
-    get_badge_type,
-    get_item_type,
+    compartments,
+    get_common_element,
     get_priority,
+    groups,
     solve,
-    solve2,
 )
 
 DATA = """
@@ -21,13 +21,15 @@ CrZsJsPPZsGzwwsLwLmpwMDw
 @pytest.mark.parametrize(
     'data, expected',
     (
-        ('vJrwpWtwJgWrhcsFMMfFFhFp', 'p'),
-        ('jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL', 'L'),
-        ('PmmdzqPrVvPwwTWBwg', 'P'),
+        (('vJrwpWtwJgWr', 'hcsFMMfFFhFp'), 'p'),
+        (('jqHRNqRjqzjGDLGL', 'rsFMfFZSrLrFZsSL'), 'L'),
+        (('PmmdzqPrV', 'vPwwTWBwg'), 'P'),
+        (('vJrwpWtwJgWrhcsFMMfFFhFp', 'jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL', 'PmmdzqPrVvPwwTWBwg'), 'r'),  # noqa
+        (('wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn', 'ttgJtRGJQctTZtZT', 'CrZsJsPPZsGzwwsLwLmpwMDw'), 'Z'),  # noqa
     )
 )
-def test_get_item_type(data, expected):
-    assert get_item_type(data) == expected
+def test_get_common_element(data, expected):
+    assert get_common_element(*data) == expected
 
 
 @pytest.mark.parametrize(
@@ -44,19 +46,11 @@ def test_get_priority(data, expected):
 
 
 @pytest.mark.parametrize(
-    'a, b, c, expected',
+    'data, data_iterator, expected',
     (
-        ('vJrwpWtwJgWrhcsFMMfFFhFp', 'jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL', 'PmmdzqPrVvPwwTWBwg', 'r'),  # noqa
-        ('wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn', 'ttgJtRGJQctTZtZT', 'CrZsJsPPZsGzwwsLwLmpwMDw', 'Z'),  # noqa
+        (DATA, compartments, 157),
+        (DATA, groups, 70),
     )
 )
-def test_get_badge_type(a, b, c, expected):
-    assert get_badge_type(a, b, c) == expected
-
-
-def test_solve():
-    assert solve(DATA) == 157
-
-
-def test_solve2():
-    assert solve2(DATA) == 70
+def test_solve(data, data_iterator, expected):
+    assert solve(DATA, data_iterator) == expected

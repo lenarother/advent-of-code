@@ -3,32 +3,15 @@
 https://adventofcode.com/2022/day/3
 
 """
-from string import ascii_lowercase, ascii_uppercase
+from string import ascii_lowercase
 
 LETTERS = list(ascii_lowercase)
-LETTERS_UPPERCASE = list(ascii_uppercase)
 
 
-def get_item_type(data):
-    n = len(data) // 2
-    return set(data[:n]).intersection(set(data[n:])).pop()
-
-
-def get_priority(item_type):
-    if item_type.isupper():
-        return 26 + 1 + LETTERS_UPPERCASE.index(item_type)
-    return 1 + LETTERS.index(item_type)
-
-
-def solve(data):
-    return sum([
-        get_priority(get_item_type(i))
-        for i in data.strip().split('\n')
-    ])
-
-
-def get_badge_type(a, b, c):
-    return set(c).intersection(set(a).intersection(set(b))).pop()
+def compartments(data):
+    for i in data.strip().split('\n'):
+        n = len(i) // 2
+        yield i[:n], i[n:]
 
 
 def groups(data):
@@ -38,10 +21,21 @@ def groups(data):
         yield data[n], data[n+1], data[n+2]
 
 
-def solve2(data):
+def get_common_element(*items):
+    common = set(items[0]).intersection(set(items[1]))
+    for i in items[2:]:
+        common = common.intersection(set(i))
+    return common.pop()
+
+
+def get_priority(letter):
+    return 1 + LETTERS.index(letter.lower()) + (26 * int(letter.isupper()))
+
+
+def solve(data, item_iterator=compartments):
     return sum([
-        get_priority(get_badge_type(*group))
-        for group in groups(data)
+        get_priority(get_common_element(*i))
+        for i in item_iterator(data)
     ])
 
 
@@ -51,5 +45,5 @@ if __name__ == '__main__':
     result = solve(input_data)
     print(f'Example1: {result}')
 
-    result = solve2(input_data)
+    result = solve(input_data, item_iterator=groups)
     print(f'Example2: {result}')
