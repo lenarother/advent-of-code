@@ -10,10 +10,8 @@ LETTERS_UPPERCASE = list(ascii_uppercase)
 
 
 def get_item_type(data):
-    n = int(len(data)/2)
-    compartment1 = set(data[:n])
-    compartment2 = set(data[n:])
-    return compartment1.intersection(compartment2).pop()
+    n = len(data) // 2
+    return set(data[:n]).intersection(set(data[n:])).pop()
 
 
 def get_priority(item_type):
@@ -22,15 +20,15 @@ def get_priority(item_type):
     return 1 + LETTERS.index(item_type)
 
 
-def get_badge_type(a, b, c):
-    return set(c).intersection(set(a).intersection(set(b))).pop()
-
-
 def solve(data):
     return sum([
         get_priority(get_item_type(i))
         for i in data.strip().split('\n')
     ])
+
+
+def get_badge_type(a, b, c):
+    return set(c).intersection(set(a).intersection(set(b))).pop()
 
 
 def groups(data):
