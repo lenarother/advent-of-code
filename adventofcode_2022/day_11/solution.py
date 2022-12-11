@@ -26,7 +26,7 @@ class Monkey:
         divisible,
         test_true,
         test_false,
-        items=[],
+        items=None,
     ):
         self.id = id
         self.operation_type = operation_type
