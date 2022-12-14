@@ -8,8 +8,20 @@ import re
 COORD_RE = re.compile(r'(\d+),(\d+)')
 
 
+def add_points(scan, current_x, current_y, next_x, next_y):
+    if current_y == next_y:
+        min_x, max_x = sorted([current_x, next_x])
+        for dx in range(min_x, max_x + 1):
+            scan.add((dx, next_y))
+
+    elif current_x == next_x:
+        min_y, max_y = sorted([current_y, next_y])
+        for dy in range(min_y, max_y + 1):
+            scan.add((next_x, dy))
+
+
 def parse_scan(data):
-    scan = {}
+    scan = set()
     for line in data.strip().split('\n'):
         current_x = None
         current_y = None
@@ -17,15 +29,7 @@ def parse_scan(data):
             x = int(x)
             y = int(y)
             if current_x and current_y:
-                direction = 'x' if current_y == y else 'y'
-                if direction == 'x':
-                    min_x, max_x = sorted([current_x, x])
-                    for dx in range(min_x, max_x + 1):
-                        scan[(dx, y)] = True
-                elif direction == 'y':
-                    min_y, max_y = sorted([current_y, y])
-                    for dy in range(min_y, max_y + 1):
-                        scan[(x, dy)] = True
+                add_points(scan, current_x, current_y, x, y)
             current_x = x
             current_y = y
     return scan
@@ -38,19 +42,15 @@ def find_floor(scan):
 def add_floor(scan):
     y = find_floor(scan)
     for x in range(-1000, 1000):
-        scan[(x, y)] = True
+        scan.add((x, y))
 
 
 def sand_drop(scan):
     n = 0
     x = 500
     y = 0
-    can_move = True
-    while can_move:
-        if (500, 0) in scan:
-            yield n
-            return
-        if y == 10000:
+    while True:
+        if (500, 0) in scan or y > 200:
             yield n
             return
         if (x, y + 1) not in scan:
@@ -62,7 +62,7 @@ def sand_drop(scan):
             x += 1
             y += 1
         else:
-            scan[(x, y)] = True
+            scan.add((x, y))
             n += 1
             x = 500
             y = 0
