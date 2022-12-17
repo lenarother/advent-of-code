@@ -3,45 +3,9 @@
 https://adventofcode.com/2022/day/17
 
 The first rock begins falling:
-|..@@@@.|
-|.......|
-|.......|
-|.......|
-+-------+
-
-Jet of gas pushes rock right:
-|...@@@@|
-|.......|
-|.......|
-|.......|
-+-------+
-
-Rock falls 1 unit:
-|...@@@@|
-|.......|
-|.......|
-+-------+
-
-
-..@@@@.|
-|.......|
-|.......|
-|.......|
-|....##.|
-|....##.|
-|....#..|
-|..#.#..|
-|..#.#..|
-|#####..|
-|..###..|
-|...#...|
-|..####.|
-+-------+
 """
 from itertools import cycle
 
-
-# 0, 7
 SHAPES = {
     #  ####
     1: [(2, 0), (3, 0), (4, 0), (5, 0)],
@@ -65,15 +29,6 @@ SHAPES = {
     #  ##
     #  ##
     5: [(2, 0), (3, 0), (2, 1), (3, 1)],
-}
-
-HEIGHTS = {
-    1: 1,
-    2: 3,
-    3: 3,
-    4: 4,
-    5: 2,
-
 }
 
 
@@ -121,57 +76,44 @@ def get_new_piece(current_max_height, shape):
 def one_turn(shape, move, space):
     bkp = [i for i in shape]
     candidate = shift(shape, move)
-    if is_possible(candidate, space):
-        shape = candidate
-        can_shift = True
-    else:
-        shape = bkp
-        can_shift = False
+    candidate_ok = is_possible(candidate, space)
+    shape = candidate if candidate_ok else bkp
 
     bkp = [i for i in shape]
     candidate = fall(shape)
-    if is_possible(candidate, space):
-        shape = candidate
-        can_fall = True
-    else:
-        shape = bkp
-        can_fall = False
+    candidate_ok = is_possible(candidate, space)
+    shape = candidate if candidate_ok else bkp
 
-    return shape, can_shift, can_fall
+    return shape, candidate_ok
 
 
-def solve(data, n):
-    space = set()
-    current_max_height = 0
-
+def solve(data, n, x=None):
     piece = pieces(SHAPES)
     direction = directions(data)
+    current_max_height = 0
+    space = set()
+
+    # first piece
+    first_shape = None
+    if x:
+        first_shape = get_new_piece(x, next(piece))
 
     while n:
         n -= 1
-        current_shape = get_new_piece(current_max_height, next(piece))
-        #print(current_shape)
-        #draw_space(space | set(current_shape))
-
+        current_shape = first_shape or get_new_piece(current_max_height, next(piece))
         can_fall = True
-
         while can_fall:
             current_direction = next(direction)
-            #print(current_direction)
-            current_shape, can_shift, can_fall = one_turn(current_shape, current_direction, space)
-            #draw_space(space | set(current_shape))
-            #print('---------')
+            current_shape, can_fall = one_turn(current_shape, current_direction, space)
         space |= set(current_shape)
         current_max_height = max(current_max_height, max([i[1] for i in current_shape]) + 1)
-        #print(current_max_height)
-        draw_space(space)
-        #print('-' * 20)
-    return current_max_height
+
+    return current_max_height, space
 
 
 def draw_space(space):
     repr = '\n'
-    for y in range(100, -1, -1):
+    for y in range(3000, -1, -1):
         for x in range(7):
             p = (x, y)
             repr += '#' if p in space else '.'
@@ -182,5 +124,5 @@ def draw_space(space):
 
 if __name__ == '__main__':
     input_data = open('input_data.txt').read().strip()
-    result = solve(input_data, 2022)
+    result, _ = solve(input_data, 2022)
     print(f'Example1: {result}')
