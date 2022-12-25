@@ -1,0 +1,56 @@
+p = 0
+
+i = 31
+a = 1
+mul 17 * p
+if p > 0: imp A
+B: a *= 2
+i -= 1
+if i > 0: imp B
+a -= 1
+i = 127
+p = 826
+C: p *= 8505
+p %= a
+p *= 129749
+p += 12345
+p %= a
+b = p
+b %= 10000
+yield b
+i -= 1
+if i > 0: imp C
+
+##########
+
+if a > 0: imp D
+receive b
+while b: receive b
+
+##########
+
+
+
+
+
+
+### p 1
+
+
+i = 126
+a = receive()
+f = 0
+
+
+while i:
+    while f > 0 or a > 0:
+        b = receive()
+        if ((-1 * a) + b) > 0:
+            send(b)
+            f = 1
+        else:
+            send(a)
+            a = b
+    i -= 1
+
+

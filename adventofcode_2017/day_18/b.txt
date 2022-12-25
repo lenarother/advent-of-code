@@ -1,0 +1,45 @@
+p = 0
+
+i = 31
+a = 1
+mul 17 * p
+if p > 0: imp A
+B: a *= 2
+i -= 1
+if i > 0: imp B
+a -= 1
+i = 127
+p = 826
+C: p *= 8505
+p %= a
+p *= 129749
+p += 12345
+p %= a
+b = p
+b %= 10000
+yield b
+i -= 1
+if i > 0: imp C
+
+
+A, H: if a > 0: imp D jgz a 3
+receive b
+while b: receive b
+D, G: f = 0
+i = 126
+receive a
+F: receive b
+p = a
+p = -p
+p += b
+if p: imp E
+snd a
+set a b
+jgz 1 3
+E: yield b
+f = 1
+i -= 1
+if i > 0: imp F
+yield a
+if f > 0: imp G
+if a > 0: imp H
