@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import get_direction, get_result, parse, parse_moves, solve
+from .solution import get_direction, get_result, parse, parse_moves, solve, solve2
 
 DATA = """
         ...#
@@ -22,6 +22,10 @@ DATA = """
 
 def test_solve():
     assert solve(DATA) == 6032
+
+
+def test_solve2():
+    assert solve2(DATA) == 5031
 
 
 @pytest.mark.parametrize(

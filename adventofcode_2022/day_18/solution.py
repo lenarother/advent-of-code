@@ -20,6 +20,9 @@ def get_coord(x, y, z):
     }
 
 
+def connected(cube, other_cube):
+    return sum([abs(i - j) for i, j in zip(cube, other_cube)]) <= 1
+
 
 def get_cubes_dicts(data, coord_function=get_coord):
     cubes = {}
@@ -31,12 +34,17 @@ def get_cubes_dicts(data, coord_function=get_coord):
     return cubes, connections
 
 
+def get_cubes(data):
+    return [(int(x), int(y), int(z)) for x, y, z in CUBE_RE.findall(data)]
+
+
 def solve(data):
     cubes, connections = get_cubes_dicts(data)
     for cube in connections:
         coord = cubes.pop(cube)
         for other, other_coord in cubes.items():
-            if len(coord & other_coord) == 4:
+            if len(coord & other_coord) == 4:  # faster
+            # if connected(cube, other):  # slower
                 connections[cube] += 1
                 connections[other] += 1
 

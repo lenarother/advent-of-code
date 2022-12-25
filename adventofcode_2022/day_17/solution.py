@@ -107,22 +107,67 @@ def solve(data, n, x=None):
             current_shape, can_fall = one_turn(current_shape, current_direction, space)
         space |= set(current_shape)
         current_max_height = max(current_max_height, max([i[1] for i in current_shape]) + 1)
-
+    draw_space(space, 20)
     return current_max_height, space
 
 
-def draw_space(space):
-    repr = '\n'
-    for y in range(3000, -1, -1):
+def draw_space(space, n):
+    repr = 'A\n'
+    for y in range(n):
         for x in range(7):
             p = (x, y)
             repr += '#' if p in space else '.'
         repr += '\n'
-    print(repr)
+    # print(repr)
     return repr
 
+def draw_space2(space, n):
+    repr = ''
+    for y in range(n, -1, -1):
+        for x in range(7):
+            p = (x, y)
+            repr += '#' if p in space else '.'
+    return repr
+
+FOO = """..####....#.....###..#####....#.#....#.#......#......##.....##."""
+
+
+def solve2(data, n, x=None):
+    c = 1
+    piece = pieces(SHAPES)
+    direction = directions(data)
+    current_max_height = 0
+    space = set()
+
+    # first piece
+    first_shape = None
+    if x:
+        first_shape = get_new_piece(x, next(piece))
+
+    while n:
+        n -= 1
+        c += 1
+        current_shape = first_shape or get_new_piece(current_max_height, next(piece))
+        can_fall = True
+        while can_fall:
+            current_direction = next(direction)
+            current_shape, can_fall = one_turn(current_shape, current_direction, space)
+        space |= set(current_shape)
+        current_max_height = max(current_max_height, max([i[1] for i in current_shape]) + 1)
+        repr = draw_space2(space, current_max_height)
+        #print(repr)
+        sample = repr[100:120]
+        print(sample)
+        occurences = repr.count(sample)
+        if occurences > 1:
+            print(c, occurences, current_max_height)
+    # draw_space(space, 20)
+    return current_max_height, space
 
 if __name__ == '__main__':
     input_data = open('input_data.txt').read().strip()
     result, _ = solve(input_data, 2022)
     print(f'Example1: {result}')
+
+
+# start_height + ((10000000 // blocks_n) * blocks_n_height) + end_height
