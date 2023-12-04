@@ -1,6 +1,6 @@
 |AoC Test| |AoC 2023| |AoC 2022| |AoC 2021| |AoC 2020| |AoC 2019| |AoC 2018| |AoC 2017| |AoC 2016| |AoC 2015|
 
-.. |AoC Test| image:: https://github.com/lenarother/advent-of-code/workflows/Test/badge.svg?branch=master
+.. |AoC Test| image:: https://github.com/lenarother/advent-of-code/actions/workflows/test.yaml/badge.svg?branch=master
    :target: https://github.com/lenarother/advent-of-code/actions?workflow=Test
    :alt: |AoC Test|
 
