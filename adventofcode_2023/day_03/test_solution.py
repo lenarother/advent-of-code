@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import solve, solve_2, get_neighbour_positions, get_position
+from .solution import get_neighbour_positions, get_position, solve, solve_2
 
 DATA = """467..114..
 ...*......

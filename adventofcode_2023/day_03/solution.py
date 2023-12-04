@@ -3,8 +3,8 @@
 https://adventofcode.com/2023/day/3
 
 """
-import string
 import re
+import string
 from collections import defaultdict
 
 SIGNS = string.punctuation.replace('.', '')
@@ -25,7 +25,9 @@ def get_position(i: int, ln: int) -> tuple[int, int]:
     return x, y
 
 
-def get_neighbour_positions(n: str, data: str, ln: int, x: int, y: int) -> set[int]:
+def get_neighbour_positions(
+    n: str, data: str, ln: int, x: int, y: int
+) -> set[int]:
     """
     n -> number as string
     data -> input string without line breaks
