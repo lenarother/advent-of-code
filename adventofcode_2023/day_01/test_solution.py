@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import solve, get_num_from_line
+from .solution import get_num_from_line, solve
 
 DATA = """1abc2
 pqr3stu8vwx

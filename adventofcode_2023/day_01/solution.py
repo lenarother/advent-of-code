@@ -36,11 +36,16 @@ def get_num_from_line(line, words_map=WORDS_MAP_PART_2):
     nums_spelled_right = sorted(nums_spelled, key=lambda x: line.rindex(x))
     if len(nums_spelled) == 0:
         return 0
-    return int(f"{words_map[nums_spelled_left[0]]}{words_map[nums_spelled_right[-1]]}")
+    return int(
+        f"{words_map[nums_spelled_left[0]]}"
+        f"{words_map[nums_spelled_right[-1]]}"
+    )
 
 
 def solve(data, words_map=WORDS_MAP_PART_2):
-    return sum([get_num_from_line(l, words_map) for l in data.split('\n')])
+    return sum([
+        get_num_from_line(line, words_map) for line in data.split('\n')
+    ])
 
 
 if __name__ == '__main__':
