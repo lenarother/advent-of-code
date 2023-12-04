@@ -100,13 +100,23 @@ def solve(data, n, x=None):
 
     while n:
         n -= 1
-        current_shape = first_shape or get_new_piece(current_max_height, next(piece))
+        current_shape = (
+                first_shape or
+                get_new_piece(current_max_height, next(piece))
+        )
         can_fall = True
         while can_fall:
             current_direction = next(direction)
-            current_shape, can_fall = one_turn(current_shape, current_direction, space)
+            current_shape, can_fall = one_turn(
+                current_shape,
+                current_direction,
+                space
+            )
         space |= set(current_shape)
-        current_max_height = max(current_max_height, max([i[1] for i in current_shape]) + 1)
+        current_max_height = max(
+            current_max_height,
+            max([i[1] for i in current_shape]) + 1
+        )
 
     return current_max_height, space
 
