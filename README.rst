@@ -1,8 +1,16 @@
-|AoC Test| |AoC 2021| |AoC 2020| |AoC 2019| |AoC 2018| |AoC 2017| |AoC 2016| |AoC 2015|
+|AoC Test| |AoC 2023| |AoC 2022| |AoC 2021| |AoC 2020| |AoC 2019| |AoC 2018| |AoC 2017| |AoC 2016| |AoC 2015|
 
 .. |AoC Test| image:: https://github.com/lenarother/advent-of-code/workflows/Test/badge.svg?branch=master
    :target: https://github.com/lenarother/advent-of-code/actions?workflow=Test
    :alt: |AoC Test|
+
+.. |AoC 2023| image:: https://img.shields.io/badge/2023-8-yellow.svg
+   :target: https://adventofcode.com/2023
+   :alt: |AoC 2023|
+
+.. |AoC 2022| image:: https://img.shields.io/badge/2022-34-yellow.svg
+   :target: https://adventofcode.com/2022
+   :alt: |AoC 2022|
 
 .. |AoC 2021| image:: https://img.shields.io/badge/2021-50-yellow.svg
    :target: https://adventofcode.com/2021
@@ -12,11 +20,11 @@
    :target: https://adventofcode.com/2020
    :alt: |AoC 2020|
 
-.. |AoC 2019| image:: https://img.shields.io/badge/2019-10-yellow.svg
+.. |AoC 2019| image:: https://img.shields.io/badge/2019-13-yellow.svg
    :target: https://adventofcode.com/2019
    :alt: |AoC 2019|
 
-.. |AoC 2018| image:: https://img.shields.io/badge/2018-8-yellow.svg
+.. |AoC 2018| image:: https://img.shields.io/badge/2018-12-yellow.svg
    :target: https://adventofcode.com/2018
    :alt: |AoC 2018|
 
@@ -32,6 +40,42 @@
    :target: https://adventofcode.com/2015
    :alt: |AoC 2015|
 
+
+
+Advent of Code 2023
+===================
+
+
+https://adventofcode.com/2023
+
+
+* **Day 1**: Trebuchet?! [`problem <https://adventofcode.com/2023/day/1>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2023/day_01/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2023/day_01/test_solution.py>`_]
+* **Day 2**: Cube Conundrum [`problem <https://adventofcode.com/2023/day/2>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2023/day_02/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2023/day_02/test_solution.py>`_]
+* **Day 3**: Gear Ratios [`problem <https://adventofcode.com/2023/day/3>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2023/day_03/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2023/day_03/test_solution.py>`_]
+* **Day 4**: Scratchcards [`problem <https://adventofcode.com/2023/day/4>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2023/day_04/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2023/day_04/test_solution.py>`_]
+
+
+Advent of Code 2022
+===================
+
+
+https://adventofcode.com/2022
+
+
+* **Day 1**: Calorie Counting [`problem <https://adventofcode.com/2022/day/1>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_01/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_01/test_solution.py>`_]
+* **Day 2**: Rock Paper Scissors [`problem <https://adventofcode.com/2022/day/2>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_02/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_02/test_solution.py>`_]
+* **Day 3**: Rucksack Reorganization [`problem <https://adventofcode.com/2022/day/3>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_03/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_03/test_solution.py>`_]
+* **Day 4**: Camp Cleanup [`problem <https://adventofcode.com/2022/day/4>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_04/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_04/test_solution.py>`_]
+* **Day 5**: Supply Stacks [`problem <https://adventofcode.com/2022/day/5>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_05/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_05/test_solution.py>`_]
+* **Day 6**: Tuning Trouble [`problem <https://adventofcode.com/2022/day/6>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_06/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_06/test_solution.py>`_]
+* **Day 7**: No Space Left On Device [`problem <https://adventofcode.com/2022/day/7>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_07/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_07/test_solution.py>`_]
+* **Day 9**: Rope Bridge [`problem <https://adventofcode.com/2022/day/9>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_09/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_09/test_solution.py>`_]
+* **Day 10**: Cathode-Ray Tube [`problem <https://adventofcode.com/2022/day/10>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_10/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_10/test_solution.py>`_]
+* **Day 11**: Monkey in the Middle [`problem <https://adventofcode.com/2022/day/11>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_11/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_11/test_solution.py>`_]
+* **Day 12**: Hill Climbing Algorithm [`problem <https://adventofcode.com/2022/day/12>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_12/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_12/test_solution.py>`_]
+* **Day 14**: Regolith Reservoir [`problem <https://adventofcode.com/2022/day/14>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_14/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_14/test_solution.py>`_]
+* **Day 23**: Unstable Diffusion [`problem <https://adventofcode.com/2022/day/23>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_23/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_23/test_solution.py>`_]
+* **Day 25**: Full of Hot Air [`problem <https://adventofcode.com/2022/day/25>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_25/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2022/day_25/test_solution.py>`_]
 
 
 Advent of Code 2021
@@ -113,7 +157,11 @@ https://adventofcode.com/2019
 * **Day 2**: 1202 Program Alarm [`problem <https://adventofcode.com/2019/day/2>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_02/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_02/test_solution.py>`_]
 * **Day 3**: Crossed Wires [`problem <https://adventofcode.com/2019/day/3>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_03/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_03/test_solution.py>`_]
 * **Day 4**: Secure Container [`problem <https://adventofcode.com/2019/day/4>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_04/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_04/test_solution.py>`_]
+* **Day 5**: Sunny with a Chance of Asteroids [`problem <https://adventofcode.com/2019/day/5>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_05/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_05/test_solution.py>`_]
 * **Day 6**: Universal Orbit Map [`problem <https://adventofcode.com/2019/day/6>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_06/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_06/test_solution.py>`_]
+* **Day 7**: Amplification Circuit [`problem <https://adventofcode.com/2019/day/7>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_07/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_07/test_solution.py>`_]
+* **Day 8**: Space Image Format [`problem <https://adventofcode.com/2019/day/8>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_08/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_08/test_solution.py>`_]
+* **Day 10**: Monitoring Station [`problem <https://adventofcode.com/2019/day/10>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_10/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2019/day_10/test_solution.py>`_]
 
 
 Advent of Code 2018
@@ -127,6 +175,8 @@ https://adventofcode.com/2018
 * **Day 2**: Inventory Management System [`problem <https://adventofcode.com/2018/day/2>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_02/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_02/test_solution.py>`_]
 * **Day 3**: No Matter How You Slice It [`problem <https://adventofcode.com/2018/day/3>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_03/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_03/test_solution.py>`_]
 * **Day 4**: Repose Record [`problem <https://adventofcode.com/2018/day/4>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_04/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_04/test_solution.py>`_]
+* **Day 5**: Alchemical Reduction [`problem <https://adventofcode.com/2018/day/5>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_05/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_05/test_solution.py>`_]
+* **Day 7**: The Sum of Its Parts [`problem <https://adventofcode.com/2018/day/7>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_07/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2018/day_07/test_solution.py>`_]
 
 
 Advent of Code 2017
@@ -153,6 +203,7 @@ https://adventofcode.com/2017
 * **Day 15**: Dueling Generators [`problem <https://adventofcode.com/2017/day/15>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_15/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_15/test_solution.py>`_]
 * **Day 16**: Permutation Promenade [`problem <https://adventofcode.com/2017/day/16>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_16/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_16/test_solution.py>`_]
 * **Day 17**: Spinlock [`problem <https://adventofcode.com/2017/day/17>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_17/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_17/test_solution.py>`_]
+* **Day 18**: Duet [`problem <https://adventofcode.com/2017/day/18>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_18/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_18/test_solution.py>`_]
 * **Day 19**: A Series of Tubes [`problem <https://adventofcode.com/2017/day/19>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_19/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_19/test_solution.py>`_]
 * **Day 20**: Particle Swarm [`problem <https://adventofcode.com/2017/day/20>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_20/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_20/test_solution.py>`_]
 * **Day 21**: Fractal Art [`problem <https://adventofcode.com/2017/day/21>`_] [`solution <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_21/solution.py>`_][`test <https://github.com/lenarother/advent-of-code/blob/master/adventofcode_2017/day_21/test_solution.py>`_]
