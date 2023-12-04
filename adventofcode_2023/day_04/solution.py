@@ -35,15 +35,15 @@ class Card:
 
 def solve(data):
     return sum([
-        parse_card(l).get_points()
-        for l in data.strip().split('\n')
+        parse_card(line).get_points()
+        for line in data.strip().split('\n')
     ])
 
 
 def solve_2(data):
     cards = {}
-    for l in data.strip().split('\n'):
-        card = parse_card(l)
+    for line in data.strip().split('\n'):
+        card = parse_card(line)
         cards[card.id] = card
 
     for card in cards.values():
