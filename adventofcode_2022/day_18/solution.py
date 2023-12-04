@@ -4,6 +4,7 @@ https://adventofcode.com/2022/day/18
 
 """
 import re
+
 CUBE_RE = re.compile(r'(\d+),(\d+),(\d+)\n')
 
 
@@ -18,7 +19,6 @@ def get_coord(x, y, z):
         (x+1, y+1, z),
         (x, y+1, z+1),
     }
-
 
 
 def get_cubes_dicts(data, coord_function=get_coord):

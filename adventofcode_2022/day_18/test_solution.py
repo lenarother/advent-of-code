@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import solve, get_coord
+from .solution import get_coord, solve
 
 DATA_1 = """
 1,1,1
@@ -23,6 +23,7 @@ DATA_2 = """
 2,3,5
 """
 
+
 @pytest.mark.parametrize(
     'x, y, z, expected',
     (
@@ -37,7 +38,6 @@ DATA_2 = """
             (0, 1, 1)
         ]),
     )
-
 )
 def test_get_coord(x, y, z, expected):
     assert get_coord(x, y, z) == set(expected)
