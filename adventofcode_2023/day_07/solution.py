@@ -38,85 +38,56 @@ def get_hand_type(hand):
         return "High card"
 
 
-def cmp_hand_rank(first, second):
-    """
-    Returns:
-    -1 -> the first is less than the second
-     1 -> the first is greater than the second
-     0 -> equal
-    """
-    first_rank = HAND_STRENGTH.index(get_hand_type(first))
-    second_rank = HAND_STRENGTH.index(get_hand_type(second))
-    if first_rank == second_rank:
-        return 0
-    elif first_rank < second_rank:
-        return 1
-    return -1
-
-
-def cmp_card_rank(first, second, card_strength=CARD_STRENGTH):
-    """
-    Returns:
-    -1 -> the first is less than the second
-     1 -> the first is greater than the second
-     0 -> equal
-    """
-    for f, s in zip(first, second):
-        f_rank = card_strength.index(f)
-        s_rank = card_strength.index(s)
-        if f_rank < s_rank:
-            return 1
-        elif f_rank > s_rank:
-            return -1
-    return 0
-
-
 @dataclasses.dataclass
 class Hand:
     cards: str
     bid: int
+    card_strength: str = CARD_STRENGTH
+    use_joker: bool = False
+
+    def _cards_lt(self, other):
+        for self_card, other_card in zip(self.cards, other.cards):
+            self_card_index = self.card_strength.index(self_card)
+            other_card_index = self.card_strength.index(other_card)
+            if not other_card_index == self_card_index:
+                # Lower index is better
+                return self_card_index > other_card_index
+        return False
 
     def __lt__(self, other):
-        hand_result = cmp_hand_rank(self.cards, other.cards)
-        if hand_result == 0:
-            return cmp_card_rank(self.cards, other.cards) == -1
-        return hand_result == -1
-
-
-@dataclasses.dataclass
-class Hand2:
-    cards: str
-    bid: int
-
-    def __lt__(self, other):
-        hand_result = cmp_hand_rank(self.prepared_hand, other.prepared_hand)
-        if hand_result == 0:
-            return cmp_card_rank(
-                self.cards, other.cards, CARD_STRENGTH_2
-            ) == -1
-        return hand_result == -1
+        if self.rank == other.rank:
+            return self._cards_lt(other)
+        return self.rank > other.rank
 
     @property
-    def prepared_hand(self):
+    def rank(self):
+        # the lower rank the better hand
+        hand = self.joker_cards if self.use_joker else self.cards
+        return HAND_STRENGTH.index(get_hand_type(hand))
+
+    @property
+    def most_common_card(self):
         if self.cards.count('J') == 5:
-            return "AAAAA"
-        mycards = self.cards.replace('J', '')
-        cards = Counter(mycards)
-        most_common = cards.most_common()[0][0]
-        new_cards = self.cards.replace('J', most_common)
-        return new_cards
+            return "A"
+        return Counter(
+            self.cards.replace('J', '')
+        ).most_common()[0][0]
+
+    @property
+    def joker_cards(self):
+        return self.cards.replace('J', self.most_common_card)
 
 
-def solve(data):
-    hands = [Hand(*i.split(" ")) for i in data.strip().split("\n")]
+def solve(data, card_strength=CARD_STRENGTH, use_joker=False):
+    hands = [
+        Hand(*i.split(" "), card_strength=card_strength, use_joker=use_joker)
+        for i in data.strip().split("\n")
+    ]
     hands.sort()
-    return sum([(i + 1) * int(hand.bid) for i, hand in enumerate(hands)])
-
-
-def solve_2(data):
-    hands = [Hand2(*i.split(" ")) for i in data.strip().split("\n")]
-    hands.sort()
-    return sum([(i + 1) * int(hand.bid) for i, hand in enumerate(hands)])
+    return sum([
+        (i + 1) * int(hand.bid)
+        for i, hand in enumerate(hands)
+    ])
 
 
 if __name__ == '__main__':
@@ -125,5 +96,5 @@ if __name__ == '__main__':
     result = solve(input_data)
     print(f'Example1: {result}')
 
-    result = solve_2(input_data)
+    result = solve(input_data, card_strength=CARD_STRENGTH_2, use_joker=True)
     print(f'Example2: {result}')
