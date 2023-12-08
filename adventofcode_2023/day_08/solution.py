@@ -6,14 +6,15 @@ https://adventofcode.com/2023/day/8
 import math
 import re
 from itertools import cycle
+from typing import Callable, Generator
 
 
-def steps_generator(data):
+def steps_generator(data: str) -> Generator[str, None, None]:
     for i in cycle(data.strip().split("\n")[0]):
         yield i
 
 
-def parse_instructions(data):
+def parse_instructions(data: str) -> dict[str, dict[str, str]]:
     return {
         key: {'L': left, 'R': right}
         for line in data.strip().split("\n\n")[1].split("\n")
@@ -21,7 +22,12 @@ def parse_instructions(data):
     }
 
 
-def find_number_of_steps(start, is_target, instructions, data):
+def find_number_of_steps(
+        start: str,
+        is_target: Callable[[str], bool],
+        instructions: dict[str, dict[str, str]],
+        data: str
+) -> int | None:
     current = start
     counter = 0
     for direction in steps_generator(data):
@@ -31,16 +37,16 @@ def find_number_of_steps(start, is_target, instructions, data):
             return counter
 
 
-def solve(data):
+def solve(data: str) -> int:
     return find_number_of_steps(
         start='AAA',
         is_target=lambda x: x == 'ZZZ',
         instructions=parse_instructions(data),
         data=data,
-    )
+    ) or 1
 
 
-def solve_2(data):
+def solve_2(data: str) -> int:
     instructions = parse_instructions(data)
     starts = filter(lambda x: x.endswith('A'), instructions.keys())
     results = [
@@ -49,7 +55,7 @@ def solve_2(data):
             is_target=lambda x: x.endswith('Z'),
             instructions=instructions,
             data=data,
-        ) for start in starts
+        ) or 1 for start in starts
     ]
     return math.lcm(*results)
 
