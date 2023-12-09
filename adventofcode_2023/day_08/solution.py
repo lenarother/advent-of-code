@@ -27,7 +27,7 @@ def find_number_of_steps(
         is_target: Callable[[str], bool],
         instructions: dict[str, dict[str, str]],
         data: str
-) -> int | None:
+) -> int:
     current = start
     counter = 0
     for direction in steps_generator(data):
@@ -35,6 +35,7 @@ def find_number_of_steps(
         current = instructions[current][direction]
         if is_target(current):
             return counter
+    return 1
 
 
 def solve(data: str) -> int:
