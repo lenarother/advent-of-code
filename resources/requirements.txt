@@ -6,6 +6,7 @@ ipdb
 ipython
 isort
 mutmut
+mypy
 pydantic
 pytest
 pytest-flake8
