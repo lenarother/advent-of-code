@@ -38,7 +38,12 @@ def row_count(data: str) -> int:
     )
 
 
-def get_single_move(point, direction, grid, visited):
+def get_single_move(
+    point: tuple[int, int],
+    direction: str,
+    grid: dict,
+    visited: set[tuple[tuple[int, int], str]]
+):
     x = point[0]
     y = point[1]
 
@@ -55,7 +60,11 @@ def get_single_move(point, direction, grid, visited):
     return new_move
 
 
-def get_next_move(current, grid, visited):
+def get_next_move(
+    current: tuple[tuple[int, int], str],
+    grid: dict[tuple[int, int], str],
+    visited: set[tuple[tuple[int, int], str]]
+):
     point = current[0]
     direction = current[1]
 
@@ -97,18 +106,13 @@ def get_next_move(current, grid, visited):
         return move, None
 
 
-def solve(data, first_point):
+def solve(data: str, first_point: tuple[tuple[int, int], str]):
     grid = parse_grid_to_dict(data.strip())
     starts = {first_point}
     visited = set()
 
     while starts:
-        start = starts.pop()
-        visited.add(start)
-        next_move, new_start = get_next_move(start, grid, visited)
-        if new_start:
-            starts.add(new_start)
-
+        next_move = starts.pop()
         while next_move:
             visited.add(next_move)
             next_move, new_start = get_next_move(next_move, grid, visited)
@@ -118,7 +122,7 @@ def solve(data, first_point):
     return len(set([i[0] for i in visited]))
 
 
-def solve_all(data):
+def solve_all(data: str) -> int:
     n_columns = column_count(data)
     n_rows = row_count(data)
     starts = (

@@ -1,5 +1,3 @@
-import pytest
-
 from .solution import solve, solve_all
 
 DATA = r"""
