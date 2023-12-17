@@ -23,6 +23,7 @@ def parse_data(data):
     data = parse_grid_to_dict(data.strip())
     return {k: int(v) for k, v in data.items()}
 
+
 def neighbors(p, n=4, p_min=None, p_max=None):
     """Point neighbor generator.
 
@@ -54,10 +55,9 @@ def solve(data):
     heapq.heappush(h, (0, (0, 0), (0, 0), 0))
     while h:
         current_cost, current_position, past_direction, n_past_moves = heapq.heappop(h)
-        print(current_cost)
-        if current_position == target:
-            return current_cost + 1
-        visited.add((current_position, past_direction, n_past_moves))
+        if current_position == target:  
+            return current_cost
+
         neighbors_gen = neighbors(
             current_position,
             p_min=(0, 0),
@@ -69,12 +69,14 @@ def solve(data):
             else:
                 new_n_past_moves = n_past_moves + 1
 
-            # print(neighbor)
             if new_n_past_moves > 3:
                 continue
             if (neighbor, direction, new_n_past_moves) in visited:
                 continue
+            if direction != past_direction and (abs(direction[0]), abs(direction[1])) == (abs(past_direction[0]), abs(past_direction[1])):
+                continue
 
+            visited.add((neighbor, direction, new_n_past_moves))
             new_cost = current_cost + costs[neighbor]
             heapq.heappush(h, (new_cost, neighbor, direction, new_n_past_moves))
 
