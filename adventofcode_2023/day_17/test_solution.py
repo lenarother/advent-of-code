@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import solve
+from .solution import solve, solve_2
 
 DATA = """
 2413432311323
@@ -18,11 +18,29 @@ DATA = """
 4322674655533
 """
 
+DATA_2 = """
+111111111111
+999999999991
+999999999991
+999999999991
+999999999991
+"""
+
 EXAMPLES = (
     (DATA, 102),
+)
+
+EXAMPLES_2 = (
+    (DATA, 94),
+    (DATA_2, 71),
 )
 
 
 @pytest.mark.parametrize('data,expected', EXAMPLES)
 def test_solve(data, expected):
     assert solve(data) == expected
+
+
+@pytest.mark.parametrize('data,expected', EXAMPLES_2)
+def test_solve_2(data, expected):
+    assert solve_2(data) == expected

@@ -4,8 +4,9 @@ https://adventofcode.com/2023/day/17
 
 """
 import heapq
-from santa_helpers import parse_grid_to_dict, neighbors
-from santa_helpers.neighbors import is_point_in_range, NEIGHBORS_N
+
+from santa_helpers import parse_grid_to_dict
+from santa_helpers.neighbors import NEIGHBORS_N, is_point_in_range
 
 
 def column_count(data: str) -> int:
@@ -45,17 +46,22 @@ def neighbors(p, n=4, p_min=None, p_max=None):
             yield new_p, (dx, dy)
 
 
-def solve(data):
+def dijkstra(data, max_moves=3, min_moves=0):
     costs = parse_data(data)
     max_x = column_count(data) - 1
     max_y = row_count(data) - 1
     target = (max_x, max_y)
     visited = set()
+
+    # priority queue
     h = []
     heapq.heappush(h, (0, (0, 0), (0, 0), 0))
+
     while h:
-        current_cost, current_position, past_direction, n_past_moves = heapq.heappop(h)
-        if current_position == target:
+        current_cost, current_position, past_direction, n_past_moves = (
+            heapq.heappop(h)
+        )
+        if current_position == target and n_past_moves >= min_moves:
             return current_cost
 
         neighbors_gen = neighbors(
@@ -68,23 +74,52 @@ def solve(data):
                 n_past_moves + 1 if direction == past_direction else 1
             )
 
-            if new_n_past_moves > 3:
+            # Invalid cases:
+            # Only allowed to go max_moves forward (than have to turn)
+            if new_n_past_moves > max_moves:
                 continue
+            # Don't go if already visited
             if (neighbor, direction, new_n_past_moves) in visited:
                 continue
+            # Going back is not allowed
             if (
-                # going back
                 direction != past_direction and
-                (abs(direction[0]), abs(direction[1])) == (abs(past_direction[0]), abs(past_direction[1]))
+                (
+                    (abs(direction[0]), abs(direction[1])) ==
+                    (abs(past_direction[0]), abs(past_direction[1]))
+                )
+            ):
+                continue
+            # Must go min_moves steps in straight line
+            if (
+                past_direction != (0, 0) and  # starting point has no direction
+                direction != past_direction and
+                n_past_moves < min_moves
             ):
                 continue
 
+            # Valid point
             visited.add((neighbor, direction, new_n_past_moves))
             new_cost = current_cost + costs[neighbor]
-            heapq.heappush(h, (new_cost, neighbor, direction, new_n_past_moves))
+            heapq.heappush(
+                h,
+                (new_cost, neighbor, direction, new_n_past_moves)
+            )
+
+
+def solve(data):
+    return dijkstra(data)
+
+
+def solve_2(data):
+    return dijkstra(data, max_moves=10, min_moves=4)
 
 
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
+
     result = solve(input_data)
     print(f'Example1: {result}')
+
+    result = solve_2(input_data)
+    print(f'Example2: {result}')
