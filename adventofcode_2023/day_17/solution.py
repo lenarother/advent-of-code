@@ -34,7 +34,8 @@ def neighbors(p, n=4, p_min=None, p_max=None):
         p_max (optional): max grid point, if not given infinite
 
     Yields:
-        point (x, y)
+        point, direction
+        (x, y), (dx, dy)
     """
     neighbor_points = NEIGHBORS_N[n]
     x, y = p
@@ -49,13 +50,12 @@ def solve(data):
     max_x = column_count(data) - 1
     max_y = row_count(data) - 1
     target = (max_x, max_y)
-    # print(costs)
     visited = set()
     h = []
     heapq.heappush(h, (0, (0, 0), (0, 0), 0))
     while h:
         current_cost, current_position, past_direction, n_past_moves = heapq.heappop(h)
-        if current_position == target:  
+        if current_position == target:
             return current_cost
 
         neighbors_gen = neighbors(
@@ -64,16 +64,19 @@ def solve(data):
             p_max=target,
         )
         for neighbor, direction in neighbors_gen:
-            if direction != past_direction:
-                new_n_past_moves = 1
-            else:
-                new_n_past_moves = n_past_moves + 1
+            new_n_past_moves = (
+                n_past_moves + 1 if direction == past_direction else 1
+            )
 
             if new_n_past_moves > 3:
                 continue
             if (neighbor, direction, new_n_past_moves) in visited:
                 continue
-            if direction != past_direction and (abs(direction[0]), abs(direction[1])) == (abs(past_direction[0]), abs(past_direction[1])):
+            if (
+                # going back
+                direction != past_direction and
+                (abs(direction[0]), abs(direction[1])) == (abs(past_direction[0]), abs(past_direction[1]))
+            ):
                 continue
 
             visited.add((neighbor, direction, new_n_past_moves))
