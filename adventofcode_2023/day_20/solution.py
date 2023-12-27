@@ -3,8 +3,9 @@
 https://adventofcode.com/2023/day/20
 
 """
-from dataclasses import dataclass
+import math
 from collections import deque
+from dataclasses import dataclass
 
 
 @dataclass
@@ -29,16 +30,13 @@ class FlipFlopModule(Module):
         return self.state == other.state
 
     def broadcast(self, source, signal):
-        # print(source, signal)
         if signal == 1:
             return
         elif signal == 0:
             self.state += 1
             self.state %= 2
-            # print(source, signal, self.state)
-            result = [(self.name, self.state, i) for i in self.destinations]
-            # print(result)
-            return result
+            return [(self.name, self.state, i) for i in self.destinations]
+
 
 @dataclass
 class ConjunctionModule(Module):
@@ -51,7 +49,6 @@ class ConjunctionModule(Module):
 
     def broadcast(self, source, signal):
         self.memory[source] = signal
-        # print(self.memory)
         signal = (int(all(self.memory.values())) + 1) % 2
         return [(self.name, signal, i) for i in self.destinations]
 
@@ -70,7 +67,7 @@ def parse_module(line):
     if name == 'broadcaster':
         return BroadcasterModule(
             name=name,
-            destinations = destinations,
+            destinations=destinations,
         )
     elif name.startswith('%'):
         return FlipFlopModule(
@@ -86,7 +83,10 @@ def parse_module(line):
 
 
 def update_memory(modules):
-    conjunctions = [m.name for m in modules.values() if isinstance(m, ConjunctionModule)]
+    conjunctions = [
+        m.name for m in modules.values()
+        if isinstance(m, ConjunctionModule)
+    ]
     for name, module in modules.items():
         cons = set(module.destinations).intersection(conjunctions)
         if len(cons) > 0:
@@ -98,7 +98,7 @@ def parse_modules(data):
     modules = {
         module.name: module
         for module in
-        [parse_module(l) for l in data.strip().split('\n')]
+        [parse_module(line) for line in data.strip().split('\n')]
     }
     update_memory(modules)
     return modules
@@ -121,6 +121,7 @@ class System:
                 source, signal, destination = self.signals.popleft()
                 self.signal_cunt += 1
                 self.high_count += signal
+
                 module = self.modules.get(destination)
                 if module:
                     new_signals = module.broadcast(source, signal)
@@ -133,12 +134,47 @@ class System:
         return low_count * self.high_count
 
 
+class System2:
+
+    def __init__(self, data):
+        self.modules = parse_modules(data)
+        self.signals = deque([])
+
+    def run(self):
+        x = 0
+        interesting_pulses = set()
+
+        while len(interesting_pulses) < 4:
+            x += 1
+            self.signals.append(('button', 0, 'broadcaster'))
+            while self.signals:
+                source, signal, destination = self.signals.popleft()
+                module = self.modules.get(destination)
+                if module:
+                    if module.name == 'gf' and sum(module.memory.values()):
+                        interesting_pulses.add(x)
+                    new_signals = module.broadcast(source, signal)
+                    if new_signals:
+                        self.signals += new_signals
+
+        return math.lcm(*interesting_pulses)
+
+
 def solve(data):
     system = System(data)
     return system.run()
 
 
+def solve_2(data):
+    system = System2(data)
+    return system.run()
+
+
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
+
     result = solve(input_data)
+    print(f'Example1: {result}')
+
+    result = solve_2(input_data)
     print(f'Example1: {result}')
