@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import solve, solve_2, convert_single_range
+from .solution import convert_single_range, solve, solve_2
 
 DATA = """seeds: 79 14 55 13
 
@@ -37,22 +37,23 @@ humidity-to-location map:
 56 93 4"""
 
 
-#def test_solve():
-#    assert solve(DATA) == 35
+def test_solve():
+    assert solve(DATA) == 35
 
 
 def test_solve_2():
     assert solve_2(DATA) == 46
 
+
 @pytest.mark.parametrize(
-    'input_range, source_range, destination_range, expected_new_input, expected_result',
+    'input_range, source_range, destination_range, expected_new_input, expected_result',  # noqa
     (
         # C  AB  D
-        (range(5, 8), range(1, 10), range(21, 30), [], [range(25, 28)]),
+        (range(5, 8), range(1, 10), range(21, 30), [], [range(25, 28)]),  # noqa
         # C  A  D  B
-        (range(5, 20), range(1, 10), range(21, 30), [range(10, 20)], [range(25, 30)]),
+        (range(5, 20), range(1, 10), range(21, 30), [range(10, 20)], [range(25, 30)]),  # noqa
         # AB CD
-        (range(5, 20), range(30, 40), range(20, 30), [range(5, 20)], []),
+        (range(5, 20), range(30, 40), range(20, 30), [range(5, 20)], []),  # noqa
         # A  CD  B
         (range(20, 40), range(30, 35), range(130, 135), [range(20, 30), range(35, 40)], [range(130, 135)]),  # noqa
         # A  C  B  D
@@ -66,6 +67,8 @@ def test_convert_single_range(
         expected_new_input,
         expected_result
 ):
-    new_input, result = convert_single_range(input_range, source_range, destination_range)
+    new_input, result = convert_single_range(
+        input_range, source_range, destination_range
+    )
     assert new_input == expected_new_input
     assert result == expected_result
