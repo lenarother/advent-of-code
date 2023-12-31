@@ -39,6 +39,8 @@ DATA_3 = """
 """
 
 EXAMPLES = (
+    (DATA, 5),
+    (DATA_2, 400),
     (DATA_3, 405),
 )
 

@@ -6,8 +6,8 @@ https://adventofcode.com/2023/day/13
 
 
 def transpose(picture: str) -> str:
-    picture = picture.strip().split('\n')
-    return '\n'.join(["".join(x) for x in zip(*picture)])
+    picture_lines = picture.strip().split('\n')
+    return '\n'.join(["".join(x) for x in zip(*picture_lines)])
 
 
 def rows_from_up(picture: str) -> tuple[int, int]:
@@ -38,7 +38,10 @@ def rows_from_down(picture: str) -> tuple[int, int]:
     for i in indices:
         candidate = lines[i:]
         if candidate == candidate[::-1]:
-            return len(candidate), ((len(lines) - len(candidate)) + len(candidate) // 2) * 100
+            return (
+                len(candidate),
+                ((len(lines) - len(candidate)) + len(candidate) // 2) * 100
+            )
     return 0, 0
 
 
@@ -70,7 +73,10 @@ def columns_from_right(picture: str) -> tuple[int, int]:
     for i in indices:
         candidate = lines[i:]
         if candidate == candidate[::-1]:
-            return len(candidate), ((len(lines) - len(candidate)) + len(candidate) // 2)
+            return (
+                len(candidate),
+                (len(lines) - len(candidate)) + len(candidate) // 2
+            )
     return 0, 0
 
 
