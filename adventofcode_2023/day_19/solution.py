@@ -4,8 +4,8 @@ https://adventofcode.com/2023/day/19
 
 """
 import operator
-from dataclasses import dataclass
 import re
+from dataclasses import dataclass
 from typing import Callable
 
 

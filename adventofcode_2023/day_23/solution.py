@@ -14,7 +14,7 @@ ALLOWED_SLOPES = {
 }
 
 from santa_helpers import parse_grid_to_dict
-from santa_helpers.neighbors import is_point_in_range, NEIGHBORS_N
+from santa_helpers.neighbors import NEIGHBORS_N, is_point_in_range
 
 
 def neighbors(p, n=4, p_min=None, p_max=None):

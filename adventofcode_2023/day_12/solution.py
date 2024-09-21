@@ -5,6 +5,7 @@ https://adventofcode.com/2023/day/12
 """
 import re
 
+
 def get_regex(counts):
     pattern = r"[.?]*"
     for n in counts:

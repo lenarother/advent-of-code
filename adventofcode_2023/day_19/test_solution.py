@@ -1,6 +1,7 @@
 import pytest
 
 from .solution import solve
+
 DATA = """
 px{a<2006:qkq,m>2090:A,rfg}
 pv{a>1716:R,A}
