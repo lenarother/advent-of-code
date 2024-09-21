@@ -23,6 +23,7 @@ EXAMPLES = (
     (DATA, 62),
 )
 
+
 @pytest.mark.skip("Fix me")
 @pytest.mark.parametrize('data,expected', EXAMPLES)
 def test_solve(data, expected):

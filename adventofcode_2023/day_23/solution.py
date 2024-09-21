@@ -6,15 +6,15 @@ https://adventofcode.com/2023/day/23
 import copy
 import re
 
+from santa_helpers import parse_grid_to_dict
+from santa_helpers.neighbors import NEIGHBORS_N, is_point_in_range
+
 ALLOWED_SLOPES = {
     '>': (1, 0),
     '<': (-1, 0),
     '^': (0, -1),
     'v': (0, 1),
 }
-
-from santa_helpers import parse_grid_to_dict
-from santa_helpers.neighbors import NEIGHBORS_N, is_point_in_range
 
 
 def neighbors(p, n=4, p_min=None, p_max=None):
@@ -61,7 +61,7 @@ def possible_steps(current, grid, visited):
 
 def solve(data, start=(1, 0), target=(21, 22), clean_slopes=False):
     if clean_slopes:
-        data = re.sub(r'[<>^v]','.', data)
+        data = re.sub(r'[<>^v]', '.', data)
 
     grid = parse_grid_to_dict(data)
     results = []
@@ -76,7 +76,7 @@ def solve(data, start=(1, 0), target=(21, 22), clean_slopes=False):
             results.append(len(visited))
             continue
 
-        steps = list( possible_steps(last_position, grid, visited))
+        steps = list(possible_steps(last_position, grid, visited))
         while len(steps) == 1:
             visited.add(last_position)
             last_position = steps[0]

@@ -15,7 +15,6 @@ def solve(data):
     pass
 
 
-
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
     result = solve(input_data)
