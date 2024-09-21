@@ -37,8 +37,8 @@ def find_arrangement_count(line):
     return len(ready)
 
 
-def unfold_line_info(l):
-    return f"{l}?{l}?{l}?{l}?{l}"
+def unfold_line_info(line):
+    return f"{line}?{line}?{line}?{line}?{line}"
 
 
 def unfold_line_count(c):
@@ -71,11 +71,21 @@ def find_arrangement_count_2(line):
 
 
 def solve(data):
-    return sum([find_arrangement_count(line) for line in data.strip().split('\n')])
+    return sum(
+        [
+            find_arrangement_count(line)
+            for line in data.strip().split('\n')
+        ]
+    )
 
 
 def solve_2(data):
-    return sum([find_arrangement_count_2(line) for line in data.strip().split('\n')])
+    return sum(
+        [
+            find_arrangement_count_2(line)
+            for line in data.strip().split('\n')
+        ]
+    )
 
 
 if __name__ == '__main__':

@@ -32,8 +32,8 @@ def solve_2(data: str) -> int:
         if operation == '-':
             if label in boxes[box]['labels']:
                 index = boxes[box]['labels'].index(label)
-                del(boxes[box]['labels'][index])
-                del(boxes[box]['values'][index])
+                del (boxes[box]['labels'][index])
+                del (boxes[box]['values'][index])
 
         elif operation == '=':
             value = int(i.split('=')[1])
