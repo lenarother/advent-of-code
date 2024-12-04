@@ -7,14 +7,14 @@ import numpy as np
 
 
 def check_left_right(data):
-    return data.count("XMAS") + data[::-1].count("XMAS")
+    return data.count('XMAS') + data[::-1].count('XMAS')
 
 
 def check_up_down(data):
     data_as_lists = []
     for i in data.strip().split('\n'):
         data_as_lists.append([j for j in i])
-    data_rotates = "\n".join(map("".join, zip(*reversed(data_as_lists))))
+    data_rotates = '\n'.join(map(''.join, zip(*reversed(data_as_lists))))
     return check_left_right(data_rotates)
 
 
