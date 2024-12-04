@@ -52,14 +52,39 @@ def solve(data):
     return data
 
 
+def check_letter(position, letters):
+    if letters[position] != 'A':
+        return 0
+    x, y = position
+    try:
+        x_letters = ''.join([letters[(x -1, y -1)], letters[(x+1, y-1)], letters[(x-1, y+1)], letters[(x+1, y+1)]])
+        if x_letters in ['MSMS', 'SSMM', 'MMSS', 'SMSM']:
+            return 1
+    except KeyError:
+        pass
+
+    return 0
+
+
+
 def solve2(data):
-    result = check_left_right(data)
-    result += check_up_down(data)
-    result += check_diagonal(data)
-    print(result)
-    return data
+    result = 0
+    letters = {}
+    for y, row in enumerate(data.strip().split('\n')):
+        for x, letter in enumerate(row):
+            letters[(x, y)] = letter
+    for position in letters:
+        result += check_letter(position, letters)
+    return result
+    #print(letters)
+    #print(len(letters))
+
+
+
 
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
     result = solve(input_data)
     print(f'Example1: {result}')
+    result = solve2(input_data)
+    print(f'Example2: {result}')
