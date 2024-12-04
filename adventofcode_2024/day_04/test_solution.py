@@ -28,5 +28,5 @@ def test_solve(data, expected):
 
 
 @pytest.mark.parametrize('data,expected', EXAMPLES_2)
-def test_solve(data, expected):
+def test_solve_2(data, expected):
     assert solve2(data) == expected
