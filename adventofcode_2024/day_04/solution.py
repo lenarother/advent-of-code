@@ -23,10 +23,10 @@ def check_diagonal(data):
     for i in data.strip().split('\n'):
         data_as_lists.append([j for j in i])
     # https://stackoverflow.com/questions/6313308/get-all-the-diagonals-in-a-matrix-list-of-lists-in-python
-    matrix = np.array(data_as_lists)
-    diags = [matrix[::-1, :].diagonal(i) for i in range(-matrix.shape[0] + 1, matrix.shape[1])]
-    diags.extend(matrix.diagonal(i) for i in range(matrix.shape[1] - 1, -matrix.shape[0], -1))
-    data_diagonal = '\n'.join([''.join(n.tolist()) for n in diags])
+    m = np.array(data_as_lists)
+    diag = [m[::-1, :].diagonal(i) for i in range(-m.shape[0] + 1, m.shape[1])]
+    diag.extend(m.diagonal(i) for i in range(m.shape[1] - 1, -m.shape[0], -1))
+    data_diagonal = '\n'.join([''.join(n.tolist()) for n in diag])
     return check_left_right(data_diagonal)
 
 
