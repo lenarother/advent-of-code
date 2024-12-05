@@ -8,7 +8,7 @@ import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 
-from pydantic import validate_arguments
+from pydantic import validate_call
 
 RECORD_BEGIN_SHIFT = (
     r'\[(?P<dt>\d{4}-\d{2}-\d{2} \d{2}:\d{2})\] '
@@ -27,7 +27,7 @@ STATE_AWAKE = 0
 STATE_ASLEEP = 1
 
 
-@validate_arguments
+@validate_call
 @dataclass
 class Record:
     dt: datetime.datetime
