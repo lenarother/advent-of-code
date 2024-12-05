@@ -7,6 +7,7 @@ ipython
 isort
 mutmut
 mypy
+numpy
 pydantic
 pytest
 pytest-flake8
