@@ -3,9 +3,9 @@
 https://adventofcode.com/2024/day/7
 
 """
-from itertools import product
 import operator
 from copy import copy
+from itertools import product
 
 
 def read_input(data):

@@ -16,10 +16,6 @@ def parse_data(data):
     return result
 
 
-def is_in_greed(x, y, max_x, max_y):
-    return 0 <= x <= max_x and 0 <= y <= max_y
-
-
 def get_next_point(first, second, max_point):
     max_x, max_y = max_point
     x1, y1 = first
@@ -28,7 +24,7 @@ def get_next_point(first, second, max_point):
     dy = y1 - y2
     new_x = x1 + dx
     new_y = y1 + dy
-    if is_in_greed(new_x, new_y, max_x, max_y):
+    if 0 <= new_x <= max_x and 0 <= new_y <= max_y:
         return (new_x, new_y)
 
 
@@ -41,6 +37,7 @@ def get_anti_locations(first, second, max_point):
 
 def get_anti_locations2(first, second, max_point):
     result = []
+    # Extend in one direction
     new_p = first
     other = second
     while new_p:
@@ -48,6 +45,7 @@ def get_anti_locations2(first, second, max_point):
         new_other = new_p
         new_p = get_next_point(new_p, other, max_point)
         other = new_other
+    # Extend in the other direction
     new_p = second
     other = first
     while new_p:

@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import solve, solve2, get_anti_locations
+from .solution import get_anti_locations, solve, solve2
 
 DATA_1 = """
 ..........
