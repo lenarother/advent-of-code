@@ -4,6 +4,9 @@ https://adventofcode.com/2024/day/7
 
 """
 from itertools import product
+import operator
+from copy import copy
+
 
 def read_input(data):
     result = {}
@@ -12,22 +15,25 @@ def read_input(data):
         result[int(line_sum)] = [i for i in line_values.split()]
     return result
 
-def get_operators(n):
-    return product("+*", repeat=5)
 
-def check_equation(k, v):
+def generate_operators(n, operators=(operator.mul, operator.add)):
+    return product(operators, repeat=n)
+
+
+def concatenation(x, y):
+    return int(f'{x}{y}')
+
+
+def check_equation(k, v, include_concatenation=False):
     n = len(v) - 1
-    foo = list(product("+*", repeat=n))
-    for operator_list in foo:
-        from copy import copy
-        myv = copy(v)
+    for operator_list in generate_operators(n):
+        numbers = copy(v)
         operator_list = list(operator_list)
-        first = myv.pop(0)
-        while myv:
-            my = myv.pop(0)
-            op = operator_list.pop(0)
-            foo = f'{first}{op}{my}'
-            first = eval(foo)
+        first = numbers.pop(0)
+        while numbers:
+            second = numbers.pop(0)
+            current_operator = operator_list.pop(0)
+            first = current_operator(int(first), int(second))
         if first == k:
             return k
     return 0
@@ -41,7 +47,6 @@ def check_equation_other(k, v):
     n = len(v) - 1
     foo = list(product("+*|", repeat=n))
     for operator_list in foo:
-        from copy import copy
         myv = copy(v)
         operator_list = list(operator_list)
         first = myv.pop(0)
@@ -73,12 +78,11 @@ def solve2(data):
     return result
 
 
-
-
-
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
+
     result = solve(input_data)
     print(f'Example1: {result}')
+
     result = solve2(input_data)
     print(f'Example2: {result}')
