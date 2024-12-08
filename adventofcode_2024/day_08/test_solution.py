@@ -80,30 +80,30 @@ EXAMPLES_2 = (
     (DATA_2, 34),
 )
 
-#@pytest.mark.parametrize('data,expected', EXAMPLES)
-#def test_solve(data, expected):
-#    assert solve(data) == expected
+@pytest.mark.parametrize('data,expected', EXAMPLES)
+def test_solve(data, expected):
+    assert solve(data) == expected
 
 
 
-#@pytest.mark.parametrize(
-#    'first, second, max_point, expected',
-#    (
-#        ((4, 3), (5, 5), (9, 9), [(3, 1), (6, 7)]),
-#        ((5, 5), (4, 3), (9, 9),  [(3, 1), (6, 7)]),
-#        ((5, 5), (8, 4), (9, 9), [(2, 6)]),
-#        ((4, 3), (8, 4), (9, 9),[(0, 2)]),
-#        ((8, 1), (5, 2), (11, 11), [(11, 0), (2, 3)]),
-#        ((5, 2), (8, 1), (11, 11), [(11, 0), (2, 3)]),
-#    )
-#)
-#def test_get_anti_locations(first, second, max_point, expected):
-#    assert set(get_anti_locations(first, second, max_point)) == set(expected)
+@pytest.mark.parametrize(
+    'first, second, max_point, expected',
+    (
+        ((4, 3), (5, 5), (9, 9), [(3, 1), (6, 7)]),
+        ((5, 5), (4, 3), (9, 9),  [(3, 1), (6, 7)]),
+        ((5, 5), (8, 4), (9, 9), [(2, 6)]),
+        ((4, 3), (8, 4), (9, 9),[(0, 2)]),
+        ((8, 1), (5, 2), (11, 11), [(11, 0), (2, 3)]),
+        ((5, 2), (8, 1), (11, 11), [(11, 0), (2, 3)]),
+    )
+)
+def test_get_anti_locations(first, second, max_point, expected):
+    assert set(get_anti_locations(first, second, max_point)) == set(expected)
 
 
-# @pytest.mark.parametrize('data,expected', EXAMPLES)
-#def test_solve(data, expected):
-#    assert solve(data) == expected
+@pytest.mark.parametrize('data,expected', EXAMPLES)
+def test_solve(data, expected):
+    assert solve(data) == expected
 
 
 @pytest.mark.parametrize('data,expected', EXAMPLES_2)

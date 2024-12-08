@@ -16,44 +16,27 @@ def parse_data(data):
     return result
 
 
-def generate_pairs(data, ch):
-    for i in combinations(data[ch], 2):
-        yield i
-
-
-def is_in_gread(x, y, max_x, max_y):
-    if 0 <= x <= max_x and 0 <= y <= max_y:
-        return True
-    return False
+def is_in_greed(x, y, max_x, max_y):
+    return 0 <= x <= max_x and 0 <= y <= max_y
 
 
 def get_next_point(first, second, max_point):
     max_x, max_y = max_point
     x1, y1 = first
     x2, y2 = second
-    dx = abs(x1 - x2)
-    dy = abs(y1 - y2)
-    if x1 < x2:
-        new_x = x1 - dx
-    else:
-        new_x = x1 + dx
-    if y1 < y2:
-        new_y = y1 - dy
-    else:
-        new_y = y1 + dy
-    if is_in_gread(new_x, new_y, max_x, max_y):
+    dx = x1 - x2
+    dy = y1 - y2
+    new_x = x1 + dx
+    new_y = y1 + dy
+    if is_in_greed(new_x, new_y, max_x, max_y):
         return (new_x, new_y)
 
 
 def get_anti_locations(first, second, max_point):
-    result = []
-    p = get_next_point(first, second, max_point)
-    if p:
-        result.append(p)
-    p = get_next_point(second, first, max_point)
-    if p:
-        result.append(p)
-    return result
+    return filter(None, [
+        get_next_point(first, second, max_point),
+        get_next_point(second, first, max_point)
+    ])
 
 
 def get_anti_locations2(first, second, max_point):
@@ -87,9 +70,8 @@ def solve(data):
     max_point = get_max_point(data)
     data = parse_data(data)
     for ch in data:
-        for pair in generate_pairs(data, ch):
-
-            first, second = sorted(pair)
+        for pair in combinations(data[ch], 2):
+            first, second = pair
             locations.extend(get_anti_locations(first, second, max_point))
     return len(set(locations))
 
@@ -99,8 +81,8 @@ def solve2(data):
     max_point = get_max_point(data)
     data = parse_data(data)
     for ch in data:
-        for pair in generate_pairs(data, ch):
-            first, second = sorted(pair)
+        for pair in combinations(data[ch], 2):
+            first, second = pair
             locations.extend(get_anti_locations2(first, second, max_point))
     return len(set(locations))
 
