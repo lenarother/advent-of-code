@@ -10,12 +10,21 @@ def data_gen(data):
 
 
 def find_first_empty_position(disc, n):
-    # print('HERE')
+    """First for a first available dot.
+
+    Start looking from n, not from beginning.
+    """
     while True:
         if disc[n] == '.':
             return n
         n += 1
 
+def parse_data_to_dict(data):
+    disc = dict()
+
+    for counter, partition in enumerate(data.strip()):
+        for _ in range(0, int(partition)):
+            pass
 
 def solve(data):
     disc = {}
@@ -33,9 +42,6 @@ def solve(data):
             counter += 1
         if e % 2:
             id_counter += 1
-    #print(disc)
-    #print(disc.values())
-
 
     position = 0
     counter -= 1
@@ -43,18 +49,12 @@ def solve(data):
         v = disc[counter]
         if v != '.':
             position = find_first_empty_position(disc, position)
-            #print('POSITION', position, counter, disc[position], disc[counter])
-            #print(disc.values())
             if position <= counter:
                 disc[position] = v
                 disc[counter] = '.'
         counter -= 1
 
-    #print(disc)
-    #print(disc.values())
-
     # calculate checksum
-
     checksum = 0
     for k, v in disc.items():
         if v == '.':
@@ -67,36 +67,60 @@ def solve(data):
 
 def solve2(data):
     disc = {}
-    # id, ch, len
+    # id, len
     counter = 0
     id_counter = 0
+    myk = 0
+    all_num_keys = []
     for e, i in enumerate(data_gen(data)):
         if e % 2 == 0:
             v = id_counter
             id_counter += 1
+            all_num_keys.append(myk)
         else:
             v = '.'
-        disc[e] = (v, i)
+        disc[myk] = (v, i)
+        myk += i
+
+    for i in reversed(all_num_keys):
+        # print(i, disc[i])
+        myn, myval = disc[i]
+        target_k = None
+        for n  in sorted(disc.keys()):
+            val = disc[n]
+            if n >= i:
+                target_k = None
+                break
+            elif val[0] == '.' and val[1] >= myval:
+                target_k = n
+                break
+            else:
+                target_k = None
+        # print(target_k)
+        if target_k:
+            disc.pop(i)
+            foo_val = disc.pop(target_k)
+            disc[target_k] = (myn, myval)
+            if foo_val[1] > myval:
+                leng = foo_val[1] - myval
+                disc[target_k + leng + 1] = ('.', leng)
 
 
-    el_0 = Element(
-        ch = data
-    )
+    # calculate checksum
 
+    checksum = 0
+    for k, v in disc.items():
+        if v[0] != '.':
+            x = v[1] #len
+            c = 0
+            while x:
+                checksum += v[0] * (k + c)
+                x -= 1
+                c += 1
 
-    id_counter = 0
-    for e, i in enumerate(data_gen(data)):
-        if e % 2 == 0:
-            v = id_counter
-            id_counter += 1
-        else:
-            v = '.'
-        disc[e] = (v, i)
-
-
-    print(disc)
-    print(disc.values())
-
+    #print(checksum)
+    #print(disc)
+    return checksum
 
 
 class Element:
@@ -117,3 +141,6 @@ if __name__ == '__main__':
     input_data = open('input_data.txt').read()
     result = solve(input_data)
     print(f'Example1: {result}')
+
+    result = solve2(input_data)
+    print(f'Example2: {result}')

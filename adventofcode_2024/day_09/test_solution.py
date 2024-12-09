@@ -11,9 +11,9 @@ EXAMPLES_2= (
 )
 
 
-#@pytest.mark.parametrize('data,expected', EXAMPLES)
-#def test_solve(data, expected):
-#    assert solve(data) == expected
+@pytest.mark.parametrize('data,expected', EXAMPLES)
+def test_solve(data, expected):
+    assert solve(data) == expected
 
 
 @pytest.mark.parametrize('data,expected', EXAMPLES_2)
