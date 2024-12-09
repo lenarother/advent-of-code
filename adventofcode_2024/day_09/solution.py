@@ -97,15 +97,25 @@ def calculate_checksum_2(disc):
                 checksum += partition_id * (disc_location + counter)
     return checksum
 
-def find_empty_location_2(disc, n):
+def find_empty_location_2(disc, disc_location_from_end, partition_size):
     """First for a first available dot.
 
     Start looking from n, not from beginning.
     """
-    while True:
-        if disc[n] == '.':
-            return n
-        n += 1
+    empty_disc_location = None
+
+    for disc_location_from_start in sorted(disc.keys()):
+        tried_id, tried_size = disc[disc_location_from_start]
+
+        if disc_location_from_start >= disc_location_from_end:
+            empty_disc_location = None
+            break
+        elif tried_id == '.' and tried_size >= partition_size:
+            empty_disc_location = disc_location_from_start
+            break
+        else:
+            empty_disc_location = None
+    return empty_disc_location
 
 
 def solve2(data):
@@ -113,19 +123,7 @@ def solve2(data):
 
     for disc_location_from_end in reversed(occupied_partition_locations):
         partition_id, partition_size = disc[disc_location_from_end]
-        empty_disc_location = None
-
-        for disc_location_from_start  in sorted(disc.keys()):
-            tried_id, tried_size = disc[disc_location_from_start]
-
-            if disc_location_from_start >= disc_location_from_end:
-                empty_disc_location = None
-                break
-            elif tried_id == '.' and tried_size >= partition_size:
-                empty_disc_location = disc_location_from_start
-                break
-            else:
-                empty_disc_location = None
+        empty_disc_location = find_empty_location_2(disc, disc_location_from_end, partition_size)
 
         if empty_disc_location:
             disc.pop(disc_location_from_end)
