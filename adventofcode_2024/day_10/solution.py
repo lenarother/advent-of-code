@@ -30,12 +30,17 @@ def get_grid_dict(data):
 
 
 def start_position_gen(grid):
+    """Yields coordinates of start position.
+
+    Start position is one that equals 0.
+    """
     for k, v in grid.items():
         if v == 0:
             yield k
 
 
 def evaluate_start(start, grid, mode="unique_last_position"):
+    """Calculate score of a single starting position."""
     result_paths = []
     paths = [[start]]
     while paths:
