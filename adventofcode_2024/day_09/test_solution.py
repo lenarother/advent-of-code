@@ -3,10 +3,9 @@ import pytest
 from .solution import solve, solve2
 
 EXAMPLES = (
-    # ("12345", 60),
     ("2333133121414131402", 1928),
 )
-EXAMPLES_2= (
+EXAMPLES_2 = (
     ("2333133121414131402", 2858),
 )
 

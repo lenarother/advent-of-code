@@ -3,9 +3,11 @@
 https://adventofcode.com/2024/day/9
 
 """
+
 def data_gen(data):
     for i in data.strip():
         yield int(i)
+
 
 def find_first_empty_location(disc, n):
     """First for a first available dot.
@@ -16,6 +18,7 @@ def find_first_empty_location(disc, n):
         if disc[n] == '.':
             return n
         n += 1
+
 
 def parse_data_to_dict(data):
     """Create disc map
@@ -37,6 +40,7 @@ def parse_data_to_dict(data):
             partition_id += 1
     return disc
 
+
 def move_data(disc):
     new_location = 0
     disc_location_from_end = len(disc) - 1
@@ -49,6 +53,7 @@ def move_data(disc):
                 disc[disc_location_from_end] = '.'
         disc_location_from_end -= 1
 
+
 def calculate_checksum(disc):
     checksum = 0
     for k, v in disc.items():
@@ -57,12 +62,12 @@ def calculate_checksum(disc):
         checksum += k * v
     return checksum
 
+
 def solve(data):
     disc = parse_data_to_dict(data)
     move_data(disc)
     return calculate_checksum(disc)
 
-### Second Part
 
 def parse_data_to_dict_2(data):
     """Create disc map.
@@ -88,6 +93,7 @@ def parse_data_to_dict_2(data):
         disc_location += partition_size
     return disc, occupied_partition_locations
 
+
 def calculate_checksum_2(disc):
     checksum = 0
     for disc_location in disc:
@@ -96,6 +102,7 @@ def calculate_checksum_2(disc):
             for counter in range(0, partition_size):
                 checksum += partition_id * (disc_location + counter)
     return checksum
+
 
 def find_empty_location_2(disc, disc_location_from_end, partition_size):
     """First for a first available dot.
@@ -123,7 +130,9 @@ def solve2(data):
 
     for disc_location_from_end in reversed(occupied_partition_locations):
         partition_id, partition_size = disc[disc_location_from_end]
-        empty_disc_location = find_empty_location_2(disc, disc_location_from_end, partition_size)
+        empty_disc_location = find_empty_location_2(
+            disc, disc_location_from_end, partition_size
+        )
 
         if empty_disc_location:
             disc.pop(disc_location_from_end)
