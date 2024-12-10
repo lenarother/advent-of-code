@@ -4,6 +4,7 @@ https://adventofcode.com/2024/day/9
 
 """
 
+
 def data_gen(data):
     for i in data.strip():
         yield int(i)
@@ -78,7 +79,7 @@ def parse_data_to_dict_2(data):
     Contains one key for each partition.
     Keys are not continous.
     """
-    disc: dict[int, tuple[int|str, int]] = {}
+    disc: dict[int, tuple[int | str, int]] = {}
     occupied_partition_locations: list[int] = []
     partition_id = 0
     disc_location = 0
