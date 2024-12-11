@@ -3,6 +3,8 @@
 https://adventofcode.com/2024/day/11
 
 """
+from collections import defaultdict
+
 
 def apply_rule(n):
     if n == '0':
@@ -14,63 +16,33 @@ def apply_rule(n):
         return [str(int(n) * 2024)]
 
 
-
-def solve_n(n, i, cache):
-    if (n, i) in cache:
-        return cache[(n, i)]
-
-    nums = [n]
-    while i:
-        new_nums = []
-        for x in nums:
-            new_nums += apply_rule(x)
-        i -= 1
-        nums = new_nums
-
-    len_nums = len(nums)
-    cache[(n, i)] = len_nums
-    return len_nums, nums
+def do_step(input_dict):
+    todo_dict = defaultdict(int)
+    for n, rep in input_dict.items():
+        result = apply_rule(n)
+        for i in result:
+            todo_dict[i] += rep
+    return todo_dict
 
 
-def solve_list(input_list, iterations, cache):
-    result = 0
-    new_nums = []
-    for num in input_list:
-        if (num, iterations) in cache:
-            #print("Reading from cache")
-            x, y = cache[(num, iterations)]
-        else:
-            x, y = solve_n(num, iterations, cache)
-        result += x
-        new_nums += y
-        cache[(num, iterations)] = x, y
-    return result, new_nums
+def solve(data, n):
+    mydata = data.strip().split()
+    data_dict = defaultdict(int)
+    for i in mydata:
+        data_dict[i] += 1
 
+    while n:
+        data_dict = do_step(data_dict)
+        n -= 1
 
-
-def solve(data, iterations=75):
-    cache = dict()
-    input_list = [i for i in data.strip().split()]
-    #result = 0
-    #for i in input_list:
-    #    x, y = solve_n(i, iterations, cache)
-    #    result += x
-    #return result
-
-
-    foo = 7
-    while foo:
-        # print(foo)
-        print("FOOOOO", foo)
-        x, y = solve_list(input_list, 10, cache)
-        input_list = y
-        foo -= 1
-    return len(input_list)
-
-
+    return sum(data_dict.values())
 
 
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
-    result = solve(input_data)
+
+    result = solve(input_data, 25)
+    print(f'Example1: {result}')
+
+    result = solve(input_data, 75)
     print(f'Example1: {result}')
