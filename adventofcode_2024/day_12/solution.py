@@ -45,6 +45,17 @@ def neighbors_8(p):
         yield x + dx, y + dy
 
 
+def neighbors_diagonal(p):
+    """Point neighbor generator.
+
+    Yields:
+        point (x, y)
+    """
+    x, y = p
+    for dx, dy in DIAGONALS:
+        yield x + dx, y + dy
+
+
 def get_grid_dict(data):
     return {
         (x, y): v
@@ -96,9 +107,10 @@ def get_fence_coord(region):
     while can_make_step:
         fence.append(current)
         can_make_step = False
-        for n in neighbors(current):
+        for n in neighbors_8(current):
             if n not in fence and n not in region and is_next_to_region(n, region):
                 current = n
+                fence.append(current)
                 can_make_step = True
                 break
     return fence
