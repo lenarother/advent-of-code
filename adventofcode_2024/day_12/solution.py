@@ -9,18 +9,6 @@ NEIGHBORS = [
            (0,  1),         # noqa
 ]
 
-NEIGHBORS_8 = [
-    (-1, -1), (0, -1), (1, -1),  # noqa
-    (-1,  0),          (1,  0),  # noqa
-    (-1,  1), (0,  1), (1,  1),  # noqa
-]
-
-DIAGONALS = [
-    (-1, -1),       (1, -1),  # noqa
-                              # noqa
-    (-1, 1),         (1, 1),  # noqa
-
-]
 
 
 def neighbors(p):
@@ -34,26 +22,6 @@ def neighbors(p):
         yield x + dx, y + dy
 
 
-def neighbors_8(p):
-    """Point neighbor generator.
-
-    Yields:
-        point (x, y)
-    """
-    x, y = p
-    for dx, dy in NEIGHBORS_8:
-        yield x + dx, y + dy
-
-
-def neighbors_diagonal(p):
-    """Point neighbor generator.
-
-    Yields:
-        point (x, y)
-    """
-    x, y = p
-    for dx, dy in DIAGONALS:
-        yield x + dx, y + dy
 
 
 def get_grid_dict(data):
@@ -88,41 +56,22 @@ def get_top_left(region_coord_list):
             coord = (x, y)
     return coord
 
-def is_next_to_region(p, region):
-    if p in region:
-        return False
-    for n in neighbors_8(p):
-        if n in region:
-            return True
-    return False
 
 
-def get_fence_coord(region):
-    fence = []
-    top_left = get_top_left(region)
-    x, y = top_left
-    first = (x, y - 1)
-    current = first
-    can_make_step = True
-    while can_make_step:
-        fence.append(current)
-        can_make_step = False
-        for n in neighbors_8(current):
-            if n not in fence and n not in region and is_next_to_region(n, region):
-                current = n
-                fence.append(current)
-                can_make_step = True
-                break
+
+def get_fence_count(region):
+    fence = 0
+    for p in region:
+        for n in neighbors(p):
+            if n not in region:
+                fence += 1
     return fence
-
-    #go right
 
 
 def solve(data):
     from copy import copy
+    result = 0
     grid = get_grid_dict(data.strip())
-    grid_bkp = copy(grid)
-    print(grid)
     regions = []
     region_types = []
     while len(grid):
@@ -132,12 +81,9 @@ def solve(data):
 
     print(regions, region_types)
     for r, ch in zip(regions, region_types):
-        print('------------')
-        print(f'{ch} {get_top_left(r)}')
-        print(len(get_fence_coord(r)))
-        print('------------')
+        result += len(r) * get_fence_count(r)
 
-    return data
+    return result
 
 
 if __name__ == '__main__':

@@ -31,8 +31,8 @@ MMMISSJEEE
 
 EXAMPLES = (
     (DATA, 140),
-    #(DATA_2, 52),
-    #(DATA_3, 1930),
+    (DATA_2, 772),
+    (DATA_3, 1930),
 )
 
 
