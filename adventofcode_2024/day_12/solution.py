@@ -10,7 +10,6 @@ NEIGHBORS = [
 ]
 
 
-
 def neighbors(p):
     """Point neighbor generator.
 
@@ -20,8 +19,6 @@ def neighbors(p):
     x, y = p
     for dx, dy in NEIGHBORS:
         yield x + dx, y + dy
-
-
 
 
 def get_grid_dict(data):
@@ -57,8 +54,6 @@ def get_top_left(region_coord_list):
     return coord
 
 
-
-
 def get_fence_count(region):
     fence = 0
     for p in region:
@@ -69,7 +64,6 @@ def get_fence_count(region):
 
 
 def solve(data):
-    from copy import copy
     result = 0
     grid = get_grid_dict(data.strip())
     regions = []
@@ -78,15 +72,13 @@ def solve(data):
         region, region_type = get_region(grid)
         regions.append(region)
         region_types.append(region_type)
-
-    print(regions, region_types)
     for r, ch in zip(regions, region_types):
         result += len(r) * get_fence_count(r)
-
     return result
 
 
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
+
     result = solve(input_data)
     print(f'Example1: {result}')

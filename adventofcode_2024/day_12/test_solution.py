@@ -8,6 +8,7 @@ BBCD
 BBCC
 EEEC
 """
+
 DATA_2 = """
 OOOOO
 OXOXO
