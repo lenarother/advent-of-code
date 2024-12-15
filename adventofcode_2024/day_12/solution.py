@@ -77,8 +77,58 @@ def solve(data):
     return result
 
 
+def get_walls(region):
+    fence = []
+    for p in region:
+        for n in neighbors(p):
+            if n not in region:
+                fence.append(n)
+    return fence
+
+
+def find_straight_walls(walls):
+    wall_counter = 0
+    while walls:
+        current = get_top_left(walls)
+        x, y = current
+        walls.remove(current)
+        wall_counter += 1
+        right = (x + 1, y)
+        down = (x, y + 1)
+        if right in walls:
+            while right in walls:
+                walls.remove(right)
+                x, y = right
+                right = (x + 1, y)
+        elif down in walls:
+            while down in walls:
+                walls.remove(down)
+                x, y = down
+                down = (x, y + 1)
+    return wall_counter
+
+
+def solve2(data):
+    result = 0
+    grid = get_grid_dict(data.strip())
+    regions = []
+    region_types = []
+    while len(grid):
+        region, region_type = get_region(grid)
+        regions.append(region)
+        region_types.append(region_type)
+    for r, ch in zip(regions, region_types):
+        walls = get_walls(r)
+        walls_count = find_straight_walls(walls)
+        result += len(r) * walls_count
+    return result
+
+
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
 
     result = solve(input_data)
     print(f'Example1: {result}')
+
+    result = solve2(input_data)
+    print(f'Example2: {result}')
