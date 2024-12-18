@@ -3,8 +3,6 @@
 https://adventofcode.com/2024/day/18
 
 """
-from copy import copy
-
 NEIGHBORS = [
            (0, -1),         # noqa
     (-1, 0),       (1, 0),  # noqa
@@ -45,25 +43,22 @@ def in_grid(p, max_p):
 def get_path(bytes, max_p):
     start = (0, 0)
     end = max_p
-    paths = [[start]]
+    paths = [(start, 0)]
     visited = []
     while paths:
-        path = paths.pop(0)
-        current = path[-1]
+        current, length = paths.pop(0)
         if current == end:
-            return path
+            return length
         else:
             for n in neighbors(current):
                 if in_grid(n, max_p) and n not in bytes and n not in visited:
-                    new_path = copy(path)
-                    new_path.append(n)
-                    paths.append(new_path)
+                    paths.append((n, length + 1))
                     visited.append(n)
 
 
 def solve(data, n_bytes, max_p):
     bytes = list(bytes_gen(data, n_bytes))
-    return len(get_path(bytes, max_p)) - 1
+    return get_path(bytes, max_p)
 
 
 def solve2(data, n_bytes, max_p):
@@ -73,8 +68,6 @@ def solve2(data, n_bytes, max_p):
         if not path:
             return bytes[-1]
         n_bytes += 1
-
-
 
 
 if __name__ == '__main__':

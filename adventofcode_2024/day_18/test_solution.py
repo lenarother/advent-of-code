@@ -43,6 +43,7 @@ EXAMPLES_2 = (
 def test_solve(data, n_bytes, max_p, expected):
     assert solve(data, n_bytes, max_p) == expected
 
+
 @pytest.mark.parametrize('data, n_bytes, max_p, expected', EXAMPLES_2)
 def test_solve_2(data, n_bytes, max_p, expected):
     assert solve2(data, n_bytes, max_p) == expected
