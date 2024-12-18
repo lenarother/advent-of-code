@@ -62,10 +62,6 @@ def instruction(opcode, operand, register, instruction_pointer):
     elif opcode == 5:
         return combo(operand, register) % 8, instruction_pointer + 2
 
-    # bvd
-    elif opcode == 5:
-        return combo(operand, register) % 8, instruction_pointer + 2
-
     # bdv
     if opcode == 6:
         register['B'] = int(register['A'] / (2 ** combo(operand, register)))
