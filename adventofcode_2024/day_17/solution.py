@@ -91,8 +91,38 @@ def solve(data):
     result = ','.join([str(i) for i in outputs])
     return result
 
+def solve2(data):
+    program = get_program(data)
+    outputs = []
+    counter = 0
+
+    while outputs != program:
+        print(counter)
+        register = {
+            'A': counter,
+            'B': 0,
+            'C': 0,
+        }
+
+        instruction_pointer = 0
+        outputs = []
+        while instruction_pointer < len(program):
+            val, instruction_pointer = instruction(
+                program[instruction_pointer],
+                program[instruction_pointer + 1],
+                register,
+                instruction_pointer
+            )
+            if val is not None:
+                outputs.append(val)
+        counter += 1
+    return counter - 1
+
 
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
     result = solve(input_data)
     print(f'Example1: {result}')
+
+    result = solve2(input_data)
+    print(f'Example2: {result}')

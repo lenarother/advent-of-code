@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import solve
+from .solution import solve, solve2
 
 DATA = """
 ########
@@ -39,12 +39,34 @@ vvv<<^>^v^^><<>>><>^<<><^vv^^<>vvv<>><^^v>^>vv<>v<<<<v<^v>^<^^>>>^<v<v
 v^^>>><<^^<>>^v^<v^vv<>v^<<>^<^v^v><^<<<><<^<v><v<>vv>>v><v^<vv<>v^<<^
 """
 
+DATA_3 = """
+#######
+#...#.#
+#.....#
+#..OO@#
+#..O..#
+#.....#
+#######
+
+<vv<<^^<<^^
+"""
+
 EXAMPLES = (
     (DATA, 2028),
     (DATA_2, 10092),
 )
 
+EXAMPLES_2 = (
+    #(DATA, 2028),
+    #(DATA_2, 10092),
+    (DATA_3, 10092),
+)
 
-@pytest.mark.parametrize('data,expected', EXAMPLES)
-def test_solve(data, expected):
-    assert solve(data) == expected
+
+#@pytest.mark.parametrize('data,expected', EXAMPLES_2)
+#def test_solve(data, expected):
+#    assert solve(data) == expected
+
+@pytest.mark.parametrize('data,expected', EXAMPLES_2)
+def test_solve_2(data, expected):
+    assert solve2(data) == expected

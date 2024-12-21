@@ -4,6 +4,7 @@ https://adventofcode.com/2024/day/16
 
 """
 from copy import copy
+from heapq import heappush
 import heapq
 
 NEIGHBORS = [
@@ -54,19 +55,24 @@ def solve(data):
     direction = 'E'
     ready = []
     paths = [([start], direction, 0)]
+    heappush(paths, ([start], direction, 0))
     while paths:
         print(len(paths))
+        #path, direction, score = heapq.heappop(paths)
         path, direction, score = paths.pop()
         current_position = path[-1]
         if current_position == end:
             ready.append([path, direction, score])
+            return score
         else:
             for new_position, new_direction, cost in neighbors(current_position, direction):
                 if new_position not in path and grid[new_position] in '.E':
                     mypath = copy(path)
                     mypath.append(new_position)
-                    paths.append((mypath, new_direction, score + cost))
+                    heappush(paths, (mypath, new_direction, score + cost))
 
+    print([i[2] for i in ready])
+    print(min([i[2] for i in ready]))
     return min([i[2] for i in ready])
 
 
