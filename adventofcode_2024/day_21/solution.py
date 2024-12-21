@@ -228,12 +228,9 @@ def get_path_value(code):
     return int(code.replace('A', '')) * len(result_code)
 
 
-
-
 def solve(data):
     data = data.strip().split('\n')
     return sum([get_path_value(code) for code in data])
-
 
 
 if __name__ == '__main__':
