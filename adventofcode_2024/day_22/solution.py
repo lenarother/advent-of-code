@@ -26,7 +26,7 @@ def calculate_n_next_number(number, n=1):
 
 
 def get_price_from_number(number):
-    return int(repr(number)[-1])
+    return number % 10
 
 
 def next_prices_diffs(number, n=1):
