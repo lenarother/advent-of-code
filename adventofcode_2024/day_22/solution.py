@@ -25,13 +25,17 @@ def calculate_n_next_number(number, n=1):
     return number
 
 
+def get_price_from_number(number):
+    return int(repr(number)[-1])
+
+
 def next_prices_diffs(number, n=1):
     prices = []
     diffs = []
-    initial_price = int(repr(number)[-1])
+    initial_price = get_price_from_number(number)
     while n:
         number = calculate_next_number(number)
-        price = int(repr(number)[-1])
+        price = get_price_from_number(number)
         prices.append(price)
         diffs.append(price - initial_price)
         initial_price = price
