@@ -48,4 +48,4 @@ def test_solve(data, expected):
 
 
 def test_solve_2():
-    assert solve2(DATA) == 'ko,de,ka,ta'
+    assert solve2(DATA) == 'co,de,ka,ta'

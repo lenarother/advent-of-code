@@ -4,8 +4,8 @@ https://adventofcode.com/2024/day/23
 
 """
 from collections import defaultdict
-from itertools import permutations
 from copy import copy
+from itertools import permutations
 
 
 def get_data_dict(data):
@@ -27,6 +27,7 @@ def solve(data):
                     results.add(tuple(sorted([k, x, y])))
     return len(results)
 
+
 def find_triples(data):
     results = set()
     data_dict = get_data_dict(data)
@@ -37,159 +38,28 @@ def find_triples(data):
     return results
 
 
-def extend_triple(bar, data_dict):
-    mysets = []
-    for i in bar:
-        mysets.append(set(data_dict[i]))
-    return set.intersection(*mysets)
+def extend_group(group, data_dict):
+    my_sets = [set(data_dict[i]) for i in group]
+    return set.intersection(*my_sets)
 
 
 def solve2(data):
-    results = set()
     data_dict = get_data_dict(data)
-    triples = find_triples(data)
+    groups = find_triples(data)
 
-    to_check = []
-    for t in triples:
-        #print(t)
-        t = set(t)
-        foo = extend_triple(t, data_dict)
-        for i in foo:
-            my_triple = copy(t)
-            my_triple.add(i)
-            to_check.append(my_triple)
+    while len(groups) != 1:
+        to_check = []
+        for group in groups:
+            group = set(group)
+            foo = extend_group(group, data_dict)
+            for i in foo:
+                my_group = copy(group)
+                my_group.add(i)
+                to_check.append(my_group)
+        groups = set([frozenset(sorted(list(i))) for i in to_check])
 
-    to_check = set([frozenset(sorted(list(i))) for i in to_check])
-    triples = to_check
-    #print(triples)
-
-    to_check = []
-    for t in triples:
-        #print(t)
-        t = set(t)
-        foo = extend_triple(t, data_dict)
-        for i in foo:
-            my_triple = copy(t)
-            my_triple.add(i)
-            to_check.append(my_triple)
-    to_check = set([frozenset(sorted(list(i))) for i in to_check])
-    triples = to_check
-
-    to_check = []
-    for t in triples:
-        #print(t)
-        t = set(t)
-        foo = extend_triple(t, data_dict)
-        for i in foo:
-            my_triple = copy(t)
-            my_triple.add(i)
-            to_check.append(my_triple)
-
-    to_check = set([frozenset(sorted(list(i))) for i in to_check])
-    triples = to_check
-
-    to_check = []
-    for t in triples:
-        #print(t)
-        t = set(t)
-        foo = extend_triple(t, data_dict)
-        for i in foo:
-            my_triple = copy(t)
-            my_triple.add(i)
-            to_check.append(my_triple)
-
-    to_check = set([frozenset(sorted(list(i))) for i in to_check])
-    #print(to_check)
-
-    triples = to_check
-
-    to_check = []
-    for t in triples:
-        # print(t)
-        t = set(t)
-        foo = extend_triple(t, data_dict)
-        for i in foo:
-            my_triple = copy(t)
-            my_triple.add(i)
-            to_check.append(my_triple)
-
-    to_check = set([frozenset(sorted(list(i))) for i in to_check])
-    # print(to_check)
-    triples = to_check
-
-    to_check = []
-    for t in triples:
-        # print(t)
-        t = set(t)
-        foo = extend_triple(t, data_dict)
-        for i in foo:
-            my_triple = copy(t)
-            my_triple.add(i)
-            to_check.append(my_triple)
-
-    to_check = set([frozenset(sorted(list(i))) for i in to_check])
-    # print(to_check)
-
-    triples = to_check
-
-    to_check = []
-    for t in triples:
-        # print(t)
-        t = set(t)
-        foo = extend_triple(t, data_dict)
-        for i in foo:
-            my_triple = copy(t)
-            my_triple.add(i)
-            to_check.append(my_triple)
-
-    to_check = set([frozenset(sorted(list(i))) for i in to_check])
-    # print(to_check)
-
-    triples = to_check
-
-    to_check = []
-    for t in triples:
-        # print(t)
-        t = set(t)
-        foo = extend_triple(t, data_dict)
-        for i in foo:
-            my_triple = copy(t)
-            my_triple.add(i)
-            to_check.append(my_triple)
-
-    to_check = set([frozenset(sorted(list(i))) for i in to_check])
-    # print(to_check)
-
-    triples = to_check
-
-    to_check = []
-    for t in triples:
-        # print(t)
-        t = set(t)
-        foo = extend_triple(t, data_dict)
-        for i in foo:
-            my_triple = copy(t)
-            my_triple.add(i)
-            to_check.append(my_triple)
-
-    to_check = set([frozenset(sorted(list(i))) for i in to_check])
-    # print(to_check)
-
-    triples = to_check
-
-    to_check = []
-    for t in triples:
-        # print(t)
-        t = set(t)
-        foo = extend_triple(t, data_dict)
-        for i in foo:
-            my_triple = copy(t)
-            my_triple.add(i)
-            to_check.append(my_triple)
-
-    to_check = set([frozenset(sorted(list(i))) for i in to_check])
-    print(to_check)
-    print(len(to_check))
+    code = sorted(list(groups.pop()))
+    return ','.join(code)
 
 
 if __name__ == '__main__':
@@ -198,4 +68,4 @@ if __name__ == '__main__':
     print(f'Example1: {result}')
 
     result = solve2(input_data)
-    print(f'Example1: {result}')
+    print(f'Example2: {result}')
