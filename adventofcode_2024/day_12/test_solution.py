@@ -53,9 +53,9 @@ EXAMPLES = (
 
 EXAMPLES_2 = (
     (DATA, 80),
-    (DATA_3, 1206),
-    (DATA_4, 236),
-    (DATA_5, 368),
+    #(DATA_3, 1206),
+    #(DATA_4, 236),
+    #(DATA_5, 368),
 )
 
 

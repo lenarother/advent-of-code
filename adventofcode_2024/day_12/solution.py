@@ -63,6 +63,36 @@ def get_fence_count(region):
     return fence
 
 
+def get_fence_wall_pieces(region):
+    fence = []
+    for p in region:
+        for n in neighbors(p):
+            if n not in region:
+                fence.append(p)
+    return fence
+
+
+def remove_wall(walls):
+    first_piece = get_top_left(walls)
+    walls.remove(first_piece)
+    x, y = first_piece
+
+    if (x + 1, y) in walls:
+        x = x + 1
+        while (x, y) in walls:
+            walls.remove((x, y))
+            x = x + 1
+
+    elif (x, y + 1) in walls:
+        y = y + 1
+        while (x, y) in walls:
+            walls.remove((x, y))
+            y = y + 1
+
+    return walls
+
+
+
 def solve(data):
     result = 0
     grid = get_grid_dict(data.strip())
@@ -108,7 +138,7 @@ def find_straight_walls(walls):
     return wall_counter
 
 
-def solve2(data):
+def solve3(data):
     result = 0
     grid = get_grid_dict(data.strip())
     regions = []
@@ -121,6 +151,27 @@ def solve2(data):
         walls = get_walls(r)
         walls_count = find_straight_walls(walls)
         result += len(r) * walls_count
+    return result
+
+
+def solve2(data):
+    result = 0
+    grid = get_grid_dict(data.strip())
+    regions = []
+    region_types = []
+    while len(grid):
+        region, region_type = get_region(grid)
+        regions.append(region)
+        region_types.append(region_type)
+    for r, ch in zip(regions, region_types):
+        area = len(r)
+        walls = get_fence_wall_pieces(r)
+        wall_count = 0
+        while walls:
+            walls = remove_wall(walls)
+            wall_count += 1
+        result += area * wall_count
+
     return result
 
 
