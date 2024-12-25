@@ -34,9 +34,9 @@ def is_matching(key, lock):
 def solve(data):
     counter = 0
     keys, locks = parse_keys_and_locks(data)
-    for k in keys:
-        for  l in locks:
-            counter += is_matching(k, l)
+    for key in keys:
+        for lock in locks:
+            counter += is_matching(key, lock)
     return counter
 
 
