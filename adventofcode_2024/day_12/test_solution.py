@@ -53,15 +53,16 @@ EXAMPLES = (
 
 EXAMPLES_2 = (
     (DATA, 80),
-    #(DATA_3, 1206),
-    #(DATA_4, 236),
-    #(DATA_5, 368),
+    (DATA_3, 1206),
+    (DATA_4, 236),
+    (DATA_5, 368),
 )
 
 
 @pytest.mark.parametrize('data,expected', EXAMPLES)
 def test_solve(data, expected):
     assert solve(data) == expected
+
 
 @pytest.mark.parametrize('data,expected', EXAMPLES_2)
 def test_solve_2(data, expected):
