@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import solve, solve2
+from .solution import solve
 
 DATA = """
 Button A: X+94, Y+34
@@ -34,14 +34,15 @@ EXAMPLES = (
     (DATA_2, 480),
 )
 EXAMPLES_2 = (
-    (DATA_3, 280),
+    (DATA_3, 459236326669),
 )
 
-#@pytest.mark.parametrize('data,expected', EXAMPLES)
-#def test_solve(data, expected):
-#    assert solve(data) == expected
+
+@pytest.mark.parametrize('data,expected', EXAMPLES)
+def test_solve(data, expected):
+    assert solve(data) == expected
 
 
 @pytest.mark.parametrize('data,expected', EXAMPLES_2)
 def test_solve_2(data, expected):
-    assert solve2(data) == expected
+    assert solve(data, True) == expected
