@@ -4,7 +4,6 @@ https://adventofcode.com/2024/day/16
 
 """
 from copy import copy
-from heapq import heappush
 import heapq
 
 NEIGHBORS = [
@@ -53,28 +52,56 @@ def solve(data):
     start = get_position(grid, 'S')
     end = get_position(grid, 'E')
     direction = 'E'
-    ready = []
-    paths = [([start], direction, 0)]
-    heappush(paths, ([start], direction, 0))
-    while paths:
-        print(len(paths))
-        #path, direction, score = heapq.heappop(paths)
-        path, direction, score = paths.pop()
-        current_position = path[-1]
-        if current_position == end:
-            ready.append([path, direction, score])
-            return score
-        else:
-            for new_position, new_direction, cost in neighbors(current_position, direction):
-                if new_position not in path and grid[new_position] in '.E':
-                    mypath = copy(path)
-                    mypath.append(new_position)
-                    heappush(paths, (mypath, new_direction, score + cost))
 
-    print([i[2] for i in ready])
-    print(min([i[2] for i in ready]))
-    return min([i[2] for i in ready])
+    visited_nodes = set()
+    unvisited_nodes = []
+    heapq.heappush(unvisited_nodes, (0, (start, direction)))
 
+    while unvisited_nodes:
+        price, current_node = heapq.heappop(unvisited_nodes)
+        position, direction = current_node
+        if position == end:
+            return price
+        if position not in visited_nodes:
+            visited_nodes.add(position)
+            for neighbor, new_direction, cost in neighbors(position, direction):
+                if grid[neighbor] in '.E':
+                    new_price = price + cost
+                    heapq.heappush(unvisited_nodes, (new_price, (neighbor, new_direction)))
+
+
+# def solve2(data):
+#     import heapq
+#
+#     grid = get_grid_dict(data)
+#     start = get_position(grid, 'S')
+#     end = get_position(grid, 'E')
+#     direction = 'E'
+#
+#     visited_nodes = set()
+#     unvisited_nodes = []
+#     for i in grid:
+#         if i == start:
+#             heapq.heappush(unvisited_nodes, (0, (i, direction)))
+#         else:
+#             heapq.heappush(unvisited_nodes, (1000_1000_1000, (i, None)))
+#
+#     distance_table = {k: 1000_1000_1000 for k in grid if k != '#'}
+#     #distance_table[start] = 0
+#     #previous_node = {k: None for k in grid if k != '#'}
+#
+#     while unvisited_nodes:
+#         price, current_node = heapq.heappop(unvisited_nodes)
+#         position, direction = current_node
+#         if position == end:
+#             return price
+#         if position not in visited_nodes:
+#             visited_nodes.add(position)
+#             for neighbor, new_direction, cost in neighbors(position, direction):
+#                 if grid[neighbor] in '.E':
+#                     new_price = price + cost
+#                     heapq.heappush(unvisited_nodes, (new_price, (neighbor, new_direction)))
+#
 
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
