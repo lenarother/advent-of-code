@@ -91,7 +91,21 @@ def solve(data):
     result = ','.join([str(i) for i in outputs])
     return result
 
+
 def solve2(data):
+    a = 25358015
+
+    while a:
+        b = (a % 8) % 1000
+        c = a // (2 ** b)
+        a = a // 8
+        b = b ^ c
+        b = b ^ 6
+        print(b)
+
+
+
+def solve3(data):
     program = get_program(data)
     outputs = []
     counter = 0
