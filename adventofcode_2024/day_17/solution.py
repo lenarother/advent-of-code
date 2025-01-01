@@ -92,51 +92,24 @@ def solve(data):
     return result
 
 
+# 000 001 011 111 100 110 010 101
 def solve2(data):
-    a = 25358015
+    a = int('111 000 100 110 110'.replace(' ',''), 2)
 
-    while a:
-        b = (a % 8) % 1000
-        c = a // (2 ** b)
-        a = a // 8
-        b = b ^ c
-        b = b ^ 6
-        print(b)
-
-
-
-def solve3(data):
-    program = get_program(data)
-    outputs = []
-    counter = 0
-
-    while outputs != program:
-        print(counter)
-        register = {
-            'A': counter,
-            'B': 0,
-            'C': 0,
-        }
-
-        instruction_pointer = 0
-        outputs = []
-        while instruction_pointer < len(program):
-            val, instruction_pointer = instruction(
-                program[instruction_pointer],
-                program[instruction_pointer + 1],
-                register,
-                instruction_pointer
-            )
-            if val is not None:
-                outputs.append(val)
-        counter += 1
-    return counter - 1
+    while a:                # jnz
+        b = a % 8           # bst
+        b = b ^ 1           # bxl
+        c = a // (2 ** b)   # cdv
+        a = a // 8          # adv
+        b = b ^ c           # bxc
+        b = b ^ 6           # bxl
+        print(b % 8)        # out
 
 
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()
+
     result = solve(input_data)
     print(f'Example1: {result}')
 
     result = solve2(input_data)
-    print(f'Example2: {result}')
