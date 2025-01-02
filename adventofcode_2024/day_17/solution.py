@@ -15,7 +15,8 @@ def get_register(data):
 
 
 def get_program(data):
-    return [int(i) for i in data.strip().split('\n\n')[1].replace('Program: ', '').split(',')]
+    data = data.strip().split('\n\n')
+    return [int(i) for i in data[1].replace('Program: ', '').split(',')]
 
 
 def literal(operand):
@@ -23,7 +24,7 @@ def literal(operand):
 
 
 def combo(operand, register):
-    if operand in range(0,4):
+    if operand in range(4):
         return operand
     elif operand == 4:
         return register['A']
@@ -92,10 +93,15 @@ def solve(data):
     return result
 
 
-# 000 001 011 111 100 110 010 101
-def solve2(data):
-    a = int('111 000 100 110 110'.replace(' ',''), 2)
+def get_possible_input():
+    from itertools import product
+    for i in product('01', repeat=3):
+        yield i
 
+
+def run_algorithm(a):
+    """Translated to Python algorithm from puzzle input."""
+    result = []
     while a:                # jnz
         b = a % 8           # bst
         b = b ^ 1           # bxl
@@ -103,7 +109,29 @@ def solve2(data):
         a = a // 8          # adv
         b = b ^ c           # bxc
         b = b ^ 6           # bxl
-        print(b % 8)        # out
+        result.append(b % 8)        # out
+    return result
+
+
+def solve2(data):
+    expected = [0, 3, 5, 5, 6, 1, 7, 4, 3, 0, 5, 7, 1, 1, 4, 2]
+    results = ['']
+
+    while True:
+        new_results = []
+        for result in results:
+            for i in get_possible_input():
+                to_try = result + ''.join(i)
+                a = int(to_try, 2)
+                output = run_algorithm(a)
+
+                if list(reversed(output)) == expected:
+                    return a
+
+                if list(reversed(output)) == expected[:int(len(to_try) / 3)]:
+                    new_results.append(to_try)
+
+        results = new_results
 
 
 if __name__ == '__main__':
@@ -113,3 +141,4 @@ if __name__ == '__main__':
     print(f'Example1: {result}')
 
     result = solve2(input_data)
+    print(f'Example2: {result}')
