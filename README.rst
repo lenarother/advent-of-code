@@ -3,43 +3,33 @@
 .. |AoC Test| image:: https://github.com/lenarother/advent-of-code/workflows/Test/badge.svg?branch=master
    :target: https://github.com/lenarother/advent-of-code/actions?workflow=Test
    :alt: |AoC Test|
-
 .. |AoC 2024| image:: https://img.shields.io/badge/2024-43-yellow.svg
    :target: https://adventofcode.com/2024
    :alt: |AoC 2024|
-
 .. |AoC 2023| image:: https://img.shields.io/badge/2023-37-yellow.svg
    :target: https://adventofcode.com/2023
    :alt: |AoC 2023|
-
 .. |AoC 2022| image:: https://img.shields.io/badge/2022-35-yellow.svg
    :target: https://adventofcode.com/2022
    :alt: |AoC 2022|
-
 .. |AoC 2021| image:: https://img.shields.io/badge/2021-50-yellow.svg
    :target: https://adventofcode.com/2021
    :alt: |AoC 2021|
-
 .. |AoC 2020| image:: https://img.shields.io/badge/2020-50-yellow.svg
    :target: https://adventofcode.com/2020
    :alt: |AoC 2020|
-
 .. |AoC 2019| image:: https://img.shields.io/badge/2019-13-yellow.svg
    :target: https://adventofcode.com/2019
    :alt: |AoC 2019|
-
 .. |AoC 2018| image:: https://img.shields.io/badge/2018-12-yellow.svg
    :target: https://adventofcode.com/2018
    :alt: |AoC 2018|
-
 .. |AoC 2017| image:: https://img.shields.io/badge/2017-48-yellow.svg
    :target: https://adventofcode.com/2017
    :alt: |AoC 2017|
-
 .. |AoC 2016| image:: https://img.shields.io/badge/2016-50-yellow.svg
    :target: https://adventofcode.com/2016
    :alt: |AoC 2016|
-
 .. |AoC 2015| image:: https://img.shields.io/badge/2015-50-yellow.svg
    :target: https://adventofcode.com/2015
    :alt: |AoC 2015|
