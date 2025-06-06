@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import solve, solve2
+from .solution import solve
 
 DATA = """
 ########
@@ -56,17 +56,7 @@ EXAMPLES = (
     (DATA_2, 10092),
 )
 
-EXAMPLES_2 = (
-    #(DATA, 2028),
-    #(DATA_2, 10092),
-    (DATA_3, 10092),
-)
 
-
-#@pytest.mark.parametrize('data,expected', EXAMPLES_2)
-#def test_solve(data, expected):
-#    assert solve(data) == expected
-
-@pytest.mark.parametrize('data,expected', EXAMPLES_2)
-def test_solve_2(data, expected):
-    assert solve2(data) == expected
+@pytest.mark.parametrize('data,expected', EXAMPLES)
+def test_solve(data, expected):
+    assert solve(data) == expected
