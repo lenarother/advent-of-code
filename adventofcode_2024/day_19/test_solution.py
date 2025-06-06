@@ -1,6 +1,6 @@
 import pytest
 
-from .solution import solve, solve2
+from .solution import solve
 
 DATA = """
 r, wr, b, g, bwu, rb, gb, br
@@ -27,9 +27,7 @@ r, wr, b, g, bwu, rb, gb, br
 gbbr
 """
 
-EXAMPLES = (
-    (DATA, 6),
-)
+EXAMPLES = ((DATA, 6),)
 
 EXAMPLES_2 = (
     (DATA, 16),
@@ -38,11 +36,6 @@ EXAMPLES_2 = (
 )
 
 
-#@pytest.mark.parametrize('data,expected', EXAMPLES)
-#def test_solve(data, expected):
-#    assert solve(data) == expected
-
-
-@pytest.mark.parametrize('data,expected', EXAMPLES_2)
-def test_solve_2(data, expected):
-    assert solve2(data) == expected
+@pytest.mark.parametrize("data,expected", EXAMPLES)
+def test_solve(data, expected):
+    assert solve(data) == expected

@@ -3,17 +3,14 @@
 https://adventofcode.com/2024/day/19
 
 """
-import re
-
-PATTERN = r'^(r|wr|b|g|bwu|rb|gb|br)'
 
 
 def get_patterns(data):
-    return data.strip().split('\n\n')[0].split(', ')
+    return data.strip().split("\n\n")[0].split(", ")
 
 
 def get_towels(data):
-    return data.strip().split('\n\n')[1].split('\n')
+    return data.strip().split("\n\n")[1].split("\n")
 
 
 def is_towel_possible(towel, patterns):
@@ -21,7 +18,7 @@ def is_towel_possible(towel, patterns):
     done = dict()
     while stack:
         current = stack.pop()
-        if current == '':
+        if current == "":
             return True
         elif current in done:
             stack.append(done[current])
@@ -31,7 +28,7 @@ def is_towel_possible(towel, patterns):
                     foo = len(pattern)
                     bar = current[foo:]
                     stack.append(bar)
-                    done[current]= bar
+                    done[current] = bar
     return False
 
 
@@ -47,14 +44,12 @@ def is_towel_possible_recursive(towel, patterns):
 
 
 def is_towel_possible_2(towel, patterns):
-    print('pattern',list(re.finditer(PATTERN, towel)))
     counter = 0
     stack = [towel]
     done = dict()
     while stack:
-        print(done)
         current = stack.pop()
-        if current == '':
+        if current == "":
             counter += 1
         elif current in done:
             for i in done[current]:
@@ -78,22 +73,8 @@ def solve(data):
     return counter
 
 
-def solve2(data):
-    towels = get_towels(data)
-    patterns = get_patterns(data)
-    counter = 0
-
-    for i, towel in enumerate(towels):
-        print(i)
-        counter += is_towel_possible_2(towel, patterns)
-    return counter
-
-
-if __name__ == '__main__':
-    input_data = open('input_data.txt').read()
+if __name__ == "__main__":
+    input_data = open("input_data.txt").read()
 
     result = solve(input_data)
-    print(f'Example1: {result}')
-
-    result = solve2(input_data)
-    print(f'Example2: {result}')
+    print(f"Example1: {result}")
