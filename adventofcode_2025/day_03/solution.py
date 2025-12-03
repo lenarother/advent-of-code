@@ -6,7 +6,7 @@ https://adventofcode.com/2025/day/3
 
 
 def find_joltage(battery, n=12):
-    result_number = ""
+    result_number = ''
     j = 0
     for i in list(range(n - 1, -1, -1)):
         battery_to_test = battery[j: -i or None]
@@ -19,7 +19,7 @@ def find_joltage(battery, n=12):
 def solve(data, n=2):
     return sum(
         find_joltage(battery, n)
-        for battery in data.strip().split("\n")
+        for battery in data.strip().split('\n')
     )
 
 
