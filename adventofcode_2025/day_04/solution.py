@@ -33,12 +33,10 @@ def solve2(data):
     min_p = min(data)
     max_p = max(data)
 
-    to_remove = make_round(data, min_p, max_p)
-    while to_remove:
+    while (to_remove:=make_round(data, min_p, max_p)):
         result += len(to_remove)
         for k in to_remove:
             data[k] = '.'
-        to_remove = make_round(data, min_p, max_p)
 
     return result
 
